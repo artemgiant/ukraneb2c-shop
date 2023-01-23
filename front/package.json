@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build watch": "vite build --watch",
     "build-tsc": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "format": "prettier --write ./src",

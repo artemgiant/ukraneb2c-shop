@@ -75,7 +75,7 @@
 
                     <div v-for="product in basketStore.products" :key="product.id" class="product-widget">
                       <div class="product-img">
-                        <img :src="this.$storageUrl+'/'+product.image_main.name" alt="">
+                        <img :src="$storageUrl+'/'+product.image_main.name" alt="">
                       </div>
                       <div class="product-body">
                         <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
@@ -122,8 +122,13 @@
 <script setup>
 import {useBasketStore} from "@/store/basketStore"
 import {useWishlistStore} from "@/store/wishlistStore"
+import { inject } from 'vue'
 const basketStore = useBasketStore();
 const wishlistStore = useWishlistStore();
+
+
+const $storageUrl = inject('storageUrl')
+
 
 </script>
 

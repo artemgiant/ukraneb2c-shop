@@ -43,9 +43,9 @@ const app = createApp(App)
 
 // Config
 app.config.productionTip = true;
-app.config.globalProperties.$backendUrl = import.meta.env.VITE_APP_BACKEND_URL;
-app.config.globalProperties.$storageUrl= import.meta.env.VITE_APP_STORAGE_URL;
-app.config.globalProperties.$appName = import.meta.env.VITE_APP_NAME;
+app.provide('backendUrl', import.meta.env.VITE_APP_BACKEND_UR)
+app.provide('storageUrl', import.meta.env.VITE_APP_STORAGE_URL)
+app.provide('appName', import.meta.env.VITE_APP_NAME)
 
 app.mount("#app");
 

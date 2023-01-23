@@ -4,7 +4,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { ref,onMounted} from "vue";
+import { ref,onMounted, inject} from "vue";
 // STORE
 import {useProductApiStore} from "@/store/Product/ProductApiStore";
 import {useBasketStore} from "@/store/basketStore"
@@ -14,6 +14,7 @@ const route = useRoute()
 const productApiStore = useProductApiStore();
 const basketStore = useBasketStore();
 const product = ref({});
+const $storageUrl = inject('storageUrl')
 
 onMounted(() => {
   productApiStore.getProduct(route.params.id).then(data => {

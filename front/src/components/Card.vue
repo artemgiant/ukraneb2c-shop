@@ -2,7 +2,7 @@
   <div class="col-md-4 col-xs-6">
     <div class="product">
       <div class="product-img">
-        <img :src="this.$storageUrl+'/'+product.image_main.name" alt="">
+        <img :src="$storageUrl+'/'+product.image_main.name" alt="">
       </div>
       <div class="product-body">
         <p class="product-category">Категорія</p>
@@ -40,9 +40,14 @@
 
 <script >
 import { directive } from 'vue-tippy'
-
+import { inject } from 'vue'
 export default {
   name: "Card",
+  data(){
+   return {
+     $storageUrl:inject('storageUrl')
+   }
+  },
   props:{
     product: {
       type: Object,

@@ -8,12 +8,12 @@
             <div class="col-md-5 col-md-push-2">
                 <div id="product-main-img">
                     <div v-for="img in product.images" class="product-preview">
-                        <img :src="this.$storageUrl+'/'+img.name" alt="">
+                        <img :src="$storageUrl+'/'+img.name" alt="">
                     </div>
                 </div>
                 <div id="product-imgs">
                     <div v-for="img in product.images" class="product-preview">
-                        <img :src="this.$storageUrl+'/'+img.name" alt="">
+                        <img :src="$storageUrl+'/'+img.name" alt="">
                     </div>
                 </div>
             </div>

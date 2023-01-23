@@ -3,10 +3,9 @@
 <!--<script src="./Loader.js"></script>-->
 
 <script setup>
-import {computed, ref} from 'vue'
+import {computed, ref, inject} from 'vue'
 import $axios from "@/lib/axios";
 import { useRouter } from 'vue-router'
-
 import * as Yup from 'yup';
 import {phoneMask} from "@/lib/phone-mask";
 
@@ -18,6 +17,7 @@ import {useBasketStore} from "@/store/basketStore"
 import {useAddressApiStore} from "@/store/Address/AddressApiStore";
 import {useAddressStore} from "@/store/Address/AddressStore";
 
+const $storageUrl = inject('storageUrl')
 // Components
 const basketStore = useBasketStore();
 const addressApiStore = useAddressApiStore();
