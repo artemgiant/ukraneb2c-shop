@@ -5,6 +5,7 @@
   "description": "A Vite2.x + Vue3 + TypeScript template starter",
   "scripts": {
     "dev": "vite",
+    "devv": "vite build --mode development",
     "build": "vite build",
     "build watch": "vite build --watch",
     "build-tsc": "vue-tsc --noEmit && vite build",
@@ -42,8 +43,7 @@
     "sass": "^1.39.2",
     "typescript": "^4.1.3",
     "vite": "^3.2.0",
+    "vite-plugin-static-copy": "^0.13.0",
     "vue-tsc": "^0.3.0"
   }
 }
-
-
