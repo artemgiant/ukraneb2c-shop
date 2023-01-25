@@ -5,7 +5,6 @@
   "description": "A Vite2.x + Vue3 + TypeScript template starter",
   "scripts": {
     "dev": "vite",
-    "devv": "vite build --mode development",
     "build": "vite build",
     "build watch": "vite build --watch",
     "build-tsc": "vue-tsc --noEmit && vite build",
