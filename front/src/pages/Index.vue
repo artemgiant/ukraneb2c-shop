@@ -1,81 +1,81 @@
 <template>
-  <!-- NAVIGATION -->
-  <nav id="navigation">
-    <!-- container -->
-    <div class="container">
-      <!-- responsive-nav -->
-      <div id="responsive-nav">
-        <!-- NAV -->
-        <ul class="main-nav nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Hot Deals</a></li>
-          <li><a href="#">Categories</a></li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Smartphones</a></li>
-          <li><a href="#">Cameras</a></li>
-          <li><a href="#">Accessories</a></li>
-        </ul>
-        <!-- /NAV -->
-      </div>
-      <!-- /responsive-nav -->
-    </div>
-    <!-- /container -->
-  </nav>
-  <!-- /NAVIGATION -->
+<!--  &lt;!&ndash; NAVIGATION &ndash;&gt;-->
+<!--  <nav id="navigation">-->
+<!--    &lt;!&ndash; container &ndash;&gt;-->
+<!--    <div class="container">-->
+<!--      &lt;!&ndash; responsive-nav &ndash;&gt;-->
+<!--      <div id="responsive-nav">-->
+<!--        &lt;!&ndash; NAV &ndash;&gt;-->
+<!--        <ul class="main-nav nav navbar-nav">-->
+<!--          <li class="active"><a href="#">Home</a></li>-->
+<!--          <li><a href="#">Hot Deals</a></li>-->
+<!--          <li><a href="#">Categories</a></li>-->
+<!--          <li><a href="#">Laptops</a></li>-->
+<!--          <li><a href="#">Smartphones</a></li>-->
+<!--          <li><a href="#">Cameras</a></li>-->
+<!--          <li><a href="#">Accessories</a></li>-->
+<!--        </ul>-->
+<!--        &lt;!&ndash; /NAV &ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /responsive-nav &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /container &ndash;&gt;-->
+<!--  </nav>-->
+<!--  &lt;!&ndash; /NAVIGATION &ndash;&gt;-->
 
-  <!-- SECTION -->
-  <div class="section">
-    <!-- container -->
-    <div class="container">
-      <!-- row -->
-      <div class="row">
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="/img/shop01.png" alt="">
-            </div>
-            <div class="shop-body">
-              <h3>Laptop<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- /shop -->
+<!--  &lt;!&ndash; SECTION &ndash;&gt;-->
+<!--  <div class="section">-->
+<!--    &lt;!&ndash; container &ndash;&gt;-->
+<!--    <div class="container">-->
+<!--      &lt;!&ndash; row &ndash;&gt;-->
+<!--      <div class="row">-->
+<!--        &lt;!&ndash; shop &ndash;&gt;-->
+<!--        <div class="col-md-4 col-xs-6">-->
+<!--          <div class="shop">-->
+<!--            <div class="shop-img">-->
+<!--              <img src="/img/shop01.png" alt="">-->
+<!--            </div>-->
+<!--            <div class="shop-body">-->
+<!--              <h3>Laptop<br>Collection</h3>-->
+<!--              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /shop &ndash;&gt;-->
 
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="/img/shop03.png" alt="">
-            </div>
-            <div class="shop-body">
-              <h3>Accessories<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- /shop -->
+<!--        &lt;!&ndash; shop &ndash;&gt;-->
+<!--        <div class="col-md-4 col-xs-6">-->
+<!--          <div class="shop">-->
+<!--            <div class="shop-img">-->
+<!--              <img src="/img/shop03.png" alt="">-->
+<!--            </div>-->
+<!--            <div class="shop-body">-->
+<!--              <h3>Accessories<br>Collection</h3>-->
+<!--              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /shop &ndash;&gt;-->
 
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="/img/shop02.png" alt="">
-            </div>
-            <div class="shop-body">
-              <h3>Cameras<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- /shop -->
-      </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-  <!-- /SECTION -->
+<!--        &lt;!&ndash; shop &ndash;&gt;-->
+<!--        <div class="col-md-4 col-xs-6">-->
+<!--          <div class="shop">-->
+<!--            <div class="shop-img">-->
+<!--              <img src="/img/shop02.png" alt="">-->
+<!--            </div>-->
+<!--            <div class="shop-body">-->
+<!--              <h3>Cameras<br>Collection</h3>-->
+<!--              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /shop &ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /row &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /container &ndash;&gt;-->
+<!--  </div>-->
+<!--  &lt;!&ndash; /SECTION &ndash;&gt;-->
 
   <!-- SECTION -->
   <div class="section">

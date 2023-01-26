@@ -25,9 +25,14 @@
         <div class="row">
           <!-- LOGO -->
           <div class="col-md-3">
-            <div class="header-logo">
+            <div class="header-logo" style="
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
               <router-link class="logo" to="/">
-                <img src="/img/logo.png" alt="">
+                <img src="/img/logo.png"  style="width: 100%" alt="">
               </router-link>
             </div>
           </div>
@@ -97,14 +102,6 @@
               </div>
               <!-- /Cart -->
 
-              <!-- Menu Toogle -->
-              <div class="menu-toggle">
-                <a href="#">
-                  <i class="fa fa-bars"></i>
-                  <span>Menu</span>
-                </a>
-              </div>
-              <!-- /Menu Toogle -->
             </div>
           </div>
           <!-- /ACCOUNT -->
