@@ -42,8 +42,7 @@
                         <h3 class="product-price">{{product.price}} грн </h3>
                         <span class="product-available">В НАЯВНОСТІ</span>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
+                    <p v-html="product.description_short" > </p>
 
 
                     <div class="add-to-cart">
@@ -82,6 +81,7 @@
 
             </div>
             <!-- /Product details -->
+<!--            <p v-html="product.description_long" > </p>-->
 
 
         </div>

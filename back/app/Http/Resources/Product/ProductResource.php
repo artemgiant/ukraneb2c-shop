@@ -18,7 +18,7 @@ class ProductResource extends JsonResource
     {
         $data     = $this->getAttributes();
 
-        $result = Arr::only($data,['id','weight_kg','images','price','name']);
+        $result = Arr::only($data,['id','weight_kg','images','price','name','description_long','description_short']);
         $result['image_main'] = null;
         $result['price'] = json_decode( $result['price'])->uah;
         $name =

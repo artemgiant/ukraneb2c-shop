@@ -1,12 +1,22 @@
 <template>
   <div class="col-md-4 col-xs-6">
     <div class="product">
+      <router-link class="quick-view"  target='_blank'
+                   :to="{ name: 'Product',params:{id:product.id}}">
       <div class="product-img">
+
         <img :src="$storageUrl+'/'+product.image_main.name" alt="">
       </div>
+      </router-link>
+
       <div class="product-body">
         <p class="product-category">Категорія</p>
-        <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+        <h3 class="product-name">
+          <router-link class="quick-view"  target='_blank'
+                       :to="{ name: 'Product',params:{id:product.id}}">
+            {{ product.name }}
+          </router-link>
+        </h3>
         <h4 class="product-price">{{product.price}} грн
           <!--          <del class="product-old-price">$990.00</del>-->
         </h4>
