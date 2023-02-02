@@ -80,8 +80,39 @@
 
 
             </div>
+
+
             <!-- /Product details -->
-            <p v-html="product.description_long" > </p>
+
+            <!-- /Product details -->
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li ><a style="pointer-events: none" >Description</a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <!-- tab1  -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p v-html="product.description_long" > </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab1  -->
+
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
 
 
         </div>
