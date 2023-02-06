@@ -9,6 +9,8 @@ class OrderAddress extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $fillable = [
         'order_id',
         'recipient_id',

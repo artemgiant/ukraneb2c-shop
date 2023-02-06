@@ -10,6 +10,8 @@ class OrderRecipient extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $fillable = ['phone', 'name', 'email'];
 
     protected $casts = [

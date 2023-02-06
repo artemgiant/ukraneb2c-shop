@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $connection = 'ub2c';
 
     protected $fillable = [
         'supplier_id',

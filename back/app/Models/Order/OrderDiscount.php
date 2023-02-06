@@ -10,5 +10,7 @@ class OrderDiscount extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $fillable = ['order_id', 'discount_value', 'type_discount', 'user_id'];
 }

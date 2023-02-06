@@ -13,6 +13,8 @@ class Order extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $connection = 'ub2c';
+
     protected $fillable = ['shop_id',
         'shop_order_id',
         'shop_user_id',

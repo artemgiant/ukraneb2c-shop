@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Cache;
 
 class Shop extends Model
 {
+    protected $connection = 'ub2c';
+
     protected $fillable = [
         "name",
         "class",

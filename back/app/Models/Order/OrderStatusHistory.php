@@ -9,6 +9,8 @@ class OrderStatusHistory extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $table = 'order_statuses_history';
 
     protected $fillable = [

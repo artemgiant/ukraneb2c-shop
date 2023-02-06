@@ -10,6 +10,8 @@ class OrderProduct extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $fillable = [
         'order_id',
         'product_id',

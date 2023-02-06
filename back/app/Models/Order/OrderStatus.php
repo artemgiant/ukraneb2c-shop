@@ -9,5 +9,7 @@ class OrderStatus extends Model
 {
     use HasFactory;
 
+    protected $connection = 'ub2c';
+
     protected $guarded = [];
 }
