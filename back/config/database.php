@@ -62,6 +62,25 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'ub2c' => [
+            'driver' => 'mysql',
+            'url' => env('UB2C_DATABASE_URL'),
+            'host' => env('UB2C_DB_HOST', '127.0.0.1'),
+            'port' => env('UB2C_DB_PORT', '3306'),
+            'database' => env('UB2C_DB_DATABASE', 'forge'),
+            'username' => env('UB2C_DB_USERNAME', 'forge'),
+            'password' => env('UB2C_DB_PASSWORD', ''),
+            'unix_socket' => env('UB2C_DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
 
         'addresses' => [
             'driver' => 'mysql',
