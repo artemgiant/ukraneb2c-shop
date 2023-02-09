@@ -33,7 +33,10 @@ export const useAuthStore = defineStore("auth", {
         await axios.post("/login", {
           email: data.email,
           password: data.password,
-        }).then(resp =>console.log(resp));
+        }).then(resp => {
+          this.getUser();
+          console.log(resp)
+        });
         // this.router.push("/");
       // }
       // catch (error) {

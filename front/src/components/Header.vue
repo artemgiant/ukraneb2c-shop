@@ -11,7 +11,15 @@
         </ul>
         <ul class="header-links pull-right">
           <li><a href="#"><i class="fa fa-hryvnia">₴</i>UAH</a></li>
-<!--          <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>-->
+          <li>
+            <template v-if="authStore.user">
+            <router-link to="/account" ><i class="fa fa-user-o"></i>{{authStore.user.name}}</router-link>
+            </template>
+
+            <template v-if="!authStore.user">
+              <router-link to="/login" ><i class="fa fa-user-o"></i> My Account</router-link>
+            </template>
+          </li>
         </ul>
       </div>
     </div>
@@ -119,13 +127,19 @@
 <script setup>
 import {useBasketStore} from "@/store/basketStore"
 import {useWishlistStore} from "@/store/wishlistStore"
-import { inject } from 'vue'
+import { useAuthStore } from "@/store/auth/auth";
+
+const authStore = useAuthStore();
+
+import { inject,onMounted } from 'vue'
 const basketStore = useBasketStore();
 const wishlistStore = useWishlistStore();
 
-
 const $storageUrl = inject('storageUrl')
 
+onMounted(async () => {
+  await authStore.getUser();
+});
 
 </script>
 
