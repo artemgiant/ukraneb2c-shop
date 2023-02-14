@@ -13,7 +13,23 @@
           <li><a href="#"><i class="fa fa-hryvnia">₴</i>UAH</a></li>
           <li>
             <template v-if="authStore.user">
-            <router-link to="/account" ><i class="fa fa-user-o"></i>{{authStore.user.name}}</router-link>
+<!--            <router-link to="/account" ><i class="fa fa-user-o"></i>{{authStore.user.name}}</router-link>-->
+
+              <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa  fa-user-o"></i>
+                  <span>{{authStore.user.name}}</span>
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li>
+                    <router-link to="/account"> Account</router-link>
+                  </li>
+                  <li>
+                    <a v-on:click="authStore.handleLogout()" href="#">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </template>
 
             <template v-if="!authStore.user">
@@ -143,6 +159,11 @@ onMounted(async () => {
 
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+.header-links .dropdown-menu li a {
+  color: #181717;
+}
+.header-links .dropdown-menu li a:hover {
+  color: #D10024;
+}
 </style>

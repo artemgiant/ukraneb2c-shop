@@ -61,7 +61,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function loginUser(Request $request)
+    public function createToken(Request $request)
     {
         try {
             $validateUser = Validator::make($request->all(),

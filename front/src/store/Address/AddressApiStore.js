@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import $axios from "@/lib/axios";
+import $axios from "axios";
 import {useAddressStore} from "./AddressStore";
 
 export const useAddressApiStore = defineStore('addressApiStore', () => {

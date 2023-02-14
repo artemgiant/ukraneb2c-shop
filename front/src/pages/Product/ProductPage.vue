@@ -5,6 +5,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { ref,onMounted, inject} from "vue";
+import {useAuthStore} from "../../store/auth/auth";
 // STORE
 import {useProductApiStore} from "@/store/Product/ProductApiStore";
 import {useBasketStore} from "@/store/basketStore"
@@ -15,6 +16,8 @@ const productApiStore = useProductApiStore();
 const basketStore = useBasketStore();
 const product = ref({});
 const $storageUrl = inject('storageUrl')
+const authStore = useAuthStore();
+
 
 onMounted(() => {
   productApiStore.getProduct(route.params.id).then(data => {

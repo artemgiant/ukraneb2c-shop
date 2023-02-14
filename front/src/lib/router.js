@@ -51,6 +51,11 @@ const routes = [
     component: () => import("../pages/Auth/Login.vue"),
   },
   {
+    path: "/login-old",
+    name: "LoginOld",
+    component: () => import("../pages/Auth/LoginOld.vue"),
+  },
+  {
     path: "/register",
     name: "Register",
     component: () => import("../pages/Auth/Register.vue"),
@@ -64,6 +69,11 @@ const routes = [
     path: "/password-reset/:token",
     name: "ResetPassword",
     component: () => import("../pages/Auth/ResetPassword.vue"),
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: () => import("../pages/Account/Account.vue"),
   },
   {
     component: NotFound,

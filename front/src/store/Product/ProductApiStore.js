@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import $axios from "@/lib/axios";
+import $axios from "axios";
 import {useProductStore} from "./ProductStore";
 
 export const useProductApiStore = defineStore('productApiStore', () => {
@@ -23,7 +23,12 @@ export const useProductApiStore = defineStore('productApiStore', () => {
 
     const getProduct = async (id) => {
 
-     return   await  $axios.post(`/api/products`,{id:id}).then((res)=> res.data
+     return   await  $axios.post(`/api/products`,{id:id},{
+         headers: {
+             'Accept':'application/json',
+             'Authorization':'20|xO8xdQ9dGpHRmcgWfyfDIIbsa5hPT8IsDcyhagkn'
+         }
+     }).then((res)=> res.data
         )  .catch(function (error) {
             console.log(error);
             alert(error.message);
