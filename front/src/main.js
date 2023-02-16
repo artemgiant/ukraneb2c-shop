@@ -1,6 +1,6 @@
 // window._ = require('lodash');
 
-import { createApp } from "vue";
+import { createApp,markRaw } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "@/lib/router";
@@ -34,11 +34,17 @@ const optionsToast = {
     icon: true,
     rtl: false
 };
+const pinia = createPinia();
+pinia.use(({ store }) => {
+    store.router = markRaw(router);
+});
+
+
 
 const app = createApp(App)
     .use(router)
     .use(Toast, optionsToast)
-    .use(createPinia())
+    .use(pinia)
 ;
 
 // Config

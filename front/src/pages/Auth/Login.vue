@@ -49,7 +49,7 @@ const form = ref({
                 <button  type="submit" class="primary-btn order-submit" data-v-5bdfd931="" style="width: 100%;">Увійти</button>
               </div>
               <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
+                <p>Not a member? <router-link to="/register">Register</router-link></p>
                 <button type="button" class="btn btn-link btn-floating mx-1">
                   <i class="fab fa-facebook-f"></i>
                 </button>

@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-
 axios.defaults.baseURL = "http://localhost:8001";
 
 export const useAuthStore = defineStore("auth", {
@@ -35,9 +34,9 @@ export const useAuthStore = defineStore("auth", {
           password: data.password,
         }).then(resp => {
           this.getUser();
-          console.log(resp)
+          this.router.push("/");
+
         });
-        // this.router.push("/");
       // }
       // catch (error) {
       //   console.log(error)
