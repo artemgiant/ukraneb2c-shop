@@ -29,7 +29,7 @@ const form = ref({
                 <h3 class="title">Register</h3>
               </div>
               <div class="form-group">
-                <input class="input" type="text" v-model="form.name" name="first-name" placeholder="Name">
+                <input class="input form-control" type="text" v-model="form.name" name="first-name" placeholder="Name">
                 <div v-if="authStore.errors.name" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
                       authStore.errors.name[0]
@@ -38,17 +38,17 @@ const form = ref({
               </div>
 
               <div class="form-group">
-                <input class="input" type="email" v-model="form.email" name="first-name" placeholder="Email">
+                <input class="input form-control" type="email" v-model="form.email" name="first-name" placeholder="Email">
 
                 <div v-if="authStore.errors.email" class="flex">
-                  <span class="text-red-400 text-sm m-2 p-2">{{
+                  <span class=" invalid-feedback text-red-400 text-sm m-2 p-2">{{
                       authStore.errors.email[0]
                     }}</span>
                 </div>
               </div>
 
               <div class="form-group">
-                <input class="input" type="text" v-model="form.phone" name="first-name" placeholder="Phone">
+                <input class="input form-control" type="text" v-model="form.phone" name="first-name" placeholder="Phone">
 
                 <div v-if="authStore.errors.phone" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
@@ -60,7 +60,7 @@ const form = ref({
 
 
               <div class="form-group">
-                <input class="input" type="password" v-model="form.password" name="last-name" placeholder="Password">
+                <input class="input form-control" type="password" v-model="form.password" name="last-name" placeholder="Password">
 
                 <div v-if="authStore.errors.password" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
@@ -69,7 +69,7 @@ const form = ref({
                 </div>
               </div>
               <div class="form-group">
-                <input class="input" type="password" v-model="form.password_confirmation" name="last-name" placeholder="Confirm password">
+                <input class="input form-control" type="password" v-model="form.password_confirmation" name="last-name" placeholder="Confirm password">
 
                 <div v-if="authStore.errors.password_confirmation" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
@@ -82,7 +82,7 @@ const form = ref({
                 <button  type="submit" class="primary-btn order-submit" data-v-5bdfd931="" style="width: 100%;">Увійти</button>
               </div>
               <div class="text-center">
-                <router-link to="/login" class="text-primary hover:underline">
+                <router-link to="/login" >
                   Sign In
                 </router-link>
 

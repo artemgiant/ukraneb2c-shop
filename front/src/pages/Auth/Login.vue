@@ -27,7 +27,7 @@ const form = ref({
                 <h3 class="title">Login</h3>
               </div>
               <div class="form-group">
-                <input class="input" type="email" v-model="form.email" name="first-name" placeholder="Email">
+                <input class="input  form-control" type="email" v-model="form.email" name="first-name" placeholder="Email">
 
                 <div v-if="authStore.errors.email" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
@@ -36,8 +36,12 @@ const form = ref({
                 </div>
 
               </div>
+
+
+
+
               <div class="form-group">
-                <input class="input" type="password" v-model="form.password" name="last-name" placeholder="Password">
+                <input class="input form-control" type="password" v-model="form.password" name="last-name" placeholder="Password">
 
                 <div v-if="authStore.errors.password" class="flex">
                   <span class="text-red-400 text-sm m-2 p-2">{{
