@@ -60,16 +60,8 @@ const routes = [
     name: "Register",
     component: () => import("../pages/Auth/Register.vue"),
   },
-  {
-    path: "/forgot-password",
-    name: "ForgotPassword",
-    component: () => import("../pages/Auth/ForgotPassword.vue"),
-  },
-  {
-    path: "/password-reset/:token",
-    name: "ResetPassword",
-    component: () => import("../pages/Auth/ResetPassword.vue"),
-  },
+
+
   {
     path: "/account",
     name: "Account",

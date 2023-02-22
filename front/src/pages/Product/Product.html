@@ -91,7 +91,9 @@
                 <div id="product-tab">
                     <!-- product tab nav -->
                     <ul class="tab-nav">
-                        <li ><a style="pointer-events: none" >Description</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab1" aria-expanded="false">Description</a></li>
+
+                        <li class="active"><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.comments.length}})</a></li>
                     </ul>
                     <!-- /product tab nav -->
 
@@ -108,6 +110,231 @@
                         </div>
                         <!-- /tab1  -->
 
+                        <!-- tab3  -->
+                        <div id="tab3" class="tab-pane fade in active">
+                            <div class="row">
+                                <!-- Rating -->
+                                <div class="col-md-3">
+                                    <div id="rating">
+                                        <div class="rating-avg">
+                                            <span>{{commentApiStore.stars.avg}}</span>
+                                            <div class="rating-stars">
+                                                <i :class="[commentApiStore.stars.avg>0?'fa-star':'fa-star-o ']" class="fa"></i>
+                                                <i :class="[commentApiStore.stars.avg>1?'fa-star':'fa-star-o ']" class="fa"></i>
+                                                <i :class="[commentApiStore.stars.avg>2?'fa-star':'fa-star-o ']" class="fa"></i>
+                                                <i :class="[commentApiStore.stars.avg>3?'fa-star':'fa-star-o ']" class="fa"></i>
+                                                <i :class="[commentApiStore.stars.avg>4?'fa-star':'fa-star-o ']" class="fa"></i>
+                                            </div>
+                                        </div>
+                                        <ul class="rating">
+                                            <li>
+                                                <div class="rating-stars">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="rating-progress">
+                                                    <div style="width: 50%;"></div>
+                                                </div>
+                                                <span class="sum">{{commentApiStore.stars.five}}</span>
+                                            </li>
+                                            <li>
+                                                <div class="rating-stars">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="rating-progress">
+                                                    <div style="width: 50%;"></div>
+                                                </div>
+                                                <span class="sum">{{commentApiStore.stars.four}}</span>
+                                            </li>
+                                            <li>
+                                                <div class="rating-stars">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="rating-progress">
+                                                    <div style="width: 50%;"></div>
+                                                </div>
+                                                <span class="sum">{{commentApiStore.stars.three}}</span>
+                                            </li>
+                                            <li>
+                                                <div class="rating-stars">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="rating-progress">
+                                                    <div style="width: 50%;"></div>
+                                                </div>
+                                                <span class="sum">{{commentApiStore.stars.two}}</span>
+                                            </li>
+                                            <li>
+                                                <div class="rating-stars">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="rating-progress">
+                                                    <div style="width: 50%;"></div>
+                                                </div>
+                                                <span class="sum">{{commentApiStore.stars.one}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /Rating -->
+
+                                <!-- Reviews -->
+                                <div class="col-md-6">
+                                    <div id="reviews">
+                                        <ul class="reviews" v-if="commentApiStore.comments">
+
+                                            <li v-for="comment in commentApiStore.comments" >
+                                                <div class="review-heading">
+
+                                                    <h5 class="name">{{comment.commenter?comment.commenter.name:comment.guest_name}}</h5>
+                                                    <p class="date">{{comment.updated_at}}</p>
+                                                    <div class="review-rating">
+                                                        <i :class="[comment.stars>0?'fa-star':'fa-star-o empty']" class="fa"></i>
+                                                        <i :class="[comment.stars>1?'fa-star':'fa-star-o empty']" class="fa"></i>
+                                                        <i :class="[comment.stars>2?'fa-star':'fa-star-o empty']" class="fa"></i>
+                                                        <i :class="[comment.stars>3?'fa-star':'fa-star-o empty']" class="fa"></i>
+                                                        <i :class="[comment.stars>4?'fa-star':'fa-star-o empty']" class="fa"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="review-body">
+                                                    <p>{{comment.comment}}</p>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <!-- /Reviews -->
+
+                                <!-- Review Form -->
+                                <div class="col-md-3">
+                                    <div id="review-form">
+
+                                        <form v-if="!authStore.authUser" class="review-form">
+                                            <input v-model="commentApiStore.comment.guest_name" class="input" type="text" placeholder="Your Name">
+                                            <input v-model="commentApiStore.comment.guest_email"  class="input" type="email" placeholder="Your Email">
+                                            <textarea v-model="commentApiStore.comment.message" class="input" placeholder="Your Review">{{commentApiStore.comment.message}}</textarea>
+                                            <div class="input-rating">
+                                                <span>Your Rating: </span>
+                                                <div class="stars">
+                                                    <input
+                                                            id="star5"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="5"
+                                                            type="radio">
+                                                    <label for="star5"></label>
+
+                                                    <input id="star4"
+                                                           v-model="commentApiStore.comment.stars"
+                                                           name="rating"
+                                                           value="4"
+                                                           type="radio">
+                                                    <label for="star4"></label>
+
+                                                    <input
+                                                            id="star3"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="3"
+                                                            type="radio">
+                                                    <label for="star3"></label>
+
+                                                    <input
+                                                            id="star2"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="2"
+                                                            type="radio">
+                                                    <label for="star2"></label>
+
+                                                    <input
+                                                            id="star1"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="1"
+                                                            type="radio">
+                                                    <label for="star1"></label>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" v-on:click="commentApiStore.create" class="primary-btn">Submit</button>
+                                        </form>
+
+                                        <form v-if="authStore.authUser" class="review-form">
+                                            <textarea v-model="commentApiStore.comment.message" class="input" placeholder="Your Review">{{commentApiStore.comment.message}}</textarea>
+                                            <div class="input-rating">
+                                                <span>Your Rating: </span>
+                                                <div class="stars">
+                                                    <input
+                                                            id="star5"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="5"
+                                                            type="radio">
+                                                    <label for="star5"></label>
+
+                                                    <input id="star4"
+                                                           v-model="commentApiStore.comment.stars"
+                                                           name="rating"
+                                                           value="4"
+                                                           type="radio">
+                                                    <label for="star4"></label>
+
+                                                    <input
+                                                            id="star3"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="3"
+                                                            type="radio">
+                                                    <label for="star3"></label>
+
+                                                    <input
+                                                            id="star2"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="2"
+                                                            type="radio">
+                                                    <label for="star2"></label>
+
+                                                    <input
+                                                            id="star1"
+                                                            v-model="commentApiStore.comment.stars"
+                                                            name="rating"
+                                                            value="1"
+                                                            type="radio">
+                                                    <label for="star1"></label>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" v-on:click="commentApiStore.create" class="primary-btn">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /Review Form -->
+                            </div>
+                        </div>
+                        <!-- tab3  -->
                     </div>
                     <!-- /product tab content  -->
                 </div>

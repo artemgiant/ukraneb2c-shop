@@ -24,6 +24,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::match(['get','post'],'products',[ProductController::class,'index']);
 
+
+Route::get('test', [\App\Http\Controllers\Api\Comment\CommentController::class,'test']);
+
+
 Route::get('orders/create',[OrderController::class,'create']);
 Route::post('orders/create',[OrderController::class,'create']);
 
@@ -34,3 +38,12 @@ Route::group(['prefix' => 'addresses/search'], function () {
 //        Route::get('warehouses', 'DirectoryAddresses\SearchController@searchWarehouse');
 //        Route::get('warehouses/{id}', 'DirectoryAddresses\SearchController@getWarehouse');
 });
+
+
+Route::post('comments', [\App\Http\Controllers\Api\Comment\CommentController::class,'store']);
+
+Route::get('comments', [\App\Http\Controllers\Api\Comment\CommentController::class,'get']);
+
+Route::delete('comments/{comment}', '\Laravelista\Comments\CommentController@destroy')->name('comments.destroy');
+Route::put('comments/{comment}', '\Laravelista\Comments\CommentController@update')->name('comments.update');
+Route::post('comments/{comment}', '\Laravelista\Comments\CommentController@reply')->name('comments.reply');

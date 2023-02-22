@@ -2,12 +2,16 @@
 
 namespace App\Models\Product;
 
+use App\Models\Comment\Comment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
+use Laravelista\Comments\Commentable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Commentable;
+
     protected $connection = 'ub2c';
 
     protected $fillable = [
@@ -86,6 +90,16 @@ class Product extends Model
         }
 
         return $q;
+    }
+
+
+
+    /**
+     * Returns all comments for this model.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
 }

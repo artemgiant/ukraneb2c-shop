@@ -869,10 +869,12 @@ textarea.input {
 
 .product .product-img {
   position: relative;
+  text-align: center;
 }
 
 .product .product-img>img {
-  width: 100%;
+  width: auto;
+  max-height: 197px;
 }
 
 .product .product-img .product-label {
