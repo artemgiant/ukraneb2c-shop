@@ -118,7 +118,7 @@
                     <ul class="tab-nav">
                         <li class=""><a data-toggle="tab" href="#tab1" aria-expanded="false">Description</a></li>
 
-                        <li class="active"><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.comments.total}})</a></li>
+                        <li class="active"><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.pagination.total}})</a></li>
                     </ul>
                     <!-- /product tab nav -->
 
@@ -269,10 +269,11 @@
                                             </li>
 
                                             <li
-
-                                             v-if:="commentApiStore.pagination.maxPage > commentApiStore.pagination.nextPage"
+                                             :class="{'opacity-0':commentApiStore.pagination.maxPage < commentApiStore.pagination.nextPage}"
                                              v-on:click="commentApiStore.pagination.page = commentApiStore.pagination.nextPage">
-                                                <a ><i class="fa fa-angle-right"></i></a>
+                                                <a>
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
                                             </li>
 
                                         </ul>

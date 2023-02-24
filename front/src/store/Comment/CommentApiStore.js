@@ -11,21 +11,20 @@ export const useCommentApiStore = defineStore('commentApiStore', () => {
     const stars = ref({});
     const route = useRoute();
     const pagination = ref({
-        total: 4,
+        total: 0,
         length: 3,
         page: 1,
         startIndex: computed(() => (pagination.value.page - 1) * pagination.value.length),
         endIndex: computed(() => pagination.value.page * pagination.value.length),
         maxPage: computed(() => {
-            return (pagination.value.total / pagination.value.length) > 10 ? 10 : Math.ceil(pagination.value.total / pagination.value.length);
+            return (pagination.value.total / pagination.value.length) > 3 ? 3 : Math.ceil(pagination.value.total / pagination.value.length);
         }),
         previousPage: computed(() => pagination.value.page > 0 ? pagination.value.page - 1 : 1),
         nextPage: computed(() => {
-            const maxPage = (pagination.value.total / pagination.value.length) > 10 ? 10 : Math.ceil(pagination.value.total / pagination.value.length);
-            return maxPage > pagination.value.page ? pagination.value.page + 1 : maxPage
+            return pagination.value.page + 1
         })
     }, {deep: true})
-    const comments = ref({ }, {deep: true});
+    const comments = ref({}, {deep: true});
     const comment = ref({
         commentable_type:'App\\Models\\Product\\Product',
         commentable_id:route.params.id,
@@ -47,7 +46,7 @@ export const useCommentApiStore = defineStore('commentApiStore', () => {
         await  $axios.get(`api/comments?commentable_type=App\\Models\\Product\\Product&commentable_id=${route.params.id}&start=${start}&length=${pagination.value.length}`).then((res)=>{
 
             comments.value = res.data.comments;
-            comments.value.total = res.data.totalLength;
+            pagination.value.total = res.data.totalLength;
             stars.value = res.data.stars;
 
         })  .catch(function (error) {
