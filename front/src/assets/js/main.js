@@ -82,12 +82,12 @@ window.productSlick = () => {
 			centerMode: true,
 			focusOnSelect: true,
 			centerPadding: 0,
-			vertical: false,
+			vertical: true,
 			asNavFor: '#product-main-img',
 			responsive: [{
 				breakpoint: 991,
 				settings: {
-					vertical: true,
+					vertical: false,
 					arrows: false,
 					dots: true,
 				}

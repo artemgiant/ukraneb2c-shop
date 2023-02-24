@@ -4,14 +4,11 @@
     <div class="container">
         <!-- row -->
         <div class="row">
+
+
             <!-- Product main img -->
             <div class="col-md-5 col-md-push-2">
                 <div id="product-main-img">
-                    <div v-for="img in product.images" class="product-preview">
-                        <img :src="$storageUrl+'/'+img.name" alt="">
-                    </div>
-                </div>
-                <div id="product-imgs">
                     <div v-for="img in product.images" class="product-preview">
                         <img :src="$storageUrl+'/'+img.name" alt="">
                     </div>
@@ -21,7 +18,35 @@
 
             <!-- Product thumb imgs -->
             <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                    <div v-for="img in product.images" class="product-preview">
+                        <img :src="$storageUrl+'/'+img.name" alt="">
+                    </div>
+                </div>
             </div>
+            <!-- /Product thumb imgs -->
+
+
+
+            <!-- Product main img -->
+<!--            <div class="col-md-5 col-md-push-2">-->
+<!--                <div id="product-main-img">-->
+<!--                    <div v-for="img in product.images" class="product-preview">-->
+<!--                        <img :src="$storageUrl+'/'+img.name" alt="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div id="product-imgs">-->
+<!--                    <div v-for="img in product.images" class="product-preview">-->
+<!--                        <img :src="$storageUrl+'/'+img.name" alt="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- /Product main img -->
+
+            <!-- Product thumb imgs -->
+<!--            <div class="col-md-2  col-md-pull-5">-->
+<!--                -->
+<!--            </div>-->
             <!-- /Product thumb imgs -->
 
             <!-- Product details -->
