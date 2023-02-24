@@ -39,4 +39,10 @@ onMounted(() => {
   pointer-events: none;
   opacity: 0.5;
 }
+.opacity-0{
+  opacity: 0;
+}
+.opacity-100{
+  opacity: 1;
+}
 </style>

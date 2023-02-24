@@ -118,7 +118,7 @@
                     <ul class="tab-nav">
                         <li class=""><a data-toggle="tab" href="#tab1" aria-expanded="false">Description</a></li>
 
-                        <li class="active"><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.comments.length}})</a></li>
+                        <li class="active"><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.comments.total}})</a></li>
                     </ul>
                     <!-- /product tab nav -->
 
@@ -247,7 +247,37 @@
 
                                         </ul>
 
+
+                                        <ul class="reviews-pagination">
+
+                                            <li :class="{'opacity-0':!commentApiStore.pagination.previousPage>0}"
+                                                v-on:click="
+                                                commentApiStore.pagination.page
+                                                =
+                                                commentApiStore.pagination.previousPage">
+                                                <a>
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a>
+                                            </li>
+
+                                            <li
+                                                    v-for="(inx) in commentApiStore.pagination.maxPage"
+                                                    v-on:click="commentApiStore.pagination.page =  inx"
+                                                    :key="inx"
+                                                    :class="{active:inx===commentApiStore.pagination.page}">
+                                                {{inx}}
+                                            </li>
+
+                                            <li
+
+                                             v-if:="commentApiStore.pagination.maxPage > commentApiStore.pagination.nextPage"
+                                             v-on:click="commentApiStore.pagination.page = commentApiStore.pagination.nextPage">
+                                                <a ><i class="fa fa-angle-right"></i></a>
+                                            </li>
+
+                                        </ul>
                                     </div>
+
                                 </div>
                                 <!-- /Reviews -->
 
