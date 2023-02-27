@@ -8,12 +8,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 
 class TestController extends BaseController
 {
     public function index()
     {
+
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+
+        return 'ok';
 
         $product = Product::first();
 
