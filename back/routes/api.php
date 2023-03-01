@@ -39,11 +39,17 @@ Route::group(['prefix' => 'addresses/search'], function () {
 //        Route::get('warehouses/{id}', 'DirectoryAddresses\SearchController@getWarehouse');
 });
 
+Route::group(['prefix' => 'comments'], function () {
+    Route::post('/', [\App\Http\Controllers\Api\Comment\CommentController::class,'store']);
+    Route::get('/', [\App\Http\Controllers\Api\Comment\CommentController::class,'get']);
 
-Route::post('comments', [\App\Http\Controllers\Api\Comment\CommentController::class,'store']);
+    Route::delete('{comment}', '\Laravelista\Comments\CommentController@destroy')->name('comments.destroy');
+    Route::put('{comment}', '\Laravelista\Comments\CommentController@update')->name('comments.update');
+    Route::post('{comment}', '\Laravelista\Comments\CommentController@reply')->name('comments.reply');
+});
 
-Route::get('comments', [\App\Http\Controllers\Api\Comment\CommentController::class,'get']);
+Route::group(['prefix' => 'settings'], function () {
+    Route::get('/',[\App\Http\Controllers\Api\Settings\SettingsController::class,'index']);
+    Route::get('/page/{type}',[\App\Http\Controllers\Api\Settings\SettingsController::class,'page']);
+});
 
-Route::delete('comments/{comment}', '\Laravelista\Comments\CommentController@destroy')->name('comments.destroy');
-Route::put('comments/{comment}', '\Laravelista\Comments\CommentController@update')->name('comments.update');
-Route::post('comments/{comment}', '\Laravelista\Comments\CommentController@reply')->name('comments.reply');

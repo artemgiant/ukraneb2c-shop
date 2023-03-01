@@ -3,7 +3,7 @@
 <!--<script src="./Loader.js"></script>-->
 
 <script setup>
-import {computed, ref, inject} from 'vue'
+import {computed, ref, inject,watch} from 'vue'
 import $axios from "@/lib/axios";
 import { useRouter } from 'vue-router'
 import * as Yup from 'yup';
@@ -16,21 +16,23 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 import {useBasketStore} from "@/store/basketStore"
 import {useAddressApiStore} from "@/store/Address/AddressApiStore";
 import {useAddressStore} from "@/store/Address/AddressStore";
-
+import { useAuthStore } from "@/store/auth/auth";
 const $storageUrl = inject('storageUrl')
 // Components
 const basketStore = useBasketStore();
 const addressApiStore = useAddressApiStore();
 const addressStore = useAddressStore();
 const router = useRouter();
-
+const authStore = useAuthStore();
 const isAgree = ref(true);
+
+const test = ref('');
 
 const form = ref({
   recipient:{
     phone:null,
     email:null,
-    first_name:null,
+    first_name:test.value,
     last_name:null,
     middle_name:null,
     city:null,
@@ -45,6 +47,8 @@ const form = ref({
   },
   products: basketStore.products
 }, {deep: true})
+
+
 
 const searchRecipientCity = (query)=> {
     addressApiStore.getCity(query,'meest_courier');

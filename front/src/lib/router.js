@@ -8,6 +8,7 @@ import Wishlist from "@/pages/Wishlist/WishlistPage.vue"
 import Product from "@/pages/Product/ProductPage.vue"
 import DeliveryInfo from "@/pages/Info/Delivery/DeliveryInfo.vue"
 import NotFound from "@/pages/NotFound.vue"
+import Info from "@/pages/Info/Info.vue"
 
 const routes = [
   {
@@ -60,7 +61,11 @@ const routes = [
     name: "Register",
     component: () => import("../pages/Auth/Register.vue"),
   },
-
+  {
+    path: "/info/:key",
+    name: "Info",
+    component: () => import("../pages/Info/Info.vue"),
+  },
 
   {
     path: "/account",

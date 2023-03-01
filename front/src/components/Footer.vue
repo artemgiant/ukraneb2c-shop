@@ -7,7 +7,7 @@
       <div class="container">
         <!-- row -->
         <div class="row">
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-6 col-xs-6">
             <div class="footer">
               <h3 class="footer-title">About Us</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
@@ -19,46 +19,46 @@
             </div>
           </div>
 
-          <div class="col-md-3 col-xs-6">
-            <div class="footer">
-              <h3 class="footer-title">Categories</h3>
-              <ul class="footer-links">
-                <li><a href="#">Hot deals</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
-              </ul>
-            </div>
-          </div>
+<!--          <div class="col-md-3 col-xs-6">-->
+<!--            <div class="footer">-->
+<!--              <h3 class="footer-title">Categories</h3>-->
+<!--              <ul class="footer-links">-->
+<!--                <li><a href="#">Hot deals</a></li>-->
+<!--                <li><a href="#">Laptops</a></li>-->
+<!--                <li><a href="#">Smartphones</a></li>-->
+<!--                <li><a href="#">Cameras</a></li>-->
+<!--                <li><a href="#">Accessories</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <div class="clearfix visible-xs"></div>
 
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-6 col-xs-6">
             <div class="footer">
               <h3 class="footer-title">Information</h3>
               <ul class="footer-links">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Orders and Returns</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
+                <li><router-link  to="/info/about_us">Про нас</router-link></li>
+                <li><router-link  to="/info/delivery_and_payment">Доставка та оплата</router-link></li>
+                <li><router-link  to="/info/returns_and_complaints">Повернення та рекламація</router-link></li>
+                <li><router-link  to="/info/trading_terms">Торгівельні умови</router-link></li>
+                <li><router-link  to="/info/protection_of_personal_data">Захист особистих даних</router-link></li>
               </ul>
             </div>
           </div>
 
-          <div class="col-md-3 col-xs-6">
-            <div class="footer">
-              <h3 class="footer-title">Service</h3>
-              <ul class="footer-links">
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">View Cart</a></li>
-                <li><a href="#">Wishlist</a></li>
-                <li><a href="#">Track My Order</a></li>
-                <li><a href="#">Help</a></li>
-              </ul>
-            </div>
-          </div>
+<!--          <div class="col-md-4 col-xs-6">-->
+<!--            <div class="footer">-->
+<!--              <h3 class="footer-title">Service</h3>-->
+<!--              <ul class="footer-links">-->
+<!--                <li><a href="#">My Account</a></li>-->
+<!--                <li><a href="#">View Cart</a></li>-->
+<!--                <li><a href="#">Wishlist</a></li>-->
+<!--                <li><a href="#">Track My Order</a></li>-->
+<!--                <li><a href="#">Help</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
         <!-- /row -->
       </div>

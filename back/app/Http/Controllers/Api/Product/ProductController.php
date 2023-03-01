@@ -21,6 +21,7 @@ class ProductController extends  Controller
 
         $pagination = Product::orderByDesc('id')
             ->whereNotNull('images')
+            ->where('in_stock','>','0')
             ->search($request)
             ->paginate($request->length, [(new Product())->getTable() . '.*'], 'page', ($request->start / $request->length) + 1);
 

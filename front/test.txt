@@ -1,1 +1,5 @@
-sudo ln -s /etc/nginx/sites-available/front.loc /etc/nginx/sites-enabled/
+about_us - Про нас
+delivery_and_payment  - Доставка та оплата
+returns_and_complaints  - Повернення та рекламація
+trading_terms  - Торгівельні Умови
+protection_of_personal_data - Захист особистих даних

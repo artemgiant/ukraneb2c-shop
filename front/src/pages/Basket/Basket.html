@@ -38,6 +38,7 @@
                                         class="input form-control"
                                         type="text"
                                         v-model="form.recipient.first_name"
+
                                         name="recipient.first_name"
                                         placeholder="Ім'я"/>
                                 <div class="invalid-feedback">
@@ -372,6 +373,9 @@
                         <div class="order-products">
                             <div v-for="product in basketStore.products" :key="product.id" class="order-col">
                                 <div class="product-widget">
+
+                                    <button class="delete" v-on:click="basketStore.delFromBasket(product)"><i class="fa fa-close"></i></button>
+
                                     <div class="product-img">
                                         <img :src="$storageUrl+'/'+product.image_main.name" alt="">
                                     </div>

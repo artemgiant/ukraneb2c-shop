@@ -1154,6 +1154,7 @@ textarea.input {
   background: #1e1f29;
   border: none;
   color: #FFF;
+  z-index: 1;
 }
 
 /*----------------------------*\

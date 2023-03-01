@@ -10,7 +10,7 @@
           <li><a href="#"><i class="fa fa-map-marker"></i>Житомир вул. Пемоги 4</a></li>
         </ul>
         <ul class="header-links pull-right">
-          <li><a href="#"><i class="fa fa-hryvnia">₴</i>UAH</a></li>
+<!--          <li><a href="#"><i class="fa fa-hryvnia">₴</i>UAH</a></li>-->
           <li>
             <template v-if="authStore.user">
 <!--            <router-link to="/account" ><i class="fa fa-user-o"></i>{{authStore.user.name}}</router-link>-->
