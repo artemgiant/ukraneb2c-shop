@@ -38,11 +38,11 @@
             <div class="footer">
               <h3 class="footer-title">Information</h3>
               <ul class="footer-links">
-                <li><router-link  to="/info/about_us">Про нас</router-link></li>
-                <li><router-link  to="/info/delivery_and_payment">Доставка та оплата</router-link></li>
-                <li><router-link  to="/info/returns_and_complaints">Повернення та рекламація</router-link></li>
-                <li><router-link  to="/info/trading_terms">Торгівельні умови</router-link></li>
-                <li><router-link  to="/info/protection_of_personal_data">Захист особистих даних</router-link></li>
+                <li><router-link target="_blank"  to="/info/about_us">Про нас</router-link></li>
+                <li><router-link target="_blank" to="/info/delivery_and_payment">Доставка та оплата</router-link></li>
+                <li><router-link target="_blank" to="/info/returns_and_complaints">Повернення та рекламація</router-link></li>
+                <li><router-link target="_blank" to="/info/trading_terms">Торгівельні умови</router-link></li>
+                <li><router-link target="_blank" to="/info/protection_of_personal_data">Захист особистих даних</router-link></li>
               </ul>
             </div>
           </div>
