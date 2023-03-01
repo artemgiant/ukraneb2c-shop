@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+
+    'local_code' =>env('LOCAL_CODE'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
