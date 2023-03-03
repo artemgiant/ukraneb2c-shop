@@ -289,8 +289,13 @@
                             </li>
                         </ul>
 
+
                         <ErrorMessage as="div" class="invalid-feedback" style="display: block" name="address_delivery.delivery_type"/>
 
+
+                        <div v-if="form.address_delivery.delivery_type.length" style="font-size: 13px" class="caption">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
 <!--FORM Warehouse-->
                         <template   v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)" >
                         <div
@@ -447,13 +452,49 @@
                     </div>
                     <!-- /Delivery Address -->
 
+                        <!-- Delivery Address -->
+                        <div class="billing-details">
+                            <div class="section-title">
+                                <h3 class="title">СПОСІБ ОПЛАТИ</h3>
+                            </div>
+                            <div class="">
+                                <div class="input-radio">
+                                    <input type="radio" v-model="form.payment_type" value="bank_card" name="payment" id="payment-1">
+                                    <label for="payment-1">
+                                        <span></span>
+                                        Оплата картой онлайн
+                                    </label>
+                                    <div class="caption" style="font-size: 13px">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" v-model="form.payment_type" value="postpaid" name="payment" id="payment-2">
+                                    <label for="payment-2">
+                                        <span></span>
+                                        Післяплата
+                                    </label>
+                                    <div class="caption" style="font-size: 13px">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     <!-- Order notes -->
                     <div class="order-notes">
-                        <textarea class="input" placeholder="Примітки до замовлення"></textarea>
+                        <textarea v-model="form.comment" class="input" placeholder="Примітки до замовлення"></textarea>
                     </div>
                     <!-- /Order notes -->
+
+
+
+
                     </Form>
+
+
+
+
                 </div>
 
                 <!-- Order Details -->
@@ -512,16 +553,39 @@
                             <div><strong>РАЗОМ</strong></div>
                             <div><strong class="order-total">{{basketStore.sum}} грн</strong></div>
                         </div>
+                        <div class="order-col">
+                            <div><strong>Доставка</strong></div>
+                            <div><strong class="order-total">{{form.deliveryConst}} грн</strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>До оплати</strong></div>
+                            <div><strong class="order-total">{{form.sum_to_pay}} грн</strong></div>
+                        </div>
+
+
+
+
+
                     </div>
+
+
                     <div class="input-checkbox">
-                        <input type="checkbox" v-model="isAgree" id="terms">
-                        <label for="terms">
+                        <input v-model="isAgree.conditions" type="checkbox" id="terms2">
+                        <label for="terms2">
                             <span></span>
-<!--                            I've read and accept the <a href="#">terms & conditions</a>-->
-                           Підтверджую замовлення і погоджуюсь на обробку даних
+                            Погоджуюсь з вимогами та обробкою даних
                         </label>
                     </div>
-                    <button :disabled="!isAgree"  form="form-basket"  type="submit" style="width: 100%"  class="primary-btn order-submit">Замовити</button>
+
+                    <div class="input-checkbox">
+                        <input type="checkbox" v-model="isAgree.order" id="terms">
+                        <label for="terms">
+                            <span></span>
+                            Підтверждую замовлення
+                        </label>
+                    </div>
+
+                    <button :disabled="!(isAgree.order === true &&  isAgree.conditions === true)"  form="form-basket"  type="submit" style="width: 100%"  class="primary-btn order-submit">Замовити</button>
 <!--                    <button   form="form-basket"  type="submit" style="width: 100%"  class="primary-btn order-submit">TEST</button>-->
 
 

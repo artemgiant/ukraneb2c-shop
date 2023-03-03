@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product\Product;
+use App\Models\Setting\Setting;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -15,6 +16,25 @@ class TestController extends BaseController
 {
     public function index()
     {
+//        $order = \stdClass::class;
+//
+        $total_sum_product = 12123;
+        $delivery_type = 'nova_poshta';
+        $init_array = ['delivery_cost'=>null];
+
+        $settings = Setting::where('group','Delivery')->get();
+
+dump($settings->where('key','delivery.free_'.$delivery_type)->first()->value,$settings->where('key','delivery.cost_'.$delivery_type)->first()->value);
+
+            if ($total_sum_product >= $settings->where('key','delivery.free_'.$delivery_type)->first()->value){
+                $init_array['delivery_cost'] = 0;
+            } else {
+                if (!$init_array['delivery_cost'] && $init_array['delivery_cost'] != "0.00"){
+                    $init_array['delivery_cost'] = $settings->where('key','delivery.cost_'.$delivery_type)->first()->value;
+                }
+            }
+
+        dd($init_array['delivery_cost'],$settings);
 
         Artisan::call('view:clear');
         Artisan::call('cache:clear');

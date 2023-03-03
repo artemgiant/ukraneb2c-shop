@@ -3,11 +3,12 @@
 <!--<script src="./Loader.js"></script>-->
 
 <script setup>
-import {computed, ref, inject,watch} from 'vue'
+import {computed, ref, inject,watch, onMounted} from 'vue'
 import $axios from "@/lib/axios";
 import { useRouter } from 'vue-router'
 import * as Yup from 'yup';
 import {phoneMask} from "@/lib/phone-mask";
+import _ from 'lodash';
 
 import VueMultiselect from 'vue-multiselect'
 import { Form, Field, ErrorMessage } from 'vee-validate';
@@ -17,55 +18,90 @@ import {useBasketStore} from "@/store/basketStore"
 import {useAddressApiStore} from "@/store/Address/AddressApiStore";
 import {useAddressStore} from "@/store/Address/AddressStore";
 import { useAuthStore } from "@/store/auth/auth";
+import { useSettingsApiStore } from "@/store/Settings/SettingsApiStore";
+
 const $storageUrl = inject('storageUrl')
+
 // Components
 const basketStore = useBasketStore();
 const addressApiStore = useAddressApiStore();
 const addressStore = useAddressStore();
 const router = useRouter();
 const authStore = useAuthStore();
-const isAgree = ref(true);
+const settingsApiStore = useSettingsApiStore();
+const isAgree = ref({
+  order: false,
+  conditions:false,
+});
 
-const test = ref('');
 
 const form = ref({
-  recipient:{
-    phone:null,
-    email:null,
-    first_name:test.value,
-    last_name:null,
-    middle_name:null,
-    city:null,
-    street:null,
-    house:null,
-    flat:null,
+  recipient: {
+    phone: null,
+    email: null,
+    first_name: null,
+    last_name: null,
+    middle_name: null,
+    city: null,
+    street: null,
+    house: null,
+    flat: null,
   },
-  address_delivery:{
-    delivery_type: null,
-    city:null,
-    warehouse:null,
-    street:null,
-    house:null,
-    flat:null,
+  address_delivery: {
+    delivery_type: {},
+    city: null,
+    warehouse: null,
+    street: null,
+    house: null,
+    flat: null,
   },
-  products: basketStore.products
+  products: basketStore.products,
+  payment_type: null,
+  comment: null,
+  deliveryConst: computed(() => {
+    let free = settingsApiStore.deliveryPrices.filter(price => {
+      return price.key === 'delivery.free_' + form.value.address_delivery.delivery_type;
+    })
+    let cost = settingsApiStore.deliveryPrices.filter(price => {
+      return price.key === 'delivery.cost_' + form.value.address_delivery.delivery_type;
+    })
+
+    if (free.length && cost.length)
+      return basketStore.sum >= free[0].value ? 0 : cost[0].value;
+    else
+      return '-';
+
+  }),
+  sum_to_pay: computed(() => {
+    return  form.value.deliveryConst === '-'?'-':parseInt(basketStore.sum) + parseInt(form.value.deliveryConst)
+  })
 }, {deep: true})
 
 
-watch("form.address_delivery", (oldValue, newValue) => {
-  console.log(oldValue,newValue)
-  form.address_delivery = {
+
+
+
+// глубокое слежения
+watch(() => _.cloneDeep(form.value.address_delivery.delivery_type), (currentValue, oldValue) => {
+
+  addressStore.cities = [];
+
+  form.value.address_delivery = {
+    delivery_type: currentValue,
     city: null,
     warehouse: null,
     street: null,
     house: null,
     flat: null,
   }
-})
+
+    }
+);
 
 
-const searchRecipientCity = (query)=> {
-    addressApiStore.getCity(query,'meest_courier','address_recipient');
+const searchRecipientCity = (query) => {
+  if (query.length >= 3)
+    addressApiStore.getCity(query, 'meest_courier', 'address_recipient');
 }
 
 const selectedRecipientCity = (object)=> {
@@ -140,8 +176,6 @@ async function onSubmit(values, { resetForm }) {
     console.log(error);
     alert(error.message);
   });
-
-
 }
 
 
@@ -150,6 +184,13 @@ const vPhoneMask = {
   beforeMount: phoneMask
 
 }
+
+
+
+onMounted(()=>{
+  settingsApiStore.getDeliveryPrices()
+})
+
 
 
 </script>
