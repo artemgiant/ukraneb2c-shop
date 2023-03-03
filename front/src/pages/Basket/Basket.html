@@ -291,9 +291,9 @@
 
                         <ErrorMessage as="div" class="invalid-feedback" style="display: block" name="address_delivery.delivery_type"/>
 
-
+<!--FORM Warehouse-->
+                        <template   v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)" >
                         <div
-                                v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)"
                                 class="form-group">
 
                             <VueMultiselect
@@ -313,18 +313,15 @@
                                     :max-height="600"
                                     :show-no-results="false"
 
-                                    @search-change="searchChangeCity"
+                                    @search-change="searchDeliveryCity"
                                     @select="asyncWarehouses"
                             >
-
 
                             </VueMultiselect>
                         </div>
 
                         <div
-                                v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)"
                                 class="form-group">
-
                             <VueMultiselect
                                     v-model="form.address_delivery.warehouse"
                                     id="warehouse"
@@ -347,10 +344,109 @@
 
                             </VueMultiselect>
                         </div>
+                        </template>
+
+
+ <!--FORM COURIER-->
+                        <template v-if:="['meest_courier'].includes(form.address_delivery.delivery_type)">
+                            <!--RECIPIENT CITY-->
+                            <div
+                                    class="form-group">
+
+                                <VueMultiselect
+                                        v-model="form.address_delivery.city"
+                                        id="ajax"
+                                        label="text"
+                                        track-by="id"
+                                        placeholder="Місто"
+                                        open-direction="bottom"
+                                        :options="addressStore.cities"
+                                        :searchable="true"
+                                        :internal-search="false"
+                                        :clear-on-select="true"
+                                        :close-on-select="true"
+                                        :options-limit="300"
+                                        :limit="3"
+                                        :max-height="600"
+                                        :show-no-results="false"
+
+                                        @search-change="searchDeliveryCity"
+                                        @select="selectedDeliveryCity"
+                                >
+
+                                </VueMultiselect>
+                            </div>
+
+
+                            <!-- RECIPIENT STREET                       -->
+                            <div class="form-group">
+                                <Field v-slot="{ field }"
+                                       v-model="form.address_delivery.street"
+                                       name="address_delivery.street">
+
+                                    <VueMultiselect
+                                            v-model="form.address_delivery.street"
+                                            id="ajax"
+                                            label="text"
+                                            track-by="id"
+                                            placeholder="Вулиця"
+                                            open-direction="bottom"
+                                            :class="{ 'is-invalid': errors['address_delivery.street']}"
+                                            :options="addressStore.streets"
+                                            :searchable="true"
+                                            :internal-search="false"
+                                            :clear-on-select="true"
+                                            :close-on-select="true"
+                                            :options-limit="300"
+                                            :limit="3"
+                                            :max-height="600"
+                                            :show-no-results="false"
+                                    >
+                                    </VueMultiselect>
+
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="address_delivery.street"/>
+                                    </div>
+                                </Field>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-md-6 form-group">
+                                    <Field
+                                            class="input form-control"
+                                            type="text"
+                                            :class="{ 'is-invalid': errors['address_delivery.house']}"
+                                            v-model="form.address_delivery.house"
+                                            name="address_delivery.house"
+                                            placeholder="Номер будинку"/>
+
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="address_delivery.house"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <Field
+                                            class="input form-control"
+                                            :class="{ 'is-invalid': errors['address_delivery.flat']}"
+                                            type="text"
+                                            v-model="form.address_delivery.flat"
+                                            name="address_delivery.flat"
+                                            placeholder="Номер квартири"/>
+
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="address_delivery.flat"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
 
 
                     </div>
                     <!-- /Delivery Address -->
+
 
                     <!-- Order notes -->
                     <div class="order-notes">

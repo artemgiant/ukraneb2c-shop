@@ -5,7 +5,7 @@ import {useAddressStore} from "./AddressStore";
 export const useAddressApiStore = defineStore('addressApiStore', () => {
 
 
-    const getCity = async (q, deliveryType)  => {
+    const getCity = async (q, deliveryType,mode)  => {
         const addressStore = useAddressStore();
          const url = `api/addresses/search/city`;
          const data = {
@@ -15,9 +15,9 @@ export const useAddressApiStore = defineStore('addressApiStore', () => {
 
         await $axios.post(url, data).then((res) => {
             if (Array.isArray(res.data.results))
-                if (deliveryType === 'meest_courier')
+                if (mode === 'address_recipient')
                     addressStore.citiesRecipient = res.data.results
-                else
+               else if(mode === 'address_delivery')
                     addressStore.cities = res.data.results
 
         }).catch(function (error) {
@@ -28,7 +28,7 @@ export const useAddressApiStore = defineStore('addressApiStore', () => {
     }
 
 
-    const getStreet = async (deliveryType,cityId)  => {
+    const getStreet = async (deliveryType,cityId,mode)  => {
         const addressStore = useAddressStore();
         const url = `api/addresses/search/street`;
         const data = {
@@ -41,7 +41,11 @@ export const useAddressApiStore = defineStore('addressApiStore', () => {
 
             console.log(res.data.results)
             if (Array.isArray(res.data.results))
-                addressStore.streets = res.data.results
+                if (mode === 'address_recipient')
+                    addressStore.streetsRecipient = res.data.results
+                else if(mode === 'address_delivery')
+                    addressStore.streets = res.data.results
+
 
         }).catch(function (error) {
             console.log(error);

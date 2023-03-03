@@ -44,24 +44,43 @@ const form = ref({
     delivery_type: null,
     city:null,
     warehouse:null,
+    street:null,
+    house:null,
+    flat:null,
   },
   products: basketStore.products
 }, {deep: true})
 
 
+watch("form.address_delivery", (oldValue, newValue) => {
+  console.log(oldValue,newValue)
+  form.address_delivery = {
+    city: null,
+    warehouse: null,
+    street: null,
+    house: null,
+    flat: null,
+  }
+})
+
 
 const searchRecipientCity = (query)=> {
-    addressApiStore.getCity(query,'meest_courier');
+    addressApiStore.getCity(query,'meest_courier','address_recipient');
 }
 
 const selectedRecipientCity = (object)=> {
-    addressApiStore.getStreet('meest_courier',object.id);
+    addressApiStore.getStreet('meest_courier',object.id,'address_recipient');
 }
 
-const searchChangeCity = (query)=> {
+const searchDeliveryCity = (query)=> {
   if(query.length>=3)
-   addressApiStore.getCity(query,form.value.address_delivery.delivery_type);
+   addressApiStore.getCity(query,form.value.address_delivery.delivery_type,'address_delivery');
 }
+
+const selectedDeliveryCity = (object)=> {
+  addressApiStore.getStreet('meest_courier',object.id,'address_delivery');
+}
+
 
 const asyncWarehouses = (object) => {
   form.value.warehouse = {}

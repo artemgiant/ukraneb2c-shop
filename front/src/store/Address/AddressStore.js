@@ -7,6 +7,7 @@ export const useAddressStore = defineStore('addressStore', () => {
 
     const cities = ref([]);
     const citiesRecipient = ref([]);
+    const streetsRecipient = ref([]);
     const streets = ref([]);
 
     const warehouses = ref([]);
@@ -27,6 +28,7 @@ export const useAddressStore = defineStore('addressStore', () => {
         citiesRecipient,
         warehouses,
         streets,
+        streetsRecipient,
         filteredWarehouses,
         searchWarehouses
     }
