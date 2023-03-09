@@ -83,8 +83,8 @@ const form = ref({
 
 // глубокое слежения
 watch(() => _.cloneDeep(form.value.address_delivery.delivery_type), (currentValue, oldValue) => {
-
   addressStore.cities = [];
+  addressStore.warehouses = [];
 
   form.value.address_delivery = {
     delivery_type: currentValue,
@@ -95,8 +95,7 @@ watch(() => _.cloneDeep(form.value.address_delivery.delivery_type), (currentValu
     flat: null,
   }
 
-    }
-);
+});
 
 
 const searchRecipientCity = (query) => {
