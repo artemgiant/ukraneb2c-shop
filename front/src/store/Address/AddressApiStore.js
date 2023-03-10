@@ -80,7 +80,6 @@ export const useAddressApiStore = defineStore('addressApiStore', () => {
             console.log(res.data.results)
             if (Array.isArray(res.data.results))
                 addressStore.warehouses = res.data.results
-
         }).catch(function (error) {
             console.log(error);
             alert(error.message);

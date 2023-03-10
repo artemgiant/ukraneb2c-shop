@@ -16,6 +16,7 @@ class OrderRequestAdapter
             'first_name' => $requestData['recipient']['first_name'],
             'last_name' => $requestData['recipient']['last_name'],
             'middle_name' => $requestData['recipient']['middle_name'],
+            'comment' => $requestData['comment'],
             'address_recipient' => [
                 'city' => json_encode($requestData['recipient']['city'], JSON_UNESCAPED_UNICODE),
                 'street' => json_encode($requestData['recipient']['street'], JSON_UNESCAPED_UNICODE),
