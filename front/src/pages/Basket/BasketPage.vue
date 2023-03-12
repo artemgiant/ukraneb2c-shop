@@ -152,8 +152,8 @@ const schema = Yup.object().shape({
           }).strict(),
   address_delivery: Yup.object().shape({
     delivery_type: Yup.string().required().nullable(),
-  }).strict(),
-  payment_type: Yup.string().required().nullable()
+  })
+      .strict(),
 });
 
 async function onSubmit(values, { resetForm }) {
@@ -187,7 +187,6 @@ const vPhoneMask = {
 
 onMounted(()=>{
   settingsApiStore.getDeliveryPrices()
-  settingsApiStore.getBasket()
 })
 
 
