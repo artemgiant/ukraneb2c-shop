@@ -6,7 +6,6 @@ import Store from "@/pages/Store/StorePage.vue"
 import Basket from "@/pages/Basket/BasketPage.vue"
 import Wishlist from "@/pages/Wishlist/WishlistPage.vue"
 import Product from "@/pages/Product/ProductPage.vue"
-import DeliveryInfo from "@/pages/Info/Delivery/DeliveryInfo.vue"
 import NotFound from "@/pages/NotFound.vue"
 import Info from "@/pages/Info/Info.vue"
 
@@ -15,11 +14,6 @@ const routes = [
     component: Store,
     path: "/",
     name: "index"
-  },
-  {
-    component: DeliveryInfo,
-    path: "/info/delivery",
-    name: "delivery-info"
   },
   {
     component: Example,

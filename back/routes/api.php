@@ -52,5 +52,6 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/',[\App\Http\Controllers\Api\Settings\SettingsController::class,'index']);
     Route::get('/page/{type}',[\App\Http\Controllers\Api\Settings\SettingsController::class,'page']);
     Route::get('/delivery-prices',[\App\Http\Controllers\Api\Settings\SettingsController::class,'deliveryPrices']);
+    Route::get('/basket',[\App\Http\Controllers\Api\Settings\SettingsController::class,'basket']);
 });
 

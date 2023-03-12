@@ -149,12 +149,11 @@ const schema = Yup.object().shape({
             street: Yup.object().required().nullable(),
             flat: Yup.string().required().nullable(),
             house: Yup.string().required().nullable(),
-          })
-      .strict(),
+          }).strict(),
   address_delivery: Yup.object().shape({
     delivery_type: Yup.string().required().nullable(),
-  })
-      .strict(),
+  }).strict(),
+  payment_type: Yup.string().required().nullable()
 });
 
 async function onSubmit(values, { resetForm }) {
@@ -169,7 +168,7 @@ async function onSubmit(values, { resetForm }) {
     }
     resetForm();
 
-    router.push({name:'delivery-info'})
+    router.push({to:'/info/delivery_and_payment'})
 
   }).catch(function (error) {
     console.log(error);
@@ -188,6 +187,7 @@ const vPhoneMask = {
 
 onMounted(()=>{
   settingsApiStore.getDeliveryPrices()
+  settingsApiStore.getBasket()
 })
 
 

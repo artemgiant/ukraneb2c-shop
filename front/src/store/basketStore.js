@@ -7,9 +7,6 @@ export const useBasketStore = defineStore('basketStore', ()=>{
 // Get toast interface
     const toast = useToast();
 
-
-
-
     const productsData = localStorage.getItem("basket:products");
 
     if (productsData && Object.keys(JSON.parse(productsData)).length)
@@ -41,7 +38,6 @@ export const useBasketStore = defineStore('basketStore', ()=>{
 
     const addToBasket = (product) => {
 
-        // or with options
         toast.success("Товар додан в корзину!");
 
         const exits =  products.value.find(p => p.id === product.id)

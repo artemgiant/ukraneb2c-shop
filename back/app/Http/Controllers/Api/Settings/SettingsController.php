@@ -22,6 +22,19 @@ class SettingsController extends Controller
         return response()->json($page);
     }
 
+    public function basket(){
+
+        $settings = Setting::orderBy('order', 'ASC')->where('group','Shop basket')->get()->keyBy('key');
+
+        foreach ($settings as $key => $setting){
+            $newKey = str_replace('shop-basket.','',$key);
+            $settings[$newKey] = $setting->value;
+            unset($settings[$key]);
+        }
+
+        return response()->json($settings);
+    }
+
     public function deliveryPrices(): \Illuminate\Http\JsonResponse
     {
 

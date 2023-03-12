@@ -294,7 +294,7 @@
 
 
                         <div v-if="form.address_delivery.delivery_type.length" style="font-size: 13px" class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>{{settingsApiStore.basketItems[form.address_delivery.delivery_type] }}</p>
                         </div>
 <!--FORM Warehouse-->
                         <template   v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)" >
@@ -465,7 +465,7 @@
                                         Оплата картой онлайн
                                     </label>
                                     <div class="caption" style="font-size: 13px">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p>{{settingsApiStore.basketItems?.bank_card}}</p>
                                     </div>
                                 </div>
                                 <div class="input-radio">
@@ -475,7 +475,7 @@
                                         Післяплата
                                     </label>
                                     <div class="caption" style="font-size: 13px">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p>{{settingsApiStore.basketItems.postpaid}}</p>
                                     </div>
                                 </div>
                             </div>
