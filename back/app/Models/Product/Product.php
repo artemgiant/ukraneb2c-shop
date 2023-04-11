@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use App\Models\Comment\Comment;
+use App\Models\Shop\Shop;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -47,6 +48,10 @@ class Product extends Model
     public function setWeightKgAttribute($value)
     {
         $this->attributes['weight_kg'] = str_replace([','], ".", $value);
+    }
+
+    public function shops(){
+        return $this->belongsToMany(Shop::class,'shop_products',);
     }
 
     public function setCodeAttribute($value)

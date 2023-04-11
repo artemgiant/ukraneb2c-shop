@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import $axios from "axios";
+import $axios from "@/lib/axios";
 import {useProductStore} from "./ProductStore";
 
 export const useProductApiStore = defineStore('productApiStore', () => {
