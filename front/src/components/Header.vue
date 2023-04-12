@@ -153,9 +153,9 @@ const wishlistStore = useWishlistStore();
 
 const $storageUrl = inject('storageUrl')
 
-onMounted(async () => {
-  await authStore.getUser();
-});
+// onMounted(async () => {
+//   await authStore.getUser();
+// });
 
 </script>
 

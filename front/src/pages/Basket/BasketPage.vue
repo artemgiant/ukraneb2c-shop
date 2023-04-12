@@ -140,9 +140,9 @@ const filteredWarehouses = computed(() => {
 const schema = Yup.object().shape({
   recipient:
           Yup.object().shape({
-            first_name: Yup.string().required().min(3).nullable(),
-            last_name: Yup.string().required().min(3).nullable(),
-            middle_name: Yup.string().required().min(3).nullable(),
+            first_name: Yup.string().required().min(1).nullable(),
+            last_name: Yup.string().required().min(1).nullable(),
+            middle_name: Yup.string().required().min(1).nullable(),
             phone: Yup.string().required().nullable(),
             email: Yup.string().email().required().nullable(),
             city: Yup.object().required().nullable(),
@@ -166,9 +166,11 @@ async function onSubmit(values, { resetForm }) {
     for (const [key, product] of Object.entries(basketStore.products)) {
       basketStore.delFromBasket(product)
     }
-    resetForm();
 
-    router.push({to:'/info/delivery_and_payment'})
+
+    window.location.href = '/info/delivery_and_payment';
+
+
 
   }).catch(function (error) {
     console.log(error);

@@ -208,7 +208,6 @@ class OrderController extends Controller
 //TEXT;
 //        $request->replace(json_decode($test,true));
 
-
 //обвления количества товара на складе
 foreach($request->all()['products'] as $product){
     $productModel = Product::find($product['id']);
@@ -226,7 +225,7 @@ foreach($request->all()['products'] as $product){
 
 
 
-        $shop = Shop::where('alias','shop')->first();
+        $shop = Shop::where('alias',$request->get('shop-alias'))->first();
         $prefixOrder = json_decode($shop->config)->order_prefix;
 
 
@@ -254,9 +253,7 @@ foreach($request->all()['products'] as $product){
 
         $this->saveAddresses($request,$order->id);
 
-//return 'ok';
-
-//        return redirect()->route('voyager.'.$dataType->slug.'.show', ['id'=>$order->id]);
+        return response()->json( ['message' => __('voyager::generic.successfully_added_new'), 'alert-type' => 'success']);
     }
 
 

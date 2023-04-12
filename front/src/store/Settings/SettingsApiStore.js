@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import $axios from "axios";
+import $axios from "@/lib/axios";
 import {ref, computed, watch} from "vue"
 import { useRoute } from 'vue-router'
 export const useSettingsApiStore = defineStore('settingsApiStore', () => {
