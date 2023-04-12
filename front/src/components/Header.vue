@@ -56,7 +56,8 @@
     justify-content: center;
 ">
               <router-link class="logo" to="/">
-                <img src="/img/logo.png"  style="width: 100%" alt="">
+
+                <img :src="logoUrl"  style="width: 100%" alt="">
               </router-link>
             </div>
           </div>
@@ -153,6 +154,7 @@ const wishlistStore = useWishlistStore();
 
 const $storageUrl = inject('storageUrl')
 
+const logoUrl = '/img/logos/'+import.meta.env.VITE_APP_SHOP_ALIAS+'/'+import.meta.env.VITE_APP_SHOP_ALIAS+'.png';
 // onMounted(async () => {
 //   await authStore.getUser();
 // });
