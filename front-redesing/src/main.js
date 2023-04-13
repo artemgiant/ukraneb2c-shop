@@ -10,9 +10,6 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 
-import "@/assets/sass/style.scss";
-
-
 const optionsToast = {
     position: "bottom-right",
     timeout: 5000,
