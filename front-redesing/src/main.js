@@ -9,15 +9,9 @@ import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
 
-import "@/style/normalize.css";
-import "@/style/global.scss";
 
-import "@/style/lib/bootstrap.min.css";
-import "@/style/lib/nouislider.min.css";
-import "@/style/lib/slick.css";
-import "@/style/lib/slick-theme.css";
-import "@/style/lib/font-awesome.min.css";
-import "@/style/style.css";
+import "@/assets/sass/style.scss";
+
 
 const optionsToast = {
     position: "bottom-right",

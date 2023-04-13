@@ -8,9 +8,21 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'src/assets/js',
+          src: 'src/assets/*',
           dest: 'assets'
-        }
+        },
+        // {
+        //   src: 'src/assets/css',
+        //   dest: 'assets'
+        // },
+        // {
+        //   src: 'src/assets/fonts',
+        //   dest: 'assets'
+        // },
+        // {
+        //   src: 'src/assets/images',
+        //   dest: 'assets'
+        // }
       ]
     })
   ],
