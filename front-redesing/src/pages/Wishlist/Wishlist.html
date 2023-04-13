@@ -1,0 +1,86 @@
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <!--            <div id="responsive-nav">-->
+        <!--                &lt;!&ndash; NAV &ndash;&gt;-->
+        <!--                <ul class="main-nav nav navbar-nav">-->
+        <!--                    <li class="active"><a href="#">Home</a></li>-->
+        <!--                    <li><a href="#">Hot Deals</a></li>-->
+        <!--                    <li><a href="#">Categories</a></li>-->
+        <!--                    <li><a href="#">Laptops</a></li>-->
+        <!--                    <li><a href="#">Smartphones</a></li>-->
+        <!--                    <li><a href="#">Cameras</a></li>-->
+        <!--                    <li><a href="#">Accessories</a></li>-->
+        <!--                </ul>-->
+        <!--                &lt;!&ndash; /NAV &ndash;&gt;-->
+        <!--            </div>-->
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<!--    <div id="breadcrumb" class="section">-->
+<!--        &lt;!&ndash; container &ndash;&gt;-->
+<!--        <div class="container">-->
+<!--            &lt;!&ndash; row &ndash;&gt;-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <ul class="breadcrumb-tree">-->
+<!--                        <li><a href="#">Home</a></li>-->
+<!--                        <li><a href="#">All Categories</a></li>-->
+<!--                        <li><a href="#">Accessories</a></li>-->
+<!--                        <li class="active">Headphones (227,490 Results)</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /row &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /container &ndash;&gt;-->
+<!--    </div>-->
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <div id="aside"
+                 style="opacity: 0.5;cursor: not-allowed;"
+                 class="col-md-3">
+            </div>
+            <!-- /ASIDE -->
+
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+
+                <!-- store products -->
+                <div class="row">
+                    <!-- product -->
+                    <card
+                            v-for="product in wishlistStore.products"
+                            :key="product.id"
+                            :product="product"
+                            :inWishlist="wishlistStore.has(product)"
+                            @basket-add-product="basketStore.addToBasket"
+                            @wishlist-add-product="wishlistStore.addToWishlist"
+                    />
+                    <!-- /product -->
+
+                </div>
+                <!-- /store products -->
+
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
