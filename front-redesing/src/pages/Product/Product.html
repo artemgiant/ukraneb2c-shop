@@ -1,406 +1,234 @@
-<!-- SECTION -->
-<div class="section">
-    <!-- container -->
+<div class="single-product full-width">
+<div id="content" class="site-content "  tabindex="-1">
     <div class="container">
-        <!-- row -->
-        <div class="row">
 
 
-            <!-- Product main img -->
-            <div class="col-md-5 col-md-push-2">
-                <div id="product-main-img">
-                    <div v-for="img in product.images" class="product-preview">
-                        <img :src="$storageUrl+'/'+img.name" alt="">
-                    </div>
-                </div>
-            </div>
-            <!-- /Product main img -->
+        <nav class="woocommerce-breadcrumb">
 
-            <!-- Product thumb imgs -->
-            <div class="col-md-2  col-md-pull-5">
-                <div id="product-imgs">
-                    <div v-for="img in product.images" class="product-preview">
-                        <img :src="$storageUrl+'/'+img.name" alt="">
-                    </div>
-                </div>
-            </div>
-            <!-- /Product thumb imgs -->
+        </nav>
 
 
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
 
-            <!-- Product main img -->
-<!--            <div class="col-md-5 col-md-push-2">-->
-<!--                <div id="product-main-img">-->
-<!--                    <div v-for="img in product.images" class="product-preview">-->
-<!--                        <img :src="$storageUrl+'/'+img.name" alt="">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div id="product-imgs">-->
-<!--                    <div v-for="img in product.images" class="product-preview">-->
-<!--                        <img :src="$storageUrl+'/'+img.name" alt="">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-            <!-- /Product main img -->
+                <div class="product">
 
-            <!-- Product thumb imgs -->
-<!--            <div class="col-md-2  col-md-pull-5">-->
-<!--                -->
-<!--            </div>-->
-            <!-- /Product thumb imgs -->
+                    <div class="single-product-wrapper">
+                        <div class="product-images-wrapper">
+                            <div class="images electro-gallery">
+                                <div class="thumbnails-single owl-carousel">
 
-            <!-- Product details -->
-            <div class="col-md-5">
-                <div class="product-details">
-                    <h2 class="product-name">{{product.name}}</h2>
-                    <div style="opacity: 0.5;cursor: not-allowed;" >
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <a class="review-link" style="pointer-events: none"   href="#">10 Review(s) | Add your review</a>
-                    </div>
-                    <div>
-                        <h3 class="product-price">{{product.price}} грн </h3>
-                        <span class="product-available">В НАЯВНОСТІ</span>
-                    </div>
-                    <p v-html="product.description_short" > </p>
+                                    <a v-for="img in product.images" :href="$storageUrl+'/'+img.name" class="zoom"
+                                       title="" data-rel="prettyPhoto[product-gallery]"><img
+                                            :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
+                                            class="wp-post-image" alt=""></a>
+
+                                </div><!-- .thumbnails-single -->
+
+                                <div class="thumbnails-all columns-5 owl-carousel">
+
+                                </div><!-- .thumbnails-all -->
+                            </div><!-- .electro-gallery -->
+                        </div><!-- /.product-images-wrapper -->
+
+                        <div class="summary entry-summary">
+
+                                        <span class="loop-product-categories">
+                                            <a href="product-category.html" rel="tag">Headphones</a>
+                                        </span><!-- /.loop-product-categories -->
+
+                            <h1 itemprop="name" class="product_title entry-title">{{product.name}}</h1>
 
 
-                    <div class="add-to-cart">
-                        <div class="qty-label">
-                            Qty
-                            <div class="input-number">
-                                <input type="number"  v-model="product.quantity">
-                                <button class="qty-up" v-on:click="product.quantity++">+</button>
-                                <button class="qty-down" :disabled="product.quantity<=1"  v-on:click="product.quantity--">-</button>
-                            </div>
-                        </div>
-                        <button class="add-to-cart-btn" v-on:click="basketStore.addToBasket(product)"><i class="fa fa-shopping-cart"></i>Додати в кошик</button>
-                    </div>
+                            <div class="brand">
+                                <a href="product-category.html">
+<!--                                    <img src="assets/images/single-product/brand.png" alt="Gionee" />-->
+                                </a>
+                            </div><!-- .brand -->
 
-                    <ul class="product-btns">
-                        <li><a href="#"><i class="fa fa-heart-o"></i> додати до бажань</a></li>
-<!--                        <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>-->
-                    </ul>
+                            <div class="availability in-stock">Availablity: <span>In stock</span></div><!-- .availability -->
 
-                    <ul class="product-links"  style="opacity: 0.5;cursor: not-allowed;">
-                        <li>Category:</li>
-                        <li><a style="pointer-events: none" href="#">Headphones</a></li>
-                        <li><a style="pointer-events: none" href="#">Accessories</a></li>
-                    </ul>
+                            <hr class="single-product-title-divider" />
 
-<!--                    <ul class="product-links">-->
-<!--                        <li>Share:</li>-->
-<!--                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-<!--                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-<!--                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
-<!--                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>-->
-<!--                    </ul>-->
+                            <div class="action-buttons">
 
-                </div>
+                                <a href="#" class="add_to_wishlist" >
+                                    Wishlist
+                                </a>
 
 
-            </div>
+                                <a href="#" class="add-to-compare-link" data-product_id="2452">Compare</a>
+                            </div><!-- .action-buttons -->
+
+                            <div itemprop="description" v-html="product.description_short">
+
+                            </div><!-- .description -->
+
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+                                <p class="price"><span class="electro-price"><ins><span
+                                        class="amount">{{product.price}} грн</span></ins> </span>
+                                </p>
+
+                                <meta itemprop="price" content="1215" />
+                                <meta itemprop="priceCurrency" content="USD" />
+                                <link itemprop="availability" href="http://schema.org/InStock" />
+
+                            </div><!-- /itemprop -->
+
+                            <form class="variations_form cart" method="post">
 
 
-            <!-- /Product details -->
-
-            <!-- /Product details -->
-
-            <!-- Product tab -->
-            <div class="col-md-12">
-                <div id="product-tab">
-                    <!-- product tab nav -->
-                    <ul class="tab-nav">
-                        <li class="active"><a data-toggle="tab" href="#tab1" aria-expanded="false">Description</a></li>
-
-                        <li ><a data-toggle="tab" href="#tab3" aria-expanded="true">Reviews ({{commentApiStore.pagination.total}})</a></li>
-                    </ul>
-                    <!-- /product tab nav -->
-
-                    <!-- product tab content -->
-                    <div class="tab-content">
-                        <!-- tab1  -->
-                        <div id="tab1" class="tab-pane fade in active">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p v-html="product.description_long" > </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /tab1  -->
-
-                        <!-- tab3  -->
-                        <div id="tab3" class="tab-pane fade in">
-                            <div class="row">
-                                <!-- Rating -->
-                                <div class="col-md-3">
-                                    <div id="rating">
-                                        <div class="rating-avg">
-                                            <span>{{commentApiStore.stars.avg}}</span>
-                                            <div class="rating-stars">
-                                                <i :class="[commentApiStore.stars.avg>0?'fa-star':'fa-star-o ']" class="fa"></i>
-                                                <i :class="[commentApiStore.stars.avg>1?'fa-star':'fa-star-o ']" class="fa"></i>
-                                                <i :class="[commentApiStore.stars.avg>2?'fa-star':'fa-star-o ']" class="fa"></i>
-                                                <i :class="[commentApiStore.stars.avg>3?'fa-star':'fa-star-o ']" class="fa"></i>
-                                                <i :class="[commentApiStore.stars.avg>4?'fa-star':'fa-star-o ']" class="fa"></i>
-                                            </div>
+                                <div class="single_variation_wrap">
+                                    <div class="woocommerce-variation single_variation"></div>
+                                    <div class="woocommerce-variation-add-to-cart variations_button">
+                                        <div class="quantity">
+                                            <label>Quantity:</label>
+                                            <input type="number" name="quantity" v-model="product.quantity" title="Qty" class="input-text qty text"/>
                                         </div>
-                                        <ul class="rating">
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 50%;"></div>
-                                                </div>
-                                                <span class="sum">{{commentApiStore.stars.five}}</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 50%;"></div>
-                                                </div>
-                                                <span class="sum">{{commentApiStore.stars.four}}</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 50%;"></div>
-                                                </div>
-                                                <span class="sum">{{commentApiStore.stars.three}}</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 50%;"></div>
-                                                </div>
-                                                <span class="sum">{{commentApiStore.stars.two}}</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 50%;"></div>
-                                                </div>
-                                                <span class="sum">{{commentApiStore.stars.one}}</span>
-                                            </li>
-                                        </ul>
+                                        <button  v-on:click="basketStore.addToBasket(product)" type="button" class="single_add_to_cart_button button">Add to cart</button>
+                                        <input type="hidden" name="add-to-cart" value="2452" />
+                                        <input type="hidden" name="product_id" value="2452" />
+                                        <input type="hidden" name="variation_id" class="variation_id" value="0" />
                                     </div>
                                 </div>
-                                <!-- /Rating -->
+                            </form>
 
-                                <!-- Reviews -->
-                                <div class="col-md-6">
-                                    <div id="reviews">
-                                        <ul class="reviews" v-if="commentApiStore.comments">
+                        </div><!-- .summary -->
+                    </div><!-- /.single-product-wrapper -->
 
-                                            <li v-for="comment in commentApiStore.comments" >
-                                                <div class="review-heading">
-
-                                                    <h5 class="name">{{comment.commenter?comment.commenter.name:comment.guest_name}}</h5>
-                                                    <p class="date">{{comment.updated_at}}</p>
-                                                    <div class="review-rating">
-                                                        <i :class="[comment.stars>0?'fa-star':'fa-star-o empty']" class="fa"></i>
-                                                        <i :class="[comment.stars>1?'fa-star':'fa-star-o empty']" class="fa"></i>
-                                                        <i :class="[comment.stars>2?'fa-star':'fa-star-o empty']" class="fa"></i>
-                                                        <i :class="[comment.stars>3?'fa-star':'fa-star-o empty']" class="fa"></i>
-                                                        <i :class="[comment.stars>4?'fa-star':'fa-star-o empty']" class="fa"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="review-body">
-                                                    <p>{{comment.comment}}</p>
-                                                </div>
-                                            </li>
-
-                                        </ul>
+                    <div class="woocommerce-tabs wc-tabs-wrapper">
+                        <ul class="nav nav-tabs electro-nav-tabs tabs wc-tabs" role="tablist">
 
 
-                                        <ul class="reviews-pagination">
+                            <li class="nav-item description_tab">
+                                <a href="#tab-description" class="active" data-toggle="tab">Description</a>
+                            </li>
 
-                                            <li :class="{'opacity-0':!commentApiStore.pagination.previousPage>0}"
-                                                v-on:click="
-                                                commentApiStore.pagination.page
-                                                =
-                                                commentApiStore.pagination.previousPage">
-                                                <a>
-                                                    <i class="fa fa-angle-left"></i>
-                                                </a>
-                                            </li>
+                            <li class="nav-item specification_tab">
+                                <a href="#tab-specification" data-toggle="tab">Specification</a>
+                            </li>
 
-                                            <li
-                                                    v-for="(inx) in commentApiStore.pagination.maxPage"
-                                                    v-on:click="commentApiStore.pagination.page =  inx"
-                                                    :key="inx"
-                                                    :class="{active:inx===commentApiStore.pagination.page}">
-                                                {{inx}}
-                                            </li>
 
-                                            <li
-                                             :class="{'opacity-0':commentApiStore.pagination.maxPage < commentApiStore.pagination.nextPage}"
-                                             v-on:click="commentApiStore.pagination.page = commentApiStore.pagination.nextPage">
-                                                <a>
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </li>
+                        </ul>
 
-                                        </ul>
-                                    </div>
+                        <div class="tab-content">
 
-                                </div>
-                                <!-- /Reviews -->
+                            <div class="tab-pane active in panel entry-content wc-tab" id="tab-description">
+                                <div class="electro-description" v-html="product.description_long">
 
-                                <!-- Review Form -->
-                                <div class="col-md-3">
-                                    <div id="review-form">
 
-                                        <form v-if="!authStore.authUser" class="review-form">
-                                            <input v-model="commentApiStore.comment.guest_name" class="input" type="text" placeholder="Your Name">
-                                            <input v-model="commentApiStore.comment.guest_email"  class="input" type="email" placeholder="Your Email">
-                                            <textarea v-model="commentApiStore.comment.message" class="input" placeholder="Your Review">{{commentApiStore.comment.message}}</textarea>
-                                            <div class="input-rating">
-                                                <span>Your Rating: </span>
-                                                <div class="stars">
-                                                    <input
-                                                            id="star5"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="5"
-                                                            type="radio">
-                                                    <label for="star5"></label>
+                                </div><!-- /.electro-description -->
 
-                                                    <input id="star4"
-                                                           v-model="commentApiStore.comment.stars"
-                                                           name="rating"
-                                                           value="4"
-                                                           type="radio">
-                                                    <label for="star4"></label>
 
-                                                    <input
-                                                            id="star3"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="3"
-                                                            type="radio">
-                                                    <label for="star3"></label>
 
-                                                    <input
-                                                            id="star2"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="2"
-                                                            type="radio">
-                                                    <label for="star2"></label>
+                                <div class="product_meta">
+                                    <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">FW511948218</span></span>
 
-                                                    <input
-                                                            id="star1"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="1"
-                                                            type="radio">
-                                                    <label for="star1"></label>
 
-                                                </div>
-                                            </div>
-                                            <button type="button" v-on:click="commentApiStore.create" class="primary-btn">Submit</button>
-                                        </form>
+                                    <span class="posted_in">Category:
+                                                    <a href="product-category.html" rel="tag">Headphones</a>
+                                                </span>
 
-                                        <form v-if="authStore.authUser" class="review-form">
-                                            <textarea v-model="commentApiStore.comment.message" class="input" placeholder="Your Review">{{commentApiStore.comment.message}}</textarea>
-                                            <div class="input-rating">
-                                                <span>Your Rating: </span>
-                                                <div class="stars">
-                                                    <input
-                                                            id="star5"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="5"
-                                                            type="radio">
-                                                    <label for="star5"></label>
+                                    <span class="tagged_as">Tags:
+                                                    <a href="product-category.html" rel="tag">Fast</a>,
+                                                    <a href="product-category.html" rel="tag">Gaming</a>, <a href="product-category.html" rel="tag">Strong</a>
+                                                </span>
 
-                                                    <input id="star4"
-                                                           v-model="commentApiStore.comment.stars"
-                                                           name="rating"
-                                                           value="4"
-                                                           type="radio">
-                                                    <label for="star4"></label>
-
-                                                    <input
-                                                            id="star3"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="3"
-                                                            type="radio">
-                                                    <label for="star3"></label>
-
-                                                    <input
-                                                            id="star2"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="2"
-                                                            type="radio">
-                                                    <label for="star2"></label>
-
-                                                    <input
-                                                            id="star1"
-                                                            v-model="commentApiStore.comment.stars"
-                                                            name="rating"
-                                                            value="1"
-                                                            type="radio">
-                                                    <label for="star1"></label>
-
-                                                </div>
-                                            </div>
-                                            <button type="button" v-on:click="commentApiStore.create" class="primary-btn">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- /Review Form -->
+                                </div><!-- /.product_meta -->
                             </div>
+
+                            <div class="tab-pane panel entry-content wc-tab" id="tab-specification">
+                                <h3>Technical Specifications</h3>
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>Brand</td>
+                                        <td>Apple</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Height</td>
+                                        <td>18 Millimeters</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Width</td>
+                                        <td>31.4 Centimeters</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Screen Size</td>
+                                        <td>13 Inches</td>
+                                    </tr>
+                                    <tr class="size-weight">
+                                        <td>Item Weight</td>
+                                        <td>1.6 Kg</td>
+                                    </tr>
+                                    <tr class="size-weight">
+                                        <td>Product Dimensions</td>
+                                        <td>21.9 x 31.4 x 1.8 cm</td>
+                                    </tr>
+                                    <tr class="item-model-number">
+                                        <td>Item model number</td>
+                                        <td>MF841HN/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor Brand</td>
+                                        <td>Intel</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor Type</td>
+                                        <td>Core i5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor Speed</td>
+                                        <td>2.9 GHz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RAM Size</td>
+                                        <td>8 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hard Drive Size</td>
+                                        <td>512 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hard Disk Technology</td>
+                                        <td>Solid State Drive</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Graphics Coprocessor</td>
+                                        <td>Intel Integrated Graphics</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Graphics Card Description</td>
+                                        <td>Integrated Graphics Card</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hardware Platform</td>
+                                        <td>Mac</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Operating System</td>
+                                        <td>Mac OS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Average Battery Life (in hours)</td>
+                                        <td>9</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.panel -->
+
                         </div>
-                        <!-- tab3  -->
-                    </div>
-                    <!-- /product tab content  -->
-                </div>
-            </div>
-            <!-- /product tab -->
+
+                    </div><!-- /.woocommerce-tabs -->
 
 
-        </div>
-        <!-- /row -->
-    </div>
-    <!-- /container -->
+                </div><!-- /.product -->
+
+
+
+            </main><!-- /.site-main -->
+        </div><!-- /.content-area -->
+    </div><!-- /.container -->
+</div><!-- /.site-content -->
 </div>
-<!-- /SECTION -->

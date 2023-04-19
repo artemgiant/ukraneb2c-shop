@@ -38,10 +38,10 @@ const nextPage = computed(() => {
 })
 
 
-</script>
+</script >
 
 
-<style lang="scss">
+<style lang="scss" >
 li.product .product-thumbnail img{
   max-height: 197px;
   max-width: 262px;

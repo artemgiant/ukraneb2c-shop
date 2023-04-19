@@ -1,6 +1,6 @@
 <template>
 
-  <li class="product" >
+  <li class="product" :class="classProduct">
     <div class="product-outer">
       <div class="product-inner">
         <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
@@ -83,7 +83,8 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
+    index:{type:Number},
   },
   emits: [
     'basket-add-product'
@@ -99,6 +100,16 @@ export default {
   directives: {
     tippy: directive,
   },
+  computed: {
+    classProduct(){
+      if (this.index === 0)
+        return 'first'
+      else if (Number.isInteger(this.index  / 4))
+        return 'first'
+      else if (Number.isInteger((this.index + 1) / 4))
+        return 'last'
+    }
+  }
 }
 </script>
 
