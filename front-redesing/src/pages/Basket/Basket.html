@@ -1,605 +1,676 @@
+<div class="container">
 
-    <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
+    <nav class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Checkout</nav>
 
-                <div class="col-md-7">
-                    <Form @submit="onSubmit" id="form-basket" :validation-schema="schema" v-slot="{ errors }">
-                    <!-- Billing Details -->
-                    <div class="billing-details">
-                        <div class="section-title">
-                            <h3 class="title">Одержувач</h3>
-                        </div>
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <article class="page type-page status-publish hentry">
+                <header class="entry-header"><h1 itemprop="name" class="entry-title">Checkout</h1></header><!-- .entry-header -->
 
-                        <div class="row">
-                            <div class="col-md-4 form-group" >
+                <Form
+                        @submit="onSubmit"
+                        id="form-basket"
+                        :validation-schema="schema"
+                        v-slot="{ errors }"
+                        enctype="multipart/form-data"
+                        action="#"
+                        class="checkout woocommerce-checkout"
+                        method="post"
+                        name="checkout">
 
-<!--LAST NAME-->
-                                <Field
-                                        class="input form-control"
-                                        :class="{ 'is-invalid': errors['recipient.last_name'] }"
-                                        type="text"
-                                        v-model="form.recipient.last_name"
-                                        name="recipient.last_name" placeholder="Прізвище" />
+                    <div id="customer_details" class="col2-set">
+                        <div class="col-1">
+                            <div class="woocommerce-billing-fields">
 
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.last_name" />
+                                <h3>Billing Details</h3>
+
+
+ <!--LAST NAME-->
+                                <div class="col-md-4 form-group p-l-0">
+                                    <label>
+                                        Прізвище <abbr title="required" class="required">*</abbr></label>
+
+                                    <Field
+                                            class="input-text"
+                                            :class="{ 'is-invalid': errors['recipient.last_name'] }"
+                                            type="text"
+                                            v-model="form.recipient.last_name"
+                                            name="recipient.last_name" placeholder="Прізвище"/>
+
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="recipient.last_name"/>
+                                    </div>
+
                                 </div>
-
-                            </div>
 
 <!-- FIRST NAME                           -->
-                            <div class="col-md-4 form-group" >
-                                <Field
-                                        :class="{ 'is-invalid': errors['recipient.first_name'] }"
-                                        class="input form-control"
-                                        type="text"
-                                        v-model="form.recipient.first_name"
 
-                                        name="recipient.first_name"
-                                        placeholder="Ім'я"/>
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.first_name" />
-                                </div>
-                            </div>
+                                <div class="col-md-4 form-group " >
 
-<!-- MEDDLE NAME                           -->
-                            <div class="col-md-4 form-group" >
-                                <Field
-                                        class="input form-control"
-                                        :class="{ 'is-invalid': errors['recipient.middle_name'] }"
-                                        type="text"
-                                        v-model="form.recipient.middle_name"
-                                        name="recipient.middle_name"
-                                        placeholder="По батькові"/>
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.middle_name" />
-                                </div>
-                            </div>
-                        </div>
-
-<!--EMAIL-->
-                        <div class="row">
-                            <div class="col-md-6 form-group" >
-                                <Field
-                                       class="input form-control"
-                                       :class="{ 'is-invalid': errors['recipient.email'] }"
-                                       type="email"
-                                       v-model="form.recipient.email"
-                                       name="recipient.email"
-                                        placeholder="Email"/>
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.email" />
-                                </div>
-                            </div>
-
-<!-- PHONE                           -->
-                            <div class="col-md-6 form-group" >
-                                <Field
-                                        class="form-control input"
-                                        :class="{ 'is-invalid': errors['recipient.phone'] }"
-                                       placeholder="+38(___)___-__-__"
-                                       v-phone-mask="'+38(___)___-__-__'"
-                                       v-model.lazy="form.recipient.phone"
-                                       name="recipient.phone"
-                                />
-
-                                    <div class="invalid-feedback">
-                                        <ErrorMessage name="recipient.phone" />
-                                    </div>
-                            </div>
-                        </div>
-
-<!--RECIPIENT CITY-->
-                        <div class="form-group">
-                            <Field v-slot="{ field }"
-                                   v-model="form.recipient.city"
-                                   name="recipient.city">
-
-                                <VueMultiselect
-                                        v-model="form.recipient.city"
-                                        id="ajax"
-                                        label="text"
-                                        name="recipient.city"
-                                        track-by="id"
-                                        placeholder="Місто"
-                                        open-direction="bottom"
-                                        :class="{ 'is-invalid': errors['recipient.city'] }"
-                                        :options="addressStore.citiesRecipient"
-                                        :searchable="true"
-                                        :internal-search="false"
-                                        :clear-on-select="true"
-                                        :close-on-select="true"
-                                        :options-limit="300"
-                                        :limit="3"
-                                        :max-height="600"
-                                        :show-no-results="false"
-                                        @search-change="searchRecipientCity"
-                                        @select="selectedRecipientCity"
-                                >
-                                </VueMultiselect>
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.city" />
-                                </div>
-                            </Field>
-                        </div>
-
-<!-- RECIPIENT STREET                       -->
-                        <div class="form-group">
-                            <Field v-slot="{ field }"
-                                   v-model="form.recipient.street"
-                                   name="recipient.street">
-
-                                <VueMultiselect
-                                        v-model="form.recipient.street"
-                                        id="ajax"
-                                        label="text"
-                                        track-by="id"
-                                        placeholder="Вулиця"
-                                        open-direction="bottom"
-                                        :class="{ 'is-invalid': errors['recipient.street']}"
-                                        :options="addressStore.streetsRecipient"
-                                        :searchable="true"
-                                        :internal-search="false"
-                                        :clear-on-select="true"
-                                        :close-on-select="true"
-                                        :options-limit="300"
-                                        :limit="3"
-                                        :max-height="600"
-                                        :show-no-results="false"
-                                >
-                                </VueMultiselect>
-
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.street"/>
-                                </div>
-                            </Field>
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-6 form-group">
-                                <Field
-                                        class="input form-control"
-                                        type="text"
-                                        :class="{ 'is-invalid': errors['recipient.house']}"
-                                        v-model="form.recipient.house"
-                                        name="recipient.house"
-                                        placeholder="Номер будинку"/>
-
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.house"/>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 form-group" >
-                                <Field
-                                        class="input form-control"
-                                        :class="{ 'is-invalid': errors['recipient.flat']}"
-                                        type="text"
-                                        v-model="form.recipient.flat"
-                                        name="recipient.flat"
-                                        placeholder="Номер квартири"/>
-
-                                <div class="invalid-feedback">
-                                    <ErrorMessage name="recipient.flat"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Billing Details -->
-
-
-
-                    <!-- Delivery Address -->
-                    <div class="billing-details">
-                        <div class="section-title">
-                            <h3 class="title">АДРЕСА ДОСТАВКИ</h3>
-                        </div>
-
-
-                        <ul class="body-right-list form-group">
-                            <li>
-                                <label for="dp-courier" class="tabs-title" :class="{active:form.address_delivery.delivery_type === 'meest_courier'}">
-                                    <i class="icon-courier-off"></i>
-                                    <i class="icon-courier-on"></i>
-                                    <span>Курьер</span>
-
-
-                                    <input
-                                            style="display: none"
-                                            name="address_delivery_type"
-                                            type="radio"
-                                            v-model="form.address_delivery.delivery_type"
-                                            id="dp-courier"
-                                            value="meest_courier">
-                                </label>
-
-                            </li>
-                            <li >
-                                <label
-                                        for="dp-nova_poshta"
-                                        class="tabs-title"
-                                        :class="{active:form.address_delivery.delivery_type === 'nova_poshta'}">
-                                    <i class="icon-NP-off"></i>
-                                    <i class="icon-NP-on"></i>
-                                    <span>Нова почта</span>
+                                    <label  >
+                                        Ім'я<abbr title="required" class="required">*</abbr></label>
 
                                     <Field
-                                            style="display: none"
-                                            name="address_delivery.delivery_type"
-                                            type="radio"
-                                            v-model="form.address_delivery.delivery_type"
-                                            id="dp-nova_poshta"
-                                            value="nova_poshta"/>
-
-                                </label>
-                            </li>
-
-                            <li class="tabs-title tabs-title-click-off">
-                                <i class="icon-UK-off"></i>
-                                <i class="icon-UK-on"></i>
-                                <span>
-										Укрпочта
-									</span>
-                            </li>
-
-                            <li>
-
-                                <label
-                                        for="dp-meest_apt"
-                                        class="tabs-title"
-                                        :class="{active:form.address_delivery.delivery_type === 'meest_apt'}">
-
-                                    <i class="icon-ATP-off"></i>
-                                    <i class="icon-ATP-on"></i>
-                                    <span>АПТ</span>
-                                    <input
-                                            style="display: none"
-                                            name="address_delivery_type"
-                                            type="radio"
-                                            v-model="form.address_delivery.delivery_type"
-                                            id="dp-meest_apt"
-                                            value="meest_apt">
-                                </label>
-                            </li>
-                            <li >
-
-                                <label
-                                        for="dp-meest_point"
-                                        class="tabs-title"
-                                        :class="{active:form.address_delivery.delivery_type === 'meest_point'}"
-                                >
-                                    <i class="icon-MP-off"></i>
-                                    <i class="icon-MP-on"></i>
-                                    <span>Meest Point</span>
-                                    <input
-                                            style="display: none"
-                                            name="address_delivery_type"
-                                            type="radio"
-                                            v-model="form.address_delivery.delivery_type"
-                                            id="dp-meest_point"
-                                            value="meest_point"
-                                    >
-                                </label>
-                            </li>
-                        </ul>
-
-
-                        <ErrorMessage as="div" class="invalid-feedback" style="display: block" name="address_delivery.delivery_type"/>
-
-
-                        <div v-if="form.address_delivery.delivery_type.length" style="font-size: 13px" class="caption">
-                            <p>{{settingsApiStore.basketItems[form.address_delivery.delivery_type] }}</p>
-                        </div>
-<!--FORM Warehouse-->
-                        <template   v-if:="['nova_poshta','meest_point','meest_apt'].includes(form.address_delivery.delivery_type)" >
-                        <div
-                                class="form-group">
-
-                            <VueMultiselect
-                                    v-model="form.address_delivery.city"
-                                    id="ajax"
-                                    label="text"
-                                    track-by="id"
-                                    placeholder="Місто"
-                                    open-direction="bottom"
-                                    :options="addressStore.cities"
-                                    :searchable="true"
-                                    :internal-search="false"
-                                    :clear-on-select="true"
-                                    :close-on-select="true"
-                                    :options-limit="300"
-                                    :limit="3"
-                                    :max-height="600"
-                                    :show-no-results="false"
-
-                                    @search-change="searchDeliveryCity"
-                                    @select="asyncWarehouses"
-                            >
-
-                            </VueMultiselect>
-                        </div>
-
-                        <div
-                                class="form-group">
-                            <VueMultiselect
-                                    v-model="form.address_delivery.warehouse"
-                                    id="warehouse"
-                                    label="text"
-                                    track-by="id"
-                                    placeholder="Відділення"
-                                    open-direction="bottom"
-                                    :options="addressStore.filteredWarehouses"
-                                    :searchable="true"
-                                    :internal-search="false"
-                                    :clear-on-select="false"
-                                    :close-on-select="true"
-                                    :options-limit="300"
-                                    :limit="3"
-                                    :max-height="600"
-                                    :show-no-results="false"
-                                    @search-change="addressStore.searchWarehouses"
-
-                            >
-
-                            </VueMultiselect>
-                        </div>
-                        </template>
-
-
- <!--FORM COURIER-->
-                        <template v-if:="['meest_courier'].includes(form.address_delivery.delivery_type)">
-                            <!--RECIPIENT CITY-->
-                            <div
-                                    class="form-group">
-
-                                <VueMultiselect
-                                        v-model="form.address_delivery.city"
-                                        id="ajax"
-                                        label="text"
-                                        track-by="id"
-                                        placeholder="Місто"
-                                        open-direction="bottom"
-                                        :options="addressStore.cities"
-                                        :searchable="true"
-                                        :internal-search="false"
-                                        :clear-on-select="true"
-                                        :close-on-select="true"
-                                        :options-limit="300"
-                                        :limit="3"
-                                        :max-height="600"
-                                        :show-no-results="false"
-
-                                        @search-change="searchDeliveryCity"
-                                        @select="selectedDeliveryCity"
-                                >
-
-                                </VueMultiselect>
-                            </div>
-
-
-                            <!-- RECIPIENT STREET                       -->
-                            <div class="form-group">
-                                <Field v-slot="{ field }"
-                                       v-model="form.address_delivery.street"
-                                       name="address_delivery.street">
-
-                                    <VueMultiselect
-                                            v-model="form.address_delivery.street"
-                                            id="ajax"
-                                            label="text"
-                                            track-by="id"
-                                            placeholder="Вулиця"
-                                            open-direction="bottom"
-                                            :class="{ 'is-invalid': errors['address_delivery.street']}"
-                                            :options="addressStore.streets"
-                                            :searchable="true"
-                                            :internal-search="false"
-                                            :clear-on-select="true"
-                                            :close-on-select="true"
-                                            :options-limit="300"
-                                            :limit="3"
-                                            :max-height="600"
-                                            :show-no-results="false"
-                                    >
-                                    </VueMultiselect>
-
-                                    <div class="invalid-feedback">
-                                        <ErrorMessage name="address_delivery.street"/>
-                                    </div>
-                                </Field>
-                            </div>
-
-
-                            <div class="row">
-
-                                <div class="col-md-6 form-group">
-                                    <Field
-                                            class="input form-control"
+                                            :class="{ 'is-invalid': errors['recipient.first_name'] }"
+                                            class="input-text"
                                             type="text"
-                                            :class="{ 'is-invalid': errors['address_delivery.house']}"
-                                            v-model="form.address_delivery.house"
-                                            name="address_delivery.house"
+                                            v-model="form.recipient.first_name"
+
+                                            name="recipient.first_name"
+                                            placeholder="Ім'я"/>
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="recipient.first_name" />
+                                    </div>
+                                </div>
+
+ <!-- MEDDLE NAME                           -->
+                                <div class="col-md-4 form-group p-r-0" >
+
+                                    <label  >
+                                        По батькові<abbr title="required" class="required">*</abbr></label>
+
+                                    <Field
+                                            class="input-text"
+                                            :class="{ 'is-invalid': errors['recipient.middle_name'] }"
+                                            type="text"
+                                            v-model="form.recipient.middle_name"
+                                            name="recipient.middle_name"
+                                            placeholder="По батькові"/>
+                                    <div class="invalid-feedback">
+                                        <ErrorMessage name="recipient.middle_name" />
+                                    </div>
+                                </div>
+
+  <!--EMAIL-->
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label>
+                                            Email<abbr title="required" class="required">*</abbr></label>
+
+                                        <Field
+                                                class="input-text"
+                                                :class="{ 'is-invalid': errors['recipient.email'] }"
+                                                type="email"
+                                                v-model="form.recipient.email"
+                                                name="recipient.email"
+                                                placeholder="Email"/>
+                                        <div class="invalid-feedback">
+                                            <ErrorMessage name="recipient.email"/>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- PHONE                           -->
+                                    <div class="col-md-6 form-group">
+                                        <label>
+                                            Phone<abbr title="required" class="required">*</abbr></label>
+                                        <Field
+                                                class="input-text"
+                                                :class="{ 'is-invalid': errors['recipient.phone'] }"
+                                                placeholder="+38(___)___-__-__"
+                                                v-phone-mask="'+38(___)___-__-__'"
+                                                v-model.lazy="form.recipient.phone"
+                                                name="recipient.phone"
+                                        />
+
+                                        <div class="invalid-feedback">
+                                            <ErrorMessage name="recipient.phone"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--RECIPIENT CITY-->
+                                <div class="form-group">
+
+                                    <label>
+                                        City<abbr title="required" class="required">*</abbr></label>
+
+                                    <Field v-slot="{ field }"
+                                           v-model="form.recipient.city"
+                                           name="recipient.city">
+
+                                        <VueMultiselect
+                                                v-model="form.recipient.city"
+                                                id="ajax"
+                                                label="text"
+                                                name="recipient.city"
+                                                track-by="id"
+                                                placeholder="Місто"
+                                                open-direction="bottom"
+                                                :class="{ 'is-invalid': errors['recipient.city'] }"
+                                                :options="addressStore.citiesRecipient"
+                                                :searchable="true"
+                                                :internal-search="false"
+                                                :clear-on-select="true"
+                                                :close-on-select="true"
+                                                :options-limit="300"
+                                                :limit="3"
+                                                :max-height="600"
+                                                :show-no-results="false"
+                                                @search-change="searchRecipientCity"
+                                                @select="selectedRecipientCity"
+                                        >
+                                        </VueMultiselect>
+                                        <div class="invalid-feedback">
+                                            <ErrorMessage name="recipient.city" />
+                                        </div>
+                                    </Field>
+                                </div>
+
+                                <!-- RECIPIENT STREET                       -->
+                                <div class="form-group">
+
+                                    <label>
+                                        Street<abbr title="required" class="required">*</abbr></label>
+
+                                    <Field v-slot="{ field }"
+                                           v-model="form.recipient.street"
+                                           name="recipient.street">
+
+                                        <VueMultiselect
+                                                v-model="form.recipient.street"
+                                                id="ajax"
+                                                label="text"
+                                                track-by="id"
+                                                placeholder="Вулиця"
+                                                open-direction="bottom"
+                                                :class="{ 'is-invalid': errors['recipient.street']}"
+                                                :options="addressStore.streetsRecipient"
+                                                :searchable="true"
+                                                :internal-search="false"
+                                                :clear-on-select="true"
+                                                :close-on-select="true"
+                                                :options-limit="300"
+                                                :limit="3"
+                                                :max-height="600"
+                                                :show-no-results="false"
+                                        >
+                                        </VueMultiselect>
+
+                                        <div class="invalid-feedback">
+                                            <ErrorMessage name="recipient.street"/>
+                                        </div>
+                                    </Field>
+                                </div>
+
+
+                                <div class="col-md-6 form-group p-l-0">
+                                    <label>
+                                        Номер будинку<abbr title="required" class="required">*</abbr></label>
+
+                                    <Field
+                                            class="input-text"
+                                            type="text"
+                                            :class="{ 'is-invalid': errors['recipient.house']}"
+                                            v-model="form.recipient.house"
+                                            name="recipient.house"
                                             placeholder="Номер будинку"/>
 
                                     <div class="invalid-feedback">
-                                        <ErrorMessage name="address_delivery.house"/>
+                                        <ErrorMessage name="recipient.house"/>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-6 form-group p-r-0" >
+                                    <label>
+                                        Номер квартири<abbr title="required" class="required">*</abbr></label>
                                     <Field
-                                            class="input form-control"
-                                            :class="{ 'is-invalid': errors['address_delivery.flat']}"
+                                            class="input-text"
+                                            :class="{ 'is-invalid': errors['recipient.flat']}"
                                             type="text"
-                                            v-model="form.address_delivery.flat"
-                                            name="address_delivery.flat"
+                                            v-model="form.recipient.flat"
+                                            name="recipient.flat"
                                             placeholder="Номер квартири"/>
 
                                     <div class="invalid-feedback">
-                                        <ErrorMessage name="address_delivery.flat"/>
+                                        <ErrorMessage name="recipient.flat"/>
                                     </div>
                                 </div>
+
+
+
                             </div>
-                        </template>
-
-
-                    </div>
-                    <!-- /Delivery Address -->
+                        </div>
 
                         <!-- Delivery Address -->
-                        <div class="billing-details">
-                            <div class="section-title">
-                                <h3 class="title">СПОСІБ ОПЛАТИ</h3>
-                            </div>
-                            <div class="">
-                                <div class="input-radio">
-                                    <input type="radio" v-model="form.payment_type" value="bank_card" name="payment" id="payment-1">
-                                    <label for="payment-1">
-                                        <span></span>
-                                        Оплата картой онлайн
+                        <div class="col-2">
+                            <h3>Shipping Details</h3>
+                            <div class="woocommerce-shipping-fields">
+
+
+                                <div class="input-radio ">
+                                    <input
+                                            type="radio"
+                                            checked="checked"
+                                            v-model="form.address_delivery.delivery_type"
+                                            value="nova_poshta"
+                                            name="address_delivery_type"
+                                            class="input-radio " id="dp-nova_poshta">
+
+                                    <label style=" margin-left: 0.618em;" for="dp-nova_poshta">
+                                        Нова почта
                                     </label>
+
                                     <div class="caption" style="font-size: 13px">
-                                        <p>{{settingsApiStore.basketItems?.bank_card}}</p>
+                                        <div
+                                                class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Місто </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.city"
+                                                    id="ajax"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Місто"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.cities"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="true"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+
+                                                    @search-change="searchDeliveryCity"
+                                                    @select="asyncWarehouses"
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+
+                                        <div  class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Відділення </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.warehouse"
+                                                    id="warehouse"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Відділення"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.filteredWarehouses"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="false"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+                                                    @search-change="addressStore.searchWarehouses"
+
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
                                     </div>
                                 </div>
+
+
                                 <div class="input-radio">
-                                    <input type="radio" v-model="form.payment_type" value="postpaid" name="payment" id="payment-2">
-                                    <label for="payment-2">
-                                        <span></span>
-                                        Післяплата
+                                    <input
+                                            type="radio"
+                                            v-model="form.address_delivery.delivery_type"
+                                            value="meest_courier"
+                                            name="address_delivery_type"
+                                            class="input-radio" id="dp-courier">
+                                    <label style=" margin-left: 0.618em;" for="dp-courier">
+                                        Курьер
                                     </label>
+
                                     <div class="caption" style="font-size: 13px">
-                                        <p>{{settingsApiStore.basketItems.postpaid}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    <!-- Order notes -->
-                    <div class="order-notes">
-                        <textarea v-model="form.comment" class="input" placeholder="Примітки до замовлення"></textarea>
-                    </div>
-                    <!-- /Order notes -->
+                                        <div  class="form-row form-row ">
+
+                                            <label  for="billing_first_name">
+                                                Місто </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.city"
+                                                    id="ajax"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Місто"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.cities"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="true"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+
+                                                    @search-change="searchDeliveryCity"
+                                                    @select="selectedDeliveryCity"
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+
+                                        <div  class="form-row form-row ">
+
+                                            <label  for="billing_first_name">
+                                                Вулиця </label>
+
+                                            <Field v-slot="{ field }"
+                                                   v-model="form.address_delivery.street"
+                                                   name="address_delivery.street">
+
+                                                <VueMultiselect
+                                                        v-model="form.address_delivery.street"
+                                                        id="ajax"
+                                                        label="text"
+                                                        track-by="id"
+                                                        placeholder="Вулиця"
+                                                        open-direction="bottom"
+                                                        :class="{ 'is-invalid': errors['address_delivery.street']}"
+                                                        :options="addressStore.streets"
+                                                        :searchable="true"
+                                                        :internal-search="false"
+                                                        :clear-on-select="true"
+                                                        :close-on-select="true"
+                                                        :options-limit="300"
+                                                        :limit="3"
+                                                        :max-height="600"
+                                                        :show-no-results="false"
+                                                >
+                                                </VueMultiselect>
+
+                                                <div class="invalid-feedback">
+                                                    <ErrorMessage name="address_delivery.street"/>
+                                                </div>
+                                            </Field>
+
+                                        </div>
+
+                                        <div class="form-row form-row form-row-first">
+
+                                            <label for="billing_first_name">Номер будинку</label>
 
 
+                                            <Field
+                                                    class="input-text"
+                                                    type="text"
+                                                    :class="{ 'is-invalid': errors['address_delivery.house']}"
+                                                    v-model="form.address_delivery.house"
+                                                    name="address_delivery.house"
+                                                    placeholder="Номер будинку"/>
 
-
-                    </Form>
-
-
-
-
-                </div>
-
-                <!-- Order Details -->
-                <div class="col-md-5 order-details">
-                    <div class="section-title text-center">
-                        <h3 class="title">ВАШЕ ЗАМОВЛЕННЯ</h3>
-                    </div>
-                    <div class="order-summary">
-                        <div class="order-col">
-                            <div><strong>ТОВАРИ</strong></div>
-                            <div><strong>РАЗОМ</strong></div>
-                        </div>
-                        <div class="order-products">
-                            <div v-for="product in basketStore.products" :key="product.id" class="order-col">
-                                <div class="product-widget">
-
-                                    <button class="delete" v-on:click="basketStore.delFromBasket(product)"><i class="fa fa-close"></i></button>
-
-                                    <div class="product-img">
-                                        <img :src="$storageUrl+'/'+product.image_main.name" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
-
-                                            <div class="quantity">
-                                                <a
-                                                        :class="{disabled:product.quantity===1}"
-                                                        class="quantity__minus "
-                                                        v-on:click="product.quantity--" >
-                                                    <span>-</span>
-                                                </a>
-
-                                                <input
-                                                        name="quantity"
-                                                        type="text"
-                                                        class="quantity__input"
-                                                       :value="product.quantity">
-
-                                                <a
-                                                        v-on:click="product.quantity++"
-                                                        class="quantity__plus">
-                                                    <span>+</span>
-                                                </a>
+                                            <div class="invalid-feedback">
+                                                <ErrorMessage name="address_delivery.house"/>
                                             </div>
+
+                                        </div>
+
+                                        <div class="form-row form-row form-row-last">
+
+                                            <label for="billing_first_name">Номер квартири</label>
+
+                                            <!--                                                <input type="text" name="billing_first_name" class="input-text">-->
+
+                                            <Field
+                                                    class="input-text"
+                                                    :class="{ 'is-invalid': errors['address_delivery.flat']}"
+                                                    type="text"
+                                                    v-model="form.address_delivery.flat"
+                                                    name="address_delivery.flat"
+                                                    placeholder="Номер квартири"/>
+
+                                            <div class="invalid-feedback">
+                                                <ErrorMessage name="address_delivery.flat"/>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div>{{ product.price * product.quantity }} грн</div>
+
+                                <!-- Meest APT-->
+                                <div class="input-radio">
+                                    <input type="radio"
+                                           v-model="form.address_delivery.delivery_type"
+                                           value="meest_apt" name="address_delivery_type"
+                                           class="input-radio" id="dp_meest_apt">
+                                    <label style=" margin-left: 0.618em;" for="dp_meest_apt">
+                                        Meest APT
+                                    </label>
+
+                                    <div class="caption" style="font-size: 13px">
+                                        <div
+                                                class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Місто </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.city"
+                                                    id="ajax"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Місто"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.cities"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="true"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+
+                                                    @search-change="searchDeliveryCity"
+                                                    @select="asyncWarehouses"
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+
+                                        <div  class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Відділення </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.warehouse"
+                                                    id="warehouse"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Відділення"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.filteredWarehouses"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="false"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+                                                    @search-change="addressStore.searchWarehouses"
+
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--   Meest Point-->
+                                <div class="input-radio">
+                                    <input type="radio"
+                                           v-model="form.address_delivery.delivery_type"
+                                           value="meest_point" name="address_delivery_type"
+                                           class="input-radio" id="dp-meest_point">
+                                    <label style=" margin-left: 0.618em;" for="dp-meest_point">
+                                        Meest Point
+                                    </label>
+
+                                    <div class="caption" style="font-size: 13px">
+                                        <div
+                                                class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Місто </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.city"
+                                                    id="ajax"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Місто"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.cities"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="true"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+
+                                                    @search-change="searchDeliveryCity"
+                                                    @select="asyncWarehouses"
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+
+                                        <div  class="form-row form-row ">
+                                            <label  for="billing_first_name">
+                                                Відділення </label>
+
+                                            <VueMultiselect
+                                                    v-model="form.address_delivery.warehouse"
+                                                    id="warehouse"
+                                                    label="text"
+                                                    track-by="id"
+                                                    placeholder="Відділення"
+                                                    open-direction="bottom"
+                                                    :options="addressStore.filteredWarehouses"
+                                                    :searchable="true"
+                                                    :internal-search="false"
+                                                    :clear-on-select="false"
+                                                    :close-on-select="true"
+                                                    :options-limit="300"
+                                                    :limit="3"
+                                                    :max-height="600"
+                                                    :show-no-results="false"
+                                                    @search-change="addressStore.searchWarehouses"
+
+                                            >
+
+                                            </VueMultiselect>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Order Notes</label><textarea cols="5" rows="2" placeholder="Notes about your order, e.g. special notes for delivery." id="order_comments" class="input-text " name="order_comments"></textarea></p>
                             </div>
-
                         </div>
-<!--                        <div class="order-col">-->
-<!--                            <div>Shiping</div>-->
-<!--                            <div><strong>FREE</strong></div>-->
-<!--                        </div>-->
-                        <div class="order-col">
-                            <div><strong>РАЗОМ</strong></div>
-                            <div><strong class="order-total">{{basketStore.sum}} грн</strong></div>
-                        </div>
-                        <div class="order-col">
-                            <div><strong>Доставка</strong></div>
-                            <div><strong class="order-total">{{form.deliveryConst}} грн</strong></div>
-                        </div>
-                        <div class="order-col">
-                            <div><strong>До оплати</strong></div>
-                            <div><strong class="order-total">{{form.sum_to_pay}} грн</strong></div>
-                        </div>
-
-
-
-
-
                     </div>
 
+                    <h3 id="order_review_heading">Your order</h3>
 
-                    <div class="input-checkbox">
-                        <input v-model="isAgree.conditions" type="checkbox" id="terms2">
-                        <label for="terms2">
-                            <span></span>
-                            Погоджуюсь з вимогами та обробкою даних
-                        </label>
+                    <div class="woocommerce-checkout-review-order" id="order_review">
+                        <table class="shop_table woocommerce-checkout-review-order-table">
+                            <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Wireless Audio System Multiroom 360&nbsp;
+                                    <strong class="product-quantity">× 1</strong>
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">$1,999.00</span>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Tablet White EliteBook  Revolve 810 G2&nbsp;
+                                    <strong class="product-quantity">× 1</strong>
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">$1,300.00</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td><span class="amount">$3,299.00</span></td>
+                            </tr>
+
+                            <tr class="shipping">
+                                <th>Shipping</th>
+                                <td data-title="Shipping">Flat Rate: <span class="amount">$300.00</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+                            </tr>
+
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span class="amount">$3,599.00</span></strong> </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="woocommerce-checkout-payment" id="payment">
+                            <ul class="wc_payment_methods payment_methods methods">
+                                <li class="wc_payment_method payment_method_bacs">
+                                    <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
+                                    <label for="payment_method_bacs">Direct Bank Transfer</label>
+                                    <div class="payment_box payment_method_bacs">
+                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                    </div>
+                                </li>
+                                <li class="wc_payment_method payment_method_cheque">
+                                    <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque">
+                                    <label for="payment_method_cheque">Cheque Payment 	</label>
+                                    <div style="display:none;" class="payment_box payment_method_cheque">
+                                        <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                    </div>
+                                </li>
+                                <li class="wc_payment_method payment_method_cod">
+                                    <input type="radio" data-order_button_text="" value="cod" name="payment_method" class="input-radio" id="payment_method_cod">
+
+                                    <label for="payment_method_cod">Cash on Delivery</label>
+                                    <div style="display:none;" class="payment_box payment_method_cod">
+                                        <p>Pay with cash upon delivery.</p>
+                                    </div>
+                                </li>
+                                <li class="wc_payment_method payment_method_paypal">
+                                    <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
+
+                                    <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/us/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/us/webapps/mpp/paypal-popup">What is PayPal?</a></label>
+                                    <div style="display:none;" class="payment_box payment_method_paypal">
+                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="form-row place-order">
+
+                                <p class="form-row terms wc-terms-and-conditions">
+                                    <input type="checkbox" id="terms" name="terms" class="input-checkbox">
+                                    <label class="checkbox" for="terms">I’ve read and accept the <a target="_blank" href="terms-and-conditions.html">terms &amp; conditions</a> <span class="required">*</span></label>
+                                    <input type="hidden" value="1" name="terms-field">
+                                </p>
+
+                                <input type="submit" data-value="Place order" value="Place order" class="button alt">
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="input-checkbox">
-                        <input type="checkbox" v-model="isAgree.order" id="terms">
-                        <label for="terms">
-                            <span></span>
-                            Підтверждую замовлення
-                        </label>
-                    </div>
-
-                    <button :disabled="!(isAgree.order === true &&  isAgree.conditions === true)"  form="form-basket"  type="submit" style="width: 100%"  class="primary-btn order-submit">Замовити</button>
-<!--                    <button   form="form-basket"  type="submit" style="width: 100%"  class="primary-btn order-submit">TEST</button>-->
-
-
-                </div>
-                <!-- /Order Details -->
-
-
-
-
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /SECTION -->
-
-
+                </form>
+            </article>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- .container -->

@@ -762,7 +762,8 @@
 
                 <p class="buttons">
                   <a class="button wc-forward" href="cart.html">View Cart</a>
-                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+<!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
+                  <router-link class="button checkout wc-forward" to="/basket">Checkout</router-link>
                 </p>
 
 
