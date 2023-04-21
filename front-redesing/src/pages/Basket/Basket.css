@@ -2,10 +2,12 @@
     margin-top: 5px;
     max-height: 0;
     overflow: hidden;
+
     -webkit-transition: 0.3s max-height;
     transition: 0.3s max-height;
 }
 
 .input-radio input[type="radio"]:checked~.caption, .input-checkbox input[type="checkbox"]:checked~.caption {
     max-height: 800px;
+    overflow: initial;
 }

@@ -199,7 +199,24 @@ onMounted(()=>{
 
 <style src="./Basket.css" scoped></style>
 
-<style scoped>
+<style >
+.multiselect__content-wrapper * {position: relative; z-index: 6;}
+
+.multiselect--active {
+  z-index: 1000;
+}
+.multiselect__tags{
+  border-radius: 1.571em;
+  padding-left: 19px;
+
+}
+#ajax,#warehouse{
+  border-radius: 0;
+  border: 0;
+  padding: 0 0!important;
+}
+
+
 
 .invalid-feedback {
   display: none;
