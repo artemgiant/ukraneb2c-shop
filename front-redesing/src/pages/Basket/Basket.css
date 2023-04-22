@@ -11,3 +11,11 @@
     max-height: 800px;
     overflow: initial;
 }
+
+.invalid-feedback{
+    position: relative;
+    margin: 0;
+}
+.invalid-feedback span{
+    position: absolute;
+}

@@ -103,19 +103,13 @@
                                     <!-- PHONE                           -->
                                     <div class="col-md-6 form-group">
                                         <label>
-                                            Телефон<abbr title="required" class="required">*</abbr></label>
-                                        <Field
-                                                class="input-text"
-                                                :class="{ 'is-invalid': errors['recipient.phone'] }"
-                                                placeholder="+38(___)___-__-__"
-                                                v-phone-mask="'+38(___)___-__-__'"
-                                                v-model.lazy="form.recipient.phone"
-                                                name="recipient.phone"
-                                        />
+                                            Телефон
+                                            <abbr title="required" class="required">*</abbr></label>
 
-                                        <div class="invalid-feedback">
-                                            <ErrorMessage name="recipient.phone"/>
-                                        </div>
+                                        <input type="text" placeholder="+38(___)___-__-__"
+                                               v-model.lazy="form.recipient.phone" class="input-text"
+                                               v-phone-mask="'+38(___)___-__-__'">
+
                                     </div>
 
                                 </div>
@@ -542,7 +536,7 @@
                                         </div>
 
                                         <div  class="form-row form-row ">
-                                            <label  for="billing_first_name">
+                                            <label  >
                                                 Відділення </label>
 
                                             <VueMultiselect
@@ -571,8 +565,13 @@
                                 </div>
 
 
-
-                                <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Order Notes</label><textarea cols="5" rows="2" placeholder="Notes about your order, e.g. special notes for delivery." id="order_comments" class="input-text " name="order_comments"></textarea></p>
+                                <p id="order_comments_field" class="form-row form-row notes">
+                                    <label for="order_comments">
+                                        Order  Notes
+                                    </label><textarea cols="5" rows="2"
+                                                           placeholder="Notes about your order, e.g. special notes for delivery."
+                                                           id="order_comments" class="input-text "
+                                                           name="order_comments"></textarea></p>
                             </div>
                         </div>
                     </div>
@@ -588,86 +587,66 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="cart_item">
+
+                            <tr  v-for="product in basketStore.products" :key="product.id" class="cart_item">
                                 <td class="product-name">
-                                    Wireless Audio System Multiroom 360&nbsp;
-                                    <strong class="product-quantity">× 1</strong>
+                                    {{ product.name }}&nbsp;
+                                    <strong class="product-quantity">× {{product.quantity}}</strong>
                                 </td>
                                 <td class="product-total">
-                                    <span class="amount">$1,999.00</span>
+                                    <span class="amount">₴ {{ product.price * product.quantity }}</span>
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    Tablet White EliteBook  Revolve 810 G2&nbsp;
-                                    <strong class="product-quantity">× 1</strong>
-                                </td>
-                                <td class="product-total">
-                                    <span class="amount">$1,300.00</span>
-                                </td>
-                            </tr>
+
+
                             </tbody>
                             <tfoot>
 
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td><span class="amount">$3,299.00</span></td>
+                                <td><span class="amount">₴ {{basketStore.sum}}</span></td>
                             </tr>
 
                             <tr class="shipping">
                                 <th>Shipping</th>
-                                <td data-title="Shipping">Flat Rate: <span class="amount">$300.00</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+                                <td data-title="Shipping"> <span class="amount">₴ {{form.deliveryConst}}</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
                             </tr>
 
                             <tr class="order-total">
                                 <th>Total</th>
-                                <td><strong><span class="amount">$3,599.00</span></strong> </td>
+                                <td><strong><span class="amount">₴ {{form.sum_to_pay}}</span></strong> </td>
                             </tr>
                             </tfoot>
                         </table>
 
+                        <h3>Payment type</h3>
                         <div class="woocommerce-checkout-payment" id="payment">
                             <ul class="wc_payment_methods payment_methods methods">
-                                <li class="wc_payment_method payment_method_bacs">
-                                    <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
-                                    <label for="payment_method_bacs">Direct Bank Transfer</label>
-                                    <div class="payment_box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                <li class="input-radio">
+                                    <input type="radio"  v-model="form.payment_type" value="bank_card" name="payment" class="input-radio" id="payment_method_bank_card">
+                                    <label for="payment_method_bank_card">Оплата картой онлайн</label>
+                                    <div class=" caption">
+                                        <p>{{settingsApiStore.basketItems?.bank_card}}</p>
                                     </div>
                                 </li>
-                                <li class="wc_payment_method payment_method_cheque">
-                                    <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque">
-                                    <label for="payment_method_cheque">Cheque Payment 	</label>
-                                    <div style="display:none;" class="payment_box payment_method_cheque">
-                                        <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                    </div>
-                                </li>
-                                <li class="wc_payment_method payment_method_cod">
-                                    <input type="radio" data-order_button_text="" value="cod" name="payment_method" class="input-radio" id="payment_method_cod">
 
-                                    <label for="payment_method_cod">Cash on Delivery</label>
-                                    <div style="display:none;" class="payment_box payment_method_cod">
-                                        <p>Pay with cash upon delivery.</p>
-                                    </div>
-                                </li>
-                                <li class="wc_payment_method payment_method_paypal">
-                                    <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
-
-                                    <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/us/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/us/webapps/mpp/paypal-popup">What is PayPal?</a></label>
-                                    <div style="display:none;" class="payment_box payment_method_paypal">
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                <li class=" input-radio">
+                                    <input type="radio" id="payment_method_postpaid"  v-model="form.payment_type" value="postpaid" name="payment" class="input-radio" >
+                                    <label for="payment_method_postpaid">Післяплата</label>
+                                    <div class=" caption">
+                                        <p>{{settingsApiStore.basketItems?.bank_card}} </p>
                                     </div>
                                 </li>
                             </ul>
                             <div class="form-row place-order">
 
                                 <p class="form-row terms wc-terms-and-conditions">
-                                    <input type="checkbox" id="terms" name="terms" class="input-checkbox">
+                                    <input type="checkbox" v-model="isAgree.order" id="terms" name="terms" class="input-checkbox">
                                     <label class="checkbox" for="terms">I’ve read and accept the <a target="_blank" href="terms-and-conditions.html">terms &amp; conditions</a> <span class="required">*</span></label>
                                     <input type="hidden" value="1" name="terms-field">
                                 </p>
 
-                                <input type="submit" data-value="Place order" value="Place order" class="button alt">
+                                <input :disabled="!(isAgree.order === true )" type="submit" data-value="Place order" value="Place order" class="button alt">
                             </div>
                         </div>
                     </div>
