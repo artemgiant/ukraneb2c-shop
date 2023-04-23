@@ -1,6 +1,12 @@
 <div class="container">
 
-    <nav class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Checkout</nav>
+    <nav class="woocommerce-breadcrumb">
+        <router-link to="/">Home</router-link>
+        <span class="delimiter">
+            <i class="fa fa-angle-right">
+
+            </i></span>Checkout
+    </nav>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -234,13 +240,12 @@
 
 
                                 <div class="input-radio ">
-                                    <input
+                                    <Field
                                             type="radio"
-                                            checked="checked"
                                             v-model="form.address_delivery.delivery_type"
                                             value="nova_poshta"
-                                            name="address_delivery_type"
-                                            class="input-radio " id="dp-nova_poshta">
+                                            name="address_delivery.delivery_type"
+                                            class="input-radio " id="dp-nova_poshta"/>
 
                                     <label style=" margin-left: 0.618em;" for="dp-nova_poshta">
                                         Нова почта
@@ -249,7 +254,7 @@
                                     <div class="caption" style="font-size: 13px">
                                         <div
                                                 class="form-row form-row ">
-                                            <label  for="billing_first_name">
+                                            <label  >
                                                 Місто </label>
 
                                             <VueMultiselect
@@ -278,7 +283,7 @@
 
 
                                         <div  class="form-row form-row ">
-                                            <label  for="billing_first_name">
+                                            <label  >
                                                 Відділення </label>
 
                                             <VueMultiselect
@@ -309,12 +314,12 @@
 
 
                                 <div class="input-radio">
-                                    <input
+                                    <Field
                                             type="radio"
                                             v-model="form.address_delivery.delivery_type"
                                             value="meest_courier"
-                                            name="address_delivery_type"
-                                            class="input-radio" id="dp-courier">
+                                            name="address_delivery.delivery_type"
+                                            class="input-radio" id="dp-courier"/>
                                     <label style=" margin-left: 0.618em;" for="dp-courier">
                                         Курьер
                                     </label>
@@ -429,10 +434,10 @@
 
                                 <!-- Meest APT-->
                                 <div class="input-radio">
-                                    <input type="radio"
+                                    <Field type="radio"
                                            v-model="form.address_delivery.delivery_type"
-                                           value="meest_apt" name="address_delivery_type"
-                                           class="input-radio" id="dp_meest_apt">
+                                           value="meest_apt" name="address_delivery.delivery_type"
+                                           class="input-radio" id="dp_meest_apt"/>
                                     <label style=" margin-left: 0.618em;" for="dp_meest_apt">
                                         Meest APT
                                     </label>
@@ -440,7 +445,7 @@
                                     <div class="caption" style="font-size: 13px">
                                         <div
                                                 class="form-row form-row ">
-                                            <label  for="billing_first_name">
+                                            <label >
                                                 Місто </label>
 
                                             <VueMultiselect
@@ -497,10 +502,10 @@
                                 </div>
                                 <!--   Meest Point-->
                                 <div class="input-radio">
-                                    <input type="radio"
+                                    <Field type="radio"
                                            v-model="form.address_delivery.delivery_type"
-                                           value="meest_point" name="address_delivery_type"
-                                           class="input-radio" id="dp-meest_point">
+                                           value="meest_point" name="address_delivery.delivery_type"
+                                           class="input-radio" id="dp-meest_point"/>
                                     <label style=" margin-left: 0.618em;" for="dp-meest_point">
                                         Meest Point
                                     </label>
@@ -508,7 +513,7 @@
                                     <div class="caption" style="font-size: 13px">
                                         <div
                                                 class="form-row form-row ">
-                                            <label  for="billing_first_name">
+                                            <label  >
                                                 Місто </label>
 
                                             <VueMultiselect
@@ -570,6 +575,7 @@
                                         Order  Notes
                                     </label><textarea cols="5" rows="2"
                                                            placeholder="Notes about your order, e.g. special notes for delivery."
+                                                                v-model="form.comment"
                                                            id="order_comments" class="input-text "
                                                            name="order_comments"></textarea></p>
                             </div>
@@ -646,7 +652,7 @@
                                     <input type="hidden" value="1" name="terms-field">
                                 </p>
 
-                                <input :disabled="!(isAgree.order === true )" type="submit" data-value="Place order" value="Place order" class="button alt">
+                                <input :disabled="!(isAgree.order === true )"   form="form-basket"  type="submit" data-value="Place order" value="Place order" class="button alt">
                             </div>
                         </div>
                     </div>

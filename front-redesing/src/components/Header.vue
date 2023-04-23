@@ -1,4 +1,7 @@
 <template>
+
+
+
   <!-- HEADER -->
 
   <div class="top-bar">
@@ -26,7 +29,7 @@
 
         <!-- ============================================================= Header Logo ============================================================= -->
         <div class="header-logo">
-          <a href="home.html" class="header-logo-link">
+          <router-link  to="/"  class="header-logo-link">
             <svg version="1.1" x="0px" y="0px" width="175.748px"
                  height="42.52px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
               <ellipse class="ellipse-bg" fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"/>
@@ -66,7 +69,7 @@
                                     c-1.293,2.365-1.951,5.158-1.729,8.408c0.209,3.053,1.191,5.496,2.619,7.508c2.842,4.004,7.385,6.973,13.656,6.377
                                     c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z"/>
             </svg>
-          </a>
+          </router-link>
         </div>
         <!-- ============================================================= Header Logo : End============================================================= -->
 
@@ -80,12 +83,8 @@
           <div class="collapse navbar-toggleable-xs" id="default-header">
             <nav>
               <ul id="menu-main-menu" class="nav nav-inline yamm">
-                <li class="menu-item menu-item-has-children animate-dropdown dropdown"><a title="Home" href="shop.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Home</a>
-                  <ul role="menu" class=" dropdown-menu">
-                    <li class="menu-item animate-dropdown  "><a title="Home v1" href="home.html">Home v1</a></li>
-                    <li class="menu-item current-menu-item current_page_item animate-dropdown active"><a title="Home v2" href="home-v2.html">Home v2</a></li>
-                    <li class="menu-item animate-dropdown  "><a title="Home v3" href="home-v3.html">Home v3</a></li>
-                  </ul>
+                <li class="menu-item menu-item-has-children animate-dropdown dropdown">
+                  <router-link to="/">Home</router-link>
                 </li>
                 <li class="menu-item animate-dropdown"><a title="About Us" href="about.html">About Us</a></li>
 
@@ -94,104 +93,6 @@
                     <li class="menu-item animate-dropdown"><a title="Blog v1" href="blog-v1.html">Blog v1</a></li>
                     <li class="menu-item animate-dropdown"><a title="Blog v2" href="blog-v2.html">Blog v2</a></li>
                     <li class="menu-item animate-dropdown"><a title="Blog v3" href="blog-v3.html">Blog v3</a></li>
-                  </ul>
-                </li>
-                <li class="yamm-fw menu-item menu-item-has-children animate-dropdown dropdown">
-                  <a title="Pages" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Pages</a>
-                  <ul role="menu" class=" dropdown-menu">
-                    <li class="menu-item animate-dropdown">
-                      <div class="yamm-content" style="display:inline-block; width: 100%;">
-                        <div class="row">
-                          <div class="wpb_column vc_column_container col-sm-4">
-                            <div class="vc_column-inner ">
-                              <div class="wpb_wrapper">
-                                <div class="vc_wp_custommenu wpb_content_element">
-                                  <div class="widget widget_nav_menu">
-                                    <div class="menu-pages-menu-1-container">
-                                      <ul id="menu-pages-menu-1" class="menu">
-                                        <li class="nav-title menu-item"><a href="#">Home &#038; Static Pages</a></li>
-                                        <li class="menu-item"><a href="home.html">Home v1</a></li>
-                                        <li class="menu-item current-menu-item current_page_item"><a href="home-v2.html">Home v2</a></li>
-                                        <li class="menu-item"><a href="home-v3.html">Home v3</a></li>
-                                        <li class="menu-item"><a href="about.html">About</a></li>
-                                        <li class="menu-item"><a href="contact-v2.html">Contact v2</a></li>
-                                        <li class="menu-item"><a href="contact-v1.html">Contact v1</a></li>
-                                        <li class="menu-item"><a href="faq.html">FAQ</a></li>
-                                        <li class="menu-item"><a href="store-directory.html">Store Directory</a></li>
-                                        <li class="menu-item"><a href="terms-and-conditions.html">Terms and Conditions</a></li>
-                                        <li class="menu-item"><a href="404.html">404</a></li>
-                                        <li class="nav-title menu-item"><a href="#">Product Categories</a></li>
-                                        <li class="menu-item"><a href="cat-3-col.html">3 Column Sidebar</a></li>
-                                        <li class="menu-item"><a href="cat-4-col.html">4 Column Sidebar</a></li>
-                                        <li class="menu-item"><a href="cat-4-fw.html">4 Column Full width</a></li>
-                                        <li class="menu-item"><a href="product-category-6-column.html">6 Columns Full width</a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wpb_column vc_column_container col-sm-4">
-                            <div class="vc_column-inner ">
-                              <div class="wpb_wrapper">
-                                <div class="vc_wp_custommenu wpb_content_element">
-                                  <div class="widget widget_nav_menu">
-                                    <div class="menu-pages-menu-2-container">
-                                      <ul id="menu-pages-menu-2" class="menu">
-                                        <li class="nav-title menu-item"><a href="#">Shop Pages</a></li>
-                                        <li class="menu-item"><a href="shop.html#grid">Shop Grid</a></li>
-                                        <li class="menu-item"><a href="shop.html#grid-extended">Shop Grid Extended</a></li>
-                                        <li class="menu-item"><a href="shop.html#list-view">Shop List View</a></li>
-                                        <li class="menu-item"><a href="shop.html#list-view-small">Shop List View Small</a></li>
-                                        <li class="menu-item"><a href="shop.html">Shop Left Sidebar</a></li>
-                                        <li class="menu-item"><a href="shop-fw.html">Shop Full width</a></li>
-                                        <li class="menu-item"><a href="shop-right-side-bar.html">Shop Right Sidebar</a></li>
-                                        <li class="nav-title menu-item"><a href="#">Blog Pages</a></li>
-                                        <li class="menu-item"><a href="blog-v1.html">Blog v1</a></li>
-                                        <li class="menu-item"><a href="blog-v3.html">Blog v3</a></li>
-                                        <li class="menu-item"><a href="blog-v2.html">Blog v2</a></li>
-                                        <li class="menu-item"><a href="blog-fw.html">Blog Full Width</a></li>
-                                        <li class="menu-item"><a href="blog-single.html">Single Blog Post</a></li>
-
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="wpb_column vc_column_container col-sm-4">
-                            <div class="vc_column-inner ">
-                              <div class="wpb_wrapper">
-                                <div class="vc_wp_custommenu wpb_content_element">
-                                  <div class="widget widget_nav_menu">
-                                    <div class="menu-pages-menu-3-container">
-                                      <ul id="menu-pages-menu-3" class="menu">
-                                        <li class="nav-title menu-item"><a href="single-product.html">Single Product Pages</a></li>
-                                        <li class="menu-item"><a href="single-product-extended.html">Single Product Extended</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Single Product Fullwidth</a></li>
-                                        <li class="menu-item"><a href="single-product-sidebar.html">Single Product Sidebar</a></li>
-                                        <li class="menu-item"><a href="single-product-sidebar-accessories.html">Single Product Sidebar Accessories </a></li>
-                                        <li class="menu-item"><a href="single-product-sidebar-specification.html">Single Product Sidebar Specification </a></li>
-                                        <li class="menu-item"><a href="single-product-sidebar-reviews.html">Single Product Sidebar Reviews </a></li>
-                                        <li class="nav-title menu-item"><a href="#">Ecommerce Pages</a></li>
-                                        <li class="menu-item"><a href="shop.html">Shop</a></li>
-                                        <li class="menu-item"><a href="cart.html">Cart</a></li>
-                                        <li class="menu-item"><a href="checkout.html">Checkout</a></li>
-                                        <li class="menu-item"><a href="my-account.html">My Account</a></li>
-                                        <li class="menu-item"><a href="compare.html">Compare</a></li>
-                                        <li class="menu-item"><a href="wishlist.html">Wishlist</a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
                   </ul>
                 </li>
                 <li class="menu-item"><a title="Features" href="#">Features</a></li>
@@ -742,8 +643,8 @@
 
 
                   <li class="mini_cart_item"  v-for="product in basketStore.products" :key="product.id">
-                    <a title="Remove this item" class="remove" href="#">×</a>
-                    <a href="single-product.html">
+                    <a title="Remove this item"  v-on:click="basketStore.delFromBasket(product)" class="remove" href="#">×</a>
+                    <a href="#">
                       <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" :src="$storageUrl+'/'+product.image_main.name"
                            :alt="$storageUrl+'/'+product.image_main.name">
                       {{product.name}}&nbsp;
@@ -761,7 +662,7 @@
 
 
                 <p class="buttons">
-                  <a class="button wc-forward" href="cart.html">View Cart</a>
+                  <a class="button wc-forward" href="#">View Cart</a>
 <!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
                   <router-link class="button checkout wc-forward" to="/basket">Checkout</router-link>
                 </p>

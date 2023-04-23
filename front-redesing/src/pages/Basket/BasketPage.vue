@@ -143,7 +143,6 @@ const schema = Yup.object().shape({
             first_name: Yup.string().required().min(1).nullable(),
             last_name: Yup.string().required().min(1).nullable(),
             middle_name: Yup.string().required().min(1).nullable(),
-            phone: Yup.string().required().nullable(),
             email: Yup.string().email().required().nullable(),
             city: Yup.object().required().nullable(),
             street: Yup.object().required().nullable(),

@@ -1,11 +1,7 @@
 <template>
-  <body class="left-sidebar ">
-  <div id="page" class="hfeed site">
     <Header/>
     <RouterView/>
     <Footer/>
-  </div>
-  </body>
 </template>
 
 <script setup>
