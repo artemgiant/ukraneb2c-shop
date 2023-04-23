@@ -4,14 +4,21 @@
         <router-link to="/">Home</router-link>
         <span class="delimiter">
             <i class="fa fa-angle-right">
-
             </i></span>Checkout
     </nav>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
             <article class="page type-page status-publish hentry">
-                <header class="entry-header"><h1 itemprop="name" class="entry-title">Checkout</h1></header><!-- .entry-header -->
+                <header class="entry-header"><h1 itemprop="name" class="entry-title"  ref="elHeader">Checkout</h1></header><!-- .entry-header -->
+
+                <div v-if="Object.keys(formErrors).length !== 0" class="alert alert-danger  mb-0" >
+                    <ul>
+                        <li v-for="(errors, index) in  formErrors" :key="index">
+                                   {{errors[0]}}
+                        </li>
+                    </ul>
+                </div>
 
                 <Form
                         @submit="onSubmit"
@@ -321,14 +328,14 @@
                                             name="address_delivery.delivery_type"
                                             class="input-radio" id="dp-courier"/>
                                     <label style=" margin-left: 0.618em;" for="dp-courier">
-                                        Курьер
+                                        Кур`єр
                                     </label>
 
                                     <div class="caption" style="font-size: 13px">
 
                                         <div  class="form-row form-row ">
 
-                                            <label  for="billing_first_name">
+                                            <label  >
                                                 Місто </label>
 
                                             <VueMultiselect

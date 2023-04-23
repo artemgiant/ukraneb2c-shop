@@ -77,8 +77,7 @@ const form = ref({
   })
 }, {deep: true})
 
-
-
+const formErrors = ref({})
 
 
 // глубокое слежения
@@ -154,6 +153,7 @@ const schema = Yup.object().shape({
   })
       .strict(),
 });
+const elHeader = ref(null);
 
 async function onSubmit(values, { resetForm }) {
   // display form values on success
@@ -171,11 +171,20 @@ async function onSubmit(values, { resetForm }) {
 
 
 
-  }).catch(function (error) {
-    console.log(error);
-    alert(error.message);
+  }).catch( (error) => {
+
+    if('errors' in error.response.data){
+      formErrors.value = error.response.data.errors;
+      elHeader.value.scrollIntoView({behavior: "smooth"})
+    } else{
+      console.log(error);
+      alert(error);
+
+    }
   });
 }
+
+
 
 
 // DIRECTIVES

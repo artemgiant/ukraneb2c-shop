@@ -203,10 +203,26 @@ class OrderController extends Controller
     public function create(Request $request)
     {
 
-//                $test = <<<TEXT
-//        {"recipient":{"phone":"+38(067)978-67-44","email":"artemgiant@gmail.com","first_name":"Артем","last_name":"Поточний","middle_name":"Олександрович","city":{"id":15244,"text":"Житомир, Житомир, Житомирська","uuid":"56bdd203-749b-11df-b112-00215aee3ebe","city":"Житомир"},"street":{"id":29547,"text":"10-Й Дачний (провулок)","uuid":"f5ed462d-e0d2-11df-9b37-00215aee3ebe","street":"10-Й Дачний"},"house":"1","flat":"1"},"address_delivery":{"delivery_type":"nova_poshta","city":{"id":3545,"text":"Житомир, Житомир, Житомирська","uuid":"e717a3d0-4b33-11e4-ab6d-005056801329","city":"Житомир"},"warehouse":{"id":16552,"text":"Відділення № 3, Житомир, Перемоги, 10","max_weight":"0.00","warehouse_short":"Житомир, Перемоги, 10","is_pos_terminal":"1","is_work":"1","warehouse_category":"warehouse","uuid":"40498331-e1c2-11e3-8c4a-0050568002cf","warehouse_number":"3","schedule":"{\"reception\":{\"Monday\":\"11:30-20:00\",\"Tuesday\":\"11:30-20:00\",\"Wednesday\":\"11:30-20:00\",\"Thursday\":\"11:30-20:00\",\"Friday\":\"11:30-20:00\",\"Saturday\":\"10:00-17:00\",\"Sunday\":\"12:00-17:00\"},\"delivery\":{\"Monday\":\"09:00-18:00\",\"Tuesday\":\"09:00-18:00\",\"Wednesday\":\"09:00-18:00\",\"Thursday\":\"09:00-18:00\",\"Friday\":\"09:00-18:00\",\"Saturday\":\"09:00-15:00\",\"Sunday\":\"11:00-15:00\"},\"schedule\":{\"Monday\":\"10:00-18:00\",\"Tuesday\":\"08:00-20:00\",\"Wednesday\":\"08:00-20:00\",\"Thursday\":\"08:00-20:00\",\"Friday\":\"08:00-20:00\",\"Saturday\":\"09:00-18:00\",\"Sunday\":\"10:00-18:00\"}}"},"street":null,"house":null,"flat":null},"products":[{"id":302,"ean":"8595683501705","name":"ARMODD Candywatch Premium 2 stříbrná s růžovým řemínkem","price":"2850","description_short":null,"description_long":null,"in_stock":"100","weight_kg":0.175,"images":[{"alt":"","name":"products/November2021/VGEpFOjtgTJC01EBMGFZ.png","title":""},{"alt":"","name":"products/November2021/DrniusoZEBEk6OO4j2YJ.png","title":""},{"alt":"","name":"products/November2021/QkFcRe4KwZeeFROzA9Ux.png","title":""},{"alt":"","name":"products/November2021/D4nMQJ0lDCpVMpdK1fs4.png","title":""},{"alt":"","name":"products/November2021/138Vzr811lNHrAnxe1c5.png","title":""},{"alt":"","name":"products/November2021/Q7QhiQtm8FnMTsb3IfC7.png","title":""},{"alt":"","name":"products/November2021/dS6cIcqmIyr6XrN3UuPZ.png","title":""},{"alt":"","name":"products/November2021/GD57opiOm6xnMrCXiqNa.png","title":""},{"alt":"","name":"products/November2021/uv278oX18LDruELeI9Op.png","title":""}],"image_main":{"alt":"","name":"products/November2021/VGEpFOjtgTJC01EBMGFZ.png","title":""},"quantity":3}],"payment_type":"postpaid","comment":"Це тестове замовлення ","deliveryConst":0,"sum_to_pay":8550,"warehouse":{}}
-//TEXT;
-//        $request->replace(json_decode($test,true));
+        $validator = Validator::make($request->all(),[
+            'recipient.phone'=>array('required', "regex:%^\+38\(0[0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}$%i"),
+            'recipient.email'=>array('required', "email"),
+            'recipient.first_name'=>array('required','min:1'),
+            'recipient.last_name'=>array('required','min:1'),
+            'recipient.middle_name'=>array('required','min:1'),
+            'recipient.city.id'=>array('required'),
+            'recipient.street.id'=>array('required'),
+            'payment_type'=>array('required'),
+            'deliveryConst'=>array('required'),
+            'sum_to_pay'=>array('required'),
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
+
+//        dump($validator->errors(),$request->all());
+//
 
 //обвления количества товара на складе
 foreach($request->all()['products'] as $product){
