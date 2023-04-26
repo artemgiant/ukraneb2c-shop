@@ -15,10 +15,13 @@ use App\Models\Order\OrderProduct;
 use App\Models\Order\OrderRecipient;
 use App\Models\Order\OrderRecipientAddress;
 use App\Models\Order\OrderStatus;
+use App\Models\Order\PromoCode;
+use App\Models\Parcel\DeliveryCost;
 use App\Models\Parcel\Parcel;
 use App\Models\Product\Product;
 use App\Models\Shop\Shop;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -159,24 +162,33 @@ class OrderController extends Controller
             }
         }
 
+        $order_total_weight_kg = $order_local->products->sum('total_weight_kg');
+        $standard_delivery_cost = DeliveryCost::whereRaw('? between min_weight_kg and max_weight_kg', [$order_total_weight_kg])
+            ->where('delivery_type', $delivery_type)
+            ->first()->cost_uah;
         $discount_delivery = null;
-        $standard_delivery_cost =  343;
         if ($delivery_cost < $standard_delivery_cost) {
             $discount_delivery = $standard_delivery_cost - $delivery_cost;
             $order_discount = OrderDiscount::updateOrCreate([
                 'order_id' => $order_local->id,
                 'discount_value' => $discount_delivery,
                 'type_discount' => 'delivery',
-                'user_id' => Auth::id()
             ], [
                 'order_id' => $order_local->id,
                 'discount_value' => $discount_delivery,
                 'type_discount' => 'delivery',
                 'user_id' => Auth::id()
             ]);
+        } else {
+            OrderDiscount::where('order_id', $order_local->id)->where('type_discount', 'delivery')->whereNull('promo_code_id')->delete();
         }
 
         if ($city) {
+            OrderAddress::where('order_id', $order_local->id)
+                ->where('delivery_type', $delivery_type)
+                ->where('city', $city->city)
+                ->where('city_uuid', $city->uuid)
+                ->delete();
             $order_address_data = array_merge([
                 'order_id' => $order_local->id,
                 'recipient_id' => $recipient->id,
@@ -185,9 +197,10 @@ class OrderController extends Controller
                 'city_uuid' => $city->uuid,
                 'delivery_cost' => $delivery_cost,
             ], $add_data);
-            $order_address = OrderAddress::updateOrCreate($order_address_data, $order_address_data);
+            $order_address = OrderAddress::create($order_address_data);
             $order_local->delivery_cost = $order_address->delivery_cost;
             $order_local->discount_delivery = $discount_delivery;
+            $order_local->standard_delivery_cost = $standard_delivery_cost;
             $order_local->save();
         } else {
             return response("Введите название города для доставки", 404);
@@ -212,8 +225,9 @@ class OrderController extends Controller
             'recipient.city.id'=>array('required'),
             'recipient.street.id'=>array('required'),
             'payment_type'=>array('required'),
-            'deliveryConst'=>array('required'),
+            'delivery_cost'=>array('required'),
             'sum_to_pay'=>array('required'),
+//            'test'=>array('required'),
 
         ]);
 
@@ -231,7 +245,6 @@ foreach($request->all()['products'] as $product){
     $productModel->save();
 }
 
-
       $paymentType =  DB::connection('ub2c')
                         ->table('payment_type')
                         ->where('slug',$request->payment_type)
@@ -239,15 +252,13 @@ foreach($request->all()['products'] as $product){
       $params =  OrderRequestAdapter::run($request->all());
       $request->replace($params);
 
-
-
-        $shop = Shop::where('alias',$request->get('shop-alias'))->first();
-        $prefixOrder = json_decode($shop->config)->order_prefix;
+      $shop = Shop::where('alias',$request->get('shop-alias'))->first();
+      $prefixOrder = json_decode($shop->config)->order_prefix;
 
 
 
-        $shop_order_id = Order::where('shop_id', $shop->id)->max('shop_order_id');
-        $shop_order_id += 1;
+      $shop_order_id = Order::where('shop_id', $shop->id)->max('shop_order_id');
+      $shop_order_id += 1;
 
       $order = new Order([
                 'shop_id' => $shop->id,
@@ -257,21 +268,124 @@ foreach($request->all()['products'] as $product){
                 'payment_type' => $paymentType->id,
                 'comment' => $request->comment,
 
+                'discount' => $request->discount,
+                'discount_delivery' => $request->discount_delivery,
+                'delivery_cost' => $request->delivery_cost,
+                'standard_delivery_cost' => $request->standard_delivery_cost,
             ]);
         $order->save();
 
+//        збереження купону
+        $orderDiscount = new OrderDiscount($request->order_discount);
+        $orderDiscount->order_id = $order->id;
+        $orderDiscount->save();
 
         $order->order_number = $prefixOrder . $order->id . "." . ((int)$shop_order_id);
-
         $order->save();
 
         $this->addProduct($request,$order->id);
-
+//
         $this->saveAddresses($request,$order->id);
 
         return response()->json( ['message' => __('voyager::generic.successfully_added_new'), 'alert-type' => 'success']);
     }
 
+    public function prices(Request $request){
+
+        $totalWeightKg = $request->total_weight_kg;
+
+        $standardDeliveryCost = DeliveryCost::whereRaw('? between min_weight_kg and max_weight_kg', [$totalWeightKg])
+            ->where('delivery_type', $request->address_delivery['delivery_type'])
+            ->first()->cost_uah;
+
+        $order = new Order(
+            [
+                'total_sum_product' => $request->total_sum_product,
+                'discount' => 0,
+                'standard_delivery_cost' => $standardDeliveryCost,
+                'discount_delivery' => 0,
+                'delivery_cost' => $standardDeliveryCost,
+            ]
+        );
+
+        $message = [];
+        $order_discount = null;
+        if (!empty($request->promo_code)) {
+            list($order_discount, $message) = $this->checkPromoCode($request, $order);
+
+            $order = $order->calculateDiscount($order_discount);
+        }
+
+        $data = [
+            'standard_delivery_cost' => $standardDeliveryCost,
+            'sum_to_pay' => $order->getSumToPayAttribute(),
+            'discount' => $order->discount,
+            'delivery_cost' => $order->delivery_cost,
+            'order_discount' => $order_discount
+        ];
+
+        return response()->json(['data'=>$data,'message'=>$message]);
+
+    }
 
 
+    public function checkPromoCode(Request $request,Order $order_local)
+    {
+        if ($order_local) {
+
+            $order_discount = new OrderDiscount();
+
+            $promo_code = PromoCode::where('code', $request->promo_code)->active()->first();
+
+            if (!$promo_code) {
+                return [$order_discount, ['alert-type' => 'error', 'message' => "Промокод не знайдено" ]];
+            }
+
+            if ($promo_code->minimum_cart && $promo_code->minimum_cart >= $order_local->total_sum_product) {
+                return [$order_discount, ['alert-type' => 'error', 'message' => "Мінімальна сума покупки " . $promo_code->minimum_cart]];
+            }
+
+            if ($promo_code->suppliers->first()) {
+                $promo_suppliers = $promo_code->suppliers->pluck('id')->toArray();
+                $count = $order_local->products->whereIn('supplier_id', $promo_suppliers)->count();
+                if (!$count) {
+                    return [$order_discount, ['alert-type' => 'error', 'message' => 'Немає товарів до яких застосовується промокод']];
+                }
+            }
+
+            $data = [];
+            switch ($promo_code->type) {
+                case "amount":
+                    $data = [
+                        'discount_value' => $promo_code->discount,
+                        'type_discount' => 'promo_code',
+                    ];
+                    break;
+                case "percent":
+                    $data = [
+                        'discount_percent' => $promo_code->discount,
+                        'type_discount' => 'promo_code',
+                    ];
+                    break;
+                case "free_delivery":
+                    $data = [
+                        'discount_value' => $order_local->standard_delivery_cost,
+                        'type_discount' => 'delivery',
+                    ];
+                    break;
+            }
+
+            $promo_code->views =  $promo_code->views++;
+            $promo_code->save();
+
+            $order_discount = new OrderDiscount(array_merge([
+                'order_id' => $order_local->id,
+                'promo_code_id' => $promo_code->id,
+            ], $data));
+
+
+            return [$order_discount, ['alert-type' => 'success', 'message' => 'Промокод внесено успішно']];
+
+        }
+    }
 }

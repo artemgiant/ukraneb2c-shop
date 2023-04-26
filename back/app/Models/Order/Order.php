@@ -15,24 +15,8 @@ class Order extends Model
 
     protected $connection = 'ub2c';
 
-    protected $fillable = ['shop_id',
-        'shop_order_id',
-        'shop_user_id',
-        'order_number',
-        'phone',
-        'email',
-        'order_date',
-        'status_id',
-        'total_sum',
-        'total_sum_without_discount',
-        'discount',
-        'coupon_code',
-        'payment_type',
-        'payed',
-        'delivery_type_id',
-        'cost_of_delivery',
-        'discount_delivery'
-        ];
+
+    protected $guarded = [];
 
     public static function boot()
     {
@@ -102,6 +86,52 @@ class Order extends Model
         }
     }
 
+
+
+    public function calculateSum()
+    {
+        $sum = 0;
+        foreach ($this->products as $product) {
+            $sum += $product->price->uah * $product->quantity;
+        }
+        $this->total_sum_product = $sum;
+
+        return $this;
+    }
+
+    public function calculateDiscount($discount)
+    {
+        $delivery = 0;
+        $amount = 0;
+        $percent = 0;
+
+        if ($discount->type_discount == 'delivery') {
+            $delivery += $discount->discount_value;
+        } else if ($discount->discount_value) {
+            $amount += $discount->discount_value;
+        } else if ($discount->discount_percent) {
+            $percent += $discount->discount_percent;
+        }
+        if ($percent) {
+            $amount += $this->total_sum_product * ($percent / 100);
+        }
+        if ($this->total_sum_product <= $amount) {
+            $this->discount = $this->total_sum_product;
+        } else {
+            $this->discount = $amount;
+        }
+        if ($this->standard_delivery_cost <= $delivery) {
+            $this->discount_delivery = $this->standard_delivery_cost;
+            $this->delivery_cost = 0;
+        } else {
+            $this->discount_delivery = $delivery;
+            $this->delivery_cost = $this->standard_delivery_cost - $delivery;
+        }
+
+        return $this;
+    }
+
+
     public function getSumToPayAttribute()
     {
         $sum_to_pay = $this->total_sum_product;
@@ -113,15 +143,4 @@ class Order extends Model
         }
         return $sum_to_pay;
     }
-
-    public function calculateSum()
-    {
-        $sum = 0;
-        foreach ($this->products as $product) {
-            $sum += $product->price->uah * $product->quantity;
-        }
-        $this->total_sum_product = $sum;
-        return $this;
-    }
-
 }

@@ -592,7 +592,7 @@
                     <h3 id="order_review_heading">Your order</h3>
 
                     <div class="woocommerce-checkout-review-order" id="order_review">
-                        <table class="shop_table woocommerce-checkout-review-order-table">
+                        <table class="shop_table woocommerce-checkout-review-order-table ">
                             <thead>
                             <tr>
                                 <th class="product-name">Product</th>
@@ -611,7 +611,6 @@
                                 </td>
                             </tr>
 
-
                             </tbody>
                             <tfoot>
 
@@ -622,13 +621,38 @@
 
                             <tr class="shipping">
                                 <th>Shipping</th>
-                                <td data-title="Shipping"> <span class="amount">₴ {{form.deliveryConst}}</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+                                <td data-title="Shipping"> <span class="amount">₴ {{form.delivery_cost}}</span> <input type="hidden" class="shipping_method" value="international_delivery" ></td>
+                            </tr>
+
+                            <tr class="shipping" v-if="form.discount">
+                                <th>Discount</th>
+                                <td data-title="Shipping"> <span class="amount">₴ {{form.discount}}</span> <input type="hidden" class="shipping_method" value="international_delivery" ></td>
                             </tr>
 
                             <tr class="order-total">
                                 <th>Total</th>
                                 <td><strong><span class="amount">₴ {{form.sum_to_pay}}</span></strong> </td>
                             </tr>
+
+
+                            <tr class="order-total">
+                                <th>
+
+                                    <div class="coupon">
+<!--                                        <label for="coupon_code">Coupon:</label>-->
+                                        <input type="text"
+                                               placeholder="Coupon code"
+                                               id="coupon_code"
+                                               v-model="form.promo_code"
+                                               class="input-text"
+                                               name="coupon_code">
+                                        <input
+                                                type="button" v-on:click="prices" value="Apply Coupon" name="apply_coupon" class="button">
+                                    </div>
+
+                                </th>
+
+</tr>
                             </tfoot>
                         </table>
 
@@ -650,6 +674,7 @@
                                         <p>{{settingsApiStore.basketItems?.bank_card}} </p>
                                     </div>
                                 </li>
+
                             </ul>
                             <div class="form-row place-order">
 
@@ -660,6 +685,7 @@
                                 </p>
 
                                 <input :disabled="!(isAgree.order === true )"   form="form-basket"  type="submit" data-value="Place order" value="Place order" class="button alt">
+
                             </div>
                         </div>
                     </div>

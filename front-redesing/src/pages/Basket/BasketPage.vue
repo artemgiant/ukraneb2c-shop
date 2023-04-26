@@ -6,6 +6,7 @@
 import {computed, ref, inject,watch, onMounted} from 'vue'
 import $axios from "@/lib/axios";
 import { useRouter } from 'vue-router'
+import { useToast } from "vue-toastification";
 import * as Yup from 'yup';
 import {phoneMask} from "@/lib/phone-mask";
 import _ from 'lodash';
@@ -21,6 +22,7 @@ import { useAuthStore } from "@/store/auth/auth";
 import { useSettingsApiStore } from "@/store/Settings/SettingsApiStore";
 
 const $storageUrl = inject('storageUrl')
+const toast =  useToast();
 
 // Components
 const basketStore = useBasketStore();
@@ -37,43 +39,69 @@ const isAgree = ref({
 
 const form = ref({
   recipient: {
-    phone: null,
-    email: null,
-    first_name: null,
-    last_name: null,
-    middle_name: null,
-    city: null,
-    street: null,
-    house: null,
-    flat: null,
+    phone: "+38(067)978-67-442",
+    email: "test@gmail.com",
+    first_name: "test",
+    last_name: 'test',
+    middle_name: 'test',
+    city: {
+      "id": 15244,
+      "text": "Житомир, Житомир, Житомирська",
+      "uuid": "56bdd203-749b-11df-b112-00215aee3ebe",
+      "city": "Житомир"
+    },
+    "street": {
+      "id": 28436,
+      "text": "1-Го Травня (вулиця)",
+      "uuid": "f5ed4631-e0d2-11df-9b37-00215aee3ebe",
+      "street": "1-Го Травня"
+    },
+    "house": "21",
+    "flat": "1",
   },
-  address_delivery: {
-    delivery_type: {},
-    city: null,
-    warehouse: null,
-    street: null,
-    house: null,
-    flat: null,
+  "address_delivery": {
+    "delivery_type": "nova_poshta",
+    "city": {
+      "id": 3545,
+      "text": "Житомир, Житомир, Житомирська",
+      "uuid": "e717a3d0-4b33-11e4-ab6d-005056801329",
+      "city": "Житомир"
+    },
+    "warehouse": {
+      "id": 16997,
+      "text": "Відділення № 12, Житомир, Смолянська, 3",
+      "max_weight": "0.00",
+      "warehouse_short": "Житомир, Смолянська, 3",
+      "is_pos_terminal": "1",
+      "is_work": "1",
+      "warehouse_category": "warehouse",
+      "uuid": "01ae2607-e1c2-11e3-8c4a-0050568002cf",
+      "warehouse_number": "12",
+      "schedule": "{\"reception\":{\"Monday\":\"10:00-20:00\",\"Tuesday\":\"10:00-20:00\",\"Wednesday\":\"10:00-20:00\",\"Thursday\":\"10:00-20:00\",\"Friday\":\"10:00-20:00\",\"Saturday\":\"10:00-17:00\",\"Sunday\":\"11:30-17:00\"},\"delivery\":{\"Monday\":\"09:00-18:00\",\"Tuesday\":\"09:00-18:00\",\"Wednesday\":\"09:00-18:00\",\"Thursday\":\"09:00-18:00\",\"Friday\":\"09:00-18:00\",\"Saturday\":\"09:00-15:00\",\"Sunday\":\"11:00-15:00\"},\"schedule\":{\"Monday\":\"10:00-18:00\",\"Tuesday\":\"08:00-20:00\",\"Wednesday\":\"08:00-20:00\",\"Thursday\":\"08:00-20:00\",\"Friday\":\"08:00-20:00\",\"Saturday\":\"09:00-18:00\",\"Sunday\":\"10:00-18:00\"}}"
+    },
+    "street": null,
+    "house": null,
+    "flat": null
   },
   products: basketStore.products,
-  payment_type: null,
+  "payment_type": "postpaid",
   comment: null,
-  deliveryConst: computed(() => {
-    let free = settingsApiStore.deliveryPrices.filter(price => {
-      return price.key === 'delivery.free_' + form.value.address_delivery.delivery_type;
-    })
-    let cost = settingsApiStore.deliveryPrices.filter(price => {
-      return price.key === 'delivery.cost_' + form.value.address_delivery.delivery_type;
-    })
+  promo_code: 'WW7MDH9',
 
-    if (free.length && cost.length)
-      return basketStore.sum >= free[0].value ? 0 : cost[0].value;
-    else
-      return '-';
-
+  delivery_cost: '-',
+  discount_delivery:null,
+  sum_to_pay: '-',
+  discount: null,
+  order_discount:{},
+  total_sum_product:computed(() => {
+    return basketStore.products.reduce((accumulator, object) => {
+      return accumulator + (parseInt(object.price) * object.quantity) ;
+    }, 0)
   }),
-  sum_to_pay: computed(() => {
-    return  form.value.deliveryConst === '-'?'-':parseInt(basketStore.sum) + parseInt(form.value.deliveryConst)
+  total_weight_kg:computed(() => {
+    return basketStore.products.reduce((accumulator, object) => {
+      return accumulator + (parseFloat(object.weight_kg) * object.quantity) ;
+    }, 0)
   })
 }, {deep: true})
 
@@ -93,6 +121,9 @@ watch(() => _.cloneDeep(form.value.address_delivery.delivery_type), (currentValu
     house: null,
     flat: null,
   }
+
+// перерахунок вартості замовлення
+  prices();
 
 });
 
@@ -184,7 +215,45 @@ async function onSubmit(values, { resetForm }) {
   });
 }
 
+async function prices() {
+  // display form values on success
+  // alert('SUCCESS!! :-)\n\n' + JSON.stringify(values, null, 4));
 
+  const url = `api/orders/prices`;
+  await $axios.post(url, form.value).then((res) => {
+
+    form.value.sum_to_pay = res.data.data.sum_to_pay
+    form.value.delivery_cost = res.data.data.delivery_cost
+    form.value.standard_delivery_cost = res.data.data.standard_delivery_cost
+    form.value.discount_delivery = res.data.data.discount_delivery
+    form.value.discount = res.data.data.discount
+    form.value.order_discount = res.data.data.order_discount
+    console.log(res.data)
+
+    alerts(res.data.message)
+  }).catch((error) => {
+
+    if ('errors' in error.response.data) {
+      formErrors.value = error.response.data.errors;
+      elHeader.value.scrollIntoView({behavior: "smooth"})
+    } else {
+      console.log(error);
+      alert(error);
+
+    }
+  });
+}
+
+function alerts(message) {
+  switch (message['alert-type']) {
+    case 'error':
+      toast.error(message.message)
+      return;
+    case 'success':
+      toast.success(message.message)
+      return;
+  }
+}
 
 
 // DIRECTIVES
@@ -208,54 +277,6 @@ onMounted(()=>{
 <style src="./Basket.css" scoped></style>
 
 <style >
-.multiselect__content-wrapper * {position: relative; z-index: 6;}
 
-.multiselect--active {
-  z-index: 1000;
-}
-.multiselect__tags{
-  border-radius: 1.571em;
-  padding-left: 19px;
-
-}
-#ajax,#warehouse{
-  border-radius: 0;
-  border: 0;
-  padding: 0 0!important;
-}
-
-
-
-.invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #dc3545;
-}
-.is-invalid~.invalid-feedback, .is-invalid~.invalid-tooltip, .was-validated :invalid~.invalid-feedback, .was-validated :invalid~.invalid-tooltip {
-  display: block;
-}
-.form-control.is-invalid, .was-validated .form-control:invalid {
-  border-color: #dc3545;
-  padding-right: calc(1.5em + 0.75rem);
-  /*background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e);*/
-  background-repeat: no-repeat;
-  background-position: right calc(0.375em + 0.1875rem) center;
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-.form-control {
-  display: block;
-  width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
 </style>
 

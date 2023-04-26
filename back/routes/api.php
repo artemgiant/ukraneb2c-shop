@@ -30,6 +30,7 @@ Route::get('test', [\App\Http\Controllers\Api\Comment\CommentController::class,'
 
 Route::get('orders/create',[OrderController::class,'create']);
 Route::post('orders/create',[OrderController::class,'create']);
+Route::post('orders/prices',[OrderController::class,'prices']);
 
 Route::group(['prefix' => 'addresses/search'], function () {
     Route::post('city', [AddressController::class,'searchCity'])->name('addresses.search.city');
