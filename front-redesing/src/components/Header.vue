@@ -662,10 +662,11 @@
 
                 <p class="total"><strong>ПІДСУМОК:</strong> <span class="amount">₴ {{basketStore.sum}}</span></p>
 
-
                 <p class="buttons">
-                  <a class="button wc-forward" href="#">View Cart</a>
+<!--                  <a class="button wc-forward" href="#">View Cart</a>-->
 <!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
+                  <router-link class="button  wc-forward" to="/view-cart">View Cart</router-link>
+
                   <router-link class="button checkout wc-forward" to="/basket">Checkout</router-link>
                 </p>
 

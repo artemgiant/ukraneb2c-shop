@@ -1,0 +1,109 @@
+<div class="page-template-default">
+    <div class="container">
+
+        <nav class="woocommerce-breadcrumb">
+            <router-link to="/">Home</router-link>
+            <span class="delimiter"><i class="fa fa-angle-right"></i></span>Cart</nav>
+
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <article class="page type-page status-publish hentry">
+                    <header class="entry-header"><h1 itemprop="name" class="entry-title">Cart</h1></header><!-- .entry-header -->
+
+                    <form>
+
+                        <table class="shop_table shop_table_responsive cart">
+                            <thead>
+                            <tr>
+                                <th class="product-remove">&nbsp;</th>
+                                <th class="product-thumbnail">&nbsp;</th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-subtotal">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="product in basketStore.products" :key="product.id"  class="cart_item">
+
+                                <td class="product-remove">
+                                    <a class="remove" v-on:click="basketStore.delFromBasket(product)" href="#">×</a>
+                                </td>
+
+                                <td class="product-thumbnail">
+                                    <a href="#">
+                                        <img
+                                                width="180"
+                                                height="180"
+                                                :src="$storageUrl+'/'+product.image_main.name"
+                                                :alt="$storageUrl+'/'+product.image_main.name">
+                                    </a>
+                                </td>
+
+                                <td data-title="Product" class="product-name">
+                                    <a href="#"> {{product.name}}&nbsp;</a>
+                                </td>
+
+                                <td data-title="Price" class="product-price">
+                                    <span class="amount">₴ {{product.price}}</span>
+                                </td>
+
+                                <td data-title="Quantity" class="product-quantity">
+                                    <div class="quantity buttons_added">
+                                        <input type="button"   :class="{disabled:product.quantity===1}" v-on:click="product.quantity--" class="minus" value="-">
+                                        <label>Quantity:</label>
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" v-model="product.quantity"  max="29" min="0" step="1">
+                                        <input type="button" class="plus"  v-on:click="product.quantity++" value="+">
+                                    </div>
+                                </td>
+
+                                <td data-title="Total" class="product-subtotal">
+                                    <span class="amount">₴ {{ product.price * product.quantity }}</span>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="actions" colspan="6">
+
+                                    <div class="wc-proceed-to-checkout">
+
+                                        <router-link class="checkout-button button alt wc-forward" to="/basket">Proceed to Checkout</router-link>
+                                    </div>
+
+                                    <input type="hidden" value="1eafc42c5e" name="_wpnonce"><input type="hidden" value="/electro/cart/" name="_wp_http_referer">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <div class="cart-collaterals">
+
+                        <div class="cart_totals ">
+
+                            <h2>Cart Totals</h2>
+
+                            <table class="shop_table shop_table_responsive">
+
+                                <tbody>
+
+
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td data-title="Total"><strong><span class="amount">$3,599.00</span></strong> </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="wc-proceed-to-checkout">
+
+                                <a class="checkout-button button alt wc-forward" href="checkout.html">Proceed to Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- .container -->
+</div>

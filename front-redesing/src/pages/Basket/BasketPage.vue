@@ -39,54 +39,28 @@ const isAgree = ref({
 
 const form = ref({
   recipient: {
-    phone: "+38(067)978-67-442",
-    email: "test@gmail.com",
-    first_name: "test",
-    last_name: 'test',
-    middle_name: 'test',
-    city: {
-      "id": 15244,
-      "text": "Житомир, Житомир, Житомирська",
-      "uuid": "56bdd203-749b-11df-b112-00215aee3ebe",
-      "city": "Житомир"
-    },
-    "street": {
-      "id": 28436,
-      "text": "1-Го Травня (вулиця)",
-      "uuid": "f5ed4631-e0d2-11df-9b37-00215aee3ebe",
-      "street": "1-Го Травня"
-    },
-    "house": "21",
-    "flat": "1",
+    phone: null,
+    email: null,
+    first_name: null,
+    last_name: null,
+    middle_name: null,
+    city: {  },
+    street: { },
+    house: null,
+    flat: null,
   },
-  "address_delivery": {
-    "delivery_type": "nova_poshta",
-    "city": {
-      "id": 3545,
-      "text": "Житомир, Житомир, Житомирська",
-      "uuid": "e717a3d0-4b33-11e4-ab6d-005056801329",
-      "city": "Житомир"
-    },
-    "warehouse": {
-      "id": 16997,
-      "text": "Відділення № 12, Житомир, Смолянська, 3",
-      "max_weight": "0.00",
-      "warehouse_short": "Житомир, Смолянська, 3",
-      "is_pos_terminal": "1",
-      "is_work": "1",
-      "warehouse_category": "warehouse",
-      "uuid": "01ae2607-e1c2-11e3-8c4a-0050568002cf",
-      "warehouse_number": "12",
-      "schedule": "{\"reception\":{\"Monday\":\"10:00-20:00\",\"Tuesday\":\"10:00-20:00\",\"Wednesday\":\"10:00-20:00\",\"Thursday\":\"10:00-20:00\",\"Friday\":\"10:00-20:00\",\"Saturday\":\"10:00-17:00\",\"Sunday\":\"11:30-17:00\"},\"delivery\":{\"Monday\":\"09:00-18:00\",\"Tuesday\":\"09:00-18:00\",\"Wednesday\":\"09:00-18:00\",\"Thursday\":\"09:00-18:00\",\"Friday\":\"09:00-18:00\",\"Saturday\":\"09:00-15:00\",\"Sunday\":\"11:00-15:00\"},\"schedule\":{\"Monday\":\"10:00-18:00\",\"Tuesday\":\"08:00-20:00\",\"Wednesday\":\"08:00-20:00\",\"Thursday\":\"08:00-20:00\",\"Friday\":\"08:00-20:00\",\"Saturday\":\"09:00-18:00\",\"Sunday\":\"10:00-18:00\"}}"
-    },
-    "street": null,
-    "house": null,
-    "flat": null
+  address_delivery: {
+    delivery_type: null,
+    city: { },
+    warehouse: { },
+    street: null,
+    house: null,
+    flat: null
   },
   products: basketStore.products,
-  "payment_type": "postpaid",
+  payment_type: null,
   comment: null,
-  promo_code: 'WW7MDH9',
+  promo_code: null,
 
   delivery_cost: '-',
   discount_delivery:null,
@@ -277,6 +251,28 @@ onMounted(()=>{
 <style src="./Basket.css" scoped></style>
 
 <style >
+.invalid-feedback{
+  position: relative;
+  margin: 0;
+}
+.invalid-feedback span{
+  position: absolute;
+}
 
+.multiselect__content-wrapper * {position: relative; z-index: 6;}
+
+.multiselect--active {
+  z-index: 1000;
+}
+.multiselect__tags{
+  border-radius: 1.571em;
+  padding-left: 19px;
+
+}
+#ajax,#warehouse{
+  border-radius: 0;
+  border: 0;
+  padding: 0 0!important;
+}
 </style>
 

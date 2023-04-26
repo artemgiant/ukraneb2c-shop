@@ -8,6 +8,7 @@ import Wishlist from "@/pages/Wishlist/WishlistPage.vue"
 import Product from "@/pages/Product/ProductPage.vue"
 import NotFound from "@/pages/NotFound.vue"
 import Info from "@/pages/Info/Info.vue"
+import ViewCart from "@/pages/ViewCart/ViewCart.vue"
 
 const routes = [
   {
@@ -33,7 +34,10 @@ const routes = [
   {
     component: Basket,
     path: '/basket',
-
+  },
+  {
+    component: ViewCart,
+    path: '/view-cart',
   },
   {
     component: Product,
