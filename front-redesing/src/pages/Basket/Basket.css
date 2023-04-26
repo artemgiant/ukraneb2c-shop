@@ -12,29 +12,7 @@
     overflow: initial;
 }
 
-.invalid-feedback{
-    position: relative;
-    margin: 0;
-}
-.invalid-feedback span{
-    position: absolute;
-}
 
-.multiselect__content-wrapper * {position: relative; z-index: 6;}
-
-.multiselect--active {
-    z-index: 1000;
-}
-.multiselect__tags{
-    border-radius: 1.571em;
-    padding-left: 19px;
-
-}
-#ajax,#warehouse{
-    border-radius: 0;
-    border: 0;
-    padding: 0 0!important;
-}
 
 
 
@@ -109,4 +87,8 @@
 .coupon .button {
     background-color: #333e48;
     color: #fff;
+}
+
+#payment {
+     border-top: none;
 }

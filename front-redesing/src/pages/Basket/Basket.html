@@ -261,7 +261,7 @@
                                     <div class="caption" style="font-size: 13px">
                                         <div
                                                 class="form-row form-row ">
-                                            <label  >
+                                            <label >
                                                 Місто </label>
 
                                             <VueMultiselect
@@ -629,16 +629,16 @@
                                 <td data-title="Shipping"> <span class="amount">₴ {{form.discount}}</span> <input type="hidden" class="shipping_method" value="international_delivery" ></td>
                             </tr>
 
-                            <tr class="order-total">
+                            <tr class="order-total" style=" font-size: 1.5em;">
                                 <th>Total</th>
                                 <td><strong><span class="amount">₴ {{form.sum_to_pay}}</span></strong> </td>
                             </tr>
 
 
                             <tr class="order-total">
-                                <th>
+                                <th colspan="2">
 
-                                    <div class="coupon">
+                                    <div class="coupon" style=" margin: 0; margin-left: auto;" >
 <!--                                        <label for="coupon_code">Coupon:</label>-->
                                         <input type="text"
                                                placeholder="Coupon code"
@@ -651,12 +651,14 @@
                                     </div>
 
                                 </th>
-
+<!--<th></th>-->
 </tr>
                             </tfoot>
                         </table>
 
-                        <h3>Payment type</h3>
+                        <h3 style="
+    margin-bottom: 0.9rem;
+">Payment type</h3>
                         <div class="woocommerce-checkout-payment" id="payment">
                             <ul class="wc_payment_methods payment_methods methods">
                                 <li class="input-radio">
