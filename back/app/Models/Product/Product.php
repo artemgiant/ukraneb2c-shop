@@ -73,6 +73,12 @@ class Product extends Model
     }
 
 
+    public function attributes()
+    {
+        return $this->belongsToMany(AttributeValue::class, 'product_attribute_values');
+    }
+
+
     public function scopeSearch($q, $request)
     {
         if (!empty($request->get('id'))) {

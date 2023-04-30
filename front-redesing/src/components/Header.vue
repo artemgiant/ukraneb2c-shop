@@ -122,472 +122,32 @@
       <ul class="nav navbar-nav departments-menu animate-dropdown">
         <li class="nav-item dropdown ">
 
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle">Shop by Department</a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle">Категорії</a>
+
+
           <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown" style="">
-            <li class="highlight menu-item animate-dropdown active"><a title="Value of the Day" href="product-category.html">Value of the Day</a></li>
-            <li class="highlight menu-item animate-dropdown"><a title="Top 100 Offers" href="home-v3.html">Top 100 Offers</a></li>
-            <li class="highlight menu-item animate-dropdown"><a title="New Arrivals" href="home-v3-full-color-background.html">New Arrivals</a></li>
 
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2584 dropdown">
-              <a title="Computers &amp; Accessories" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Computers &amp; Accessories</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-<!--                              <figure class="wpb_wrapper vc_figure">-->
-<!--                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>-->
-<!--                              </figure>-->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
 
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
+            <li v-for="category in  categoryStore.tree" :key="category.id"
+                class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2585 dropdown">
+              <router-link  to="#"  >{{category.name}}</router-link>
 
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2585 dropdown">
-              <a title="Cameras, Audio &amp; Video" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Cameras, Audio &amp; Video</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey">
-
-                                </div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2586 dropdown">
-              <a title="Mobiles &amp; Tablets" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Mobiles &amp; Tablets</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
             </li>
 
 
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2587 dropdown">
-              <a title="Movies, Music &amp; Video Games" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Movies, Music &amp; Video Games</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2588 dropdown">
-              <a title="TV &amp; Audio" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">TV &amp; Audio</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2589 dropdown">
-
-              <a title="Watches &amp; Eyewear" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Watches &amp; Eyewear</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-
-            <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2590 dropdown">
-
-              <a title="Car, Motorbike &amp; Industrial" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Car, Motorbike &amp; Industrial</a>
-              <ul role="menu" class=" dropdown-menu" style="min-height: 747.004px;">
-                <li class="menu-item animate-dropdown menu-item-object-static_block" style="min-height: 743.004px;">
-                  <div class="yamm-content">
-                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                      <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_single_image wpb_content_element vc_align_left">
-                              <figure class="wpb_wrapper vc_figure">
-                                <div class="vc_single_image-wrapper   vc_box_border_grey"></div>
-                              </figure>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row row wpb_row vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Computers &amp; Accessories</li>
-                                  <li><a href="#">All Computers &amp; Accessories</a></li>
-                                  <li><a href="#">Laptops, Desktops &amp; Monitors</a></li>
-                                  <li><a href="#">Pen Drives, Hard Drives &amp; Memory Cards</a></li>
-                                  <li><a href="#">Printers &amp; Ink</a></li>
-                                  <li><a href="#">Networking &amp; Internet Devices</a></li>
-                                  <li><a href="#">Computer Accessories</a></li>
-                                  <li><a href="#">Software</a></li>
-                                  <li class="nav-divider"></li>
-                                  <li><a href="#"><span class="nav-text">All Electronics</span><span class="nav-subtext">Discover more products</span></a></li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper">
-                                <ul>
-                                  <li class="nav-title">Office &amp; Stationery</li>
-                                  <li><a href="#">All Office &amp; Stationery</a></li>
-                                  <li><a href="#">Pens &amp; Writing</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-            <li class="menu-item animate-dropdown"><a title="Accessories" href="product-category.html">Accessories</a></li>
-            <li class="menu-item animate-dropdown"><a title="Printers &amp; Ink" href="product-category.html">Printers &amp; Ink</a></li>
-            <li class="menu-item animate-dropdown"><a title="Software" href="product-category.html">Software</a></li>
-            <li class="menu-item animate-dropdown"><a title="Office Supplies" href="product-category.html">Office Supplies</a></li>
-            <li class="menu-item animate-dropdown"><a title="Computer Components" href="product-category.html">Computer Components</a></li>
-            <li class="menu-item animate-dropdown"><a title="Car Electronic &amp; GPS" href="product-category.html">Car Electronic &amp; GPS</a></li>
-            <li class="menu-item animate-dropdown"><a title="Accessories" href="product-category.html">Accessories</a></li>
-            <li class="menu-item animate-dropdown"><a title="Printers &amp; Ink" href="product-category.html">Printers &amp; Ink</a></li>
           </ul>
+
+
         </li>
       </ul>
+
+
+
+
+
+
+
+
       <form class="navbar-search" method="get" action="/">
         <label class="sr-only screen-reader-text" for="search">Search for:</label>
         <div class="input-group">
@@ -595,31 +155,9 @@
           <div class="input-group-addon search-categories">
             <select name="product_cat" id="product_cat" class="postform resizeselect" style="width: 143px;">
               <option value="0" selected="selected">All Categories</option>
-              <option class="level-0" value="laptops-laptops-computers">Laptops</option>
-              <option class="level-0" value="ultrabooks-laptops-computers">Ultrabooks</option>
-              <option class="level-0" value="mac-computers-laptops">Mac Computers</option>
-              <option class="level-0" value="all-in-one-laptops-computers">All in One</option>
-              <option class="level-0" value="servers">Servers</option>
-              <option class="level-0" value="peripherals">Peripherals</option>
-              <option class="level-0" value="gaming-laptops-computers">Gaming</option>
-              <option class="level-0" value="accessories-laptops-computers">Accessories</option>
-              <option class="level-0" value="audio-speakers">Audio Speakers</option>
-              <option class="level-0" value="headphones">Headphones</option>
-              <option class="level-0" value="computer-cases">Computer Cases</option>
-              <option class="level-0" value="printers">Printers</option>
-              <option class="level-0" value="cameras">Cameras</option>
-              <option class="level-0" value="smartphones">Smartphones</option>
-              <option class="level-0" value="game-consoles">Game Consoles</option>
-              <option class="level-0" value="power-banks">Power Banks</option>
-              <option class="level-0" value="smartwatches">Smartwatches</option>
-              <option class="level-0" value="chargers">Chargers</option>
-              <option class="level-0" value="cases">Cases</option>
-              <option class="level-0" value="headphone-accessories">Headphone Accessories</option>
-              <option class="level-0" value="headphone-cases">Headphone Cases</option>
-              <option class="level-0" value="tablets">Tablets</option>
-              <option class="level-0" value="tvs">TVs</option>
-              <option class="level-0" value="wearables">Wearables</option>
-              <option class="level-0" value="pendrives">Pendrives</option>
+
+              <option v-for="category in  categoryStore.tree" :key="category.id" class="level-0" :value="category.id">{{category.name}}</option>
+
             </select>
           </div>
           <div class="input-group-btn">
@@ -697,19 +235,24 @@
 import {useBasketStore} from "@/store/basketStore"
 import {useWishlistStore} from "@/store/wishlistStore"
 import { useAuthStore } from "@/store/auth/auth";
+import {useCategoryStore} from "@/store/Category/CategoryStore";
+import Categories from "@/components/Categories.vue";
 
 const authStore = useAuthStore();
 
 import { inject,onMounted } from 'vue'
 const basketStore = useBasketStore();
 const wishlistStore = useWishlistStore();
+const categoryStore = useCategoryStore();
 
 const $storageUrl = inject('storageUrl')
 
 const logoUrl = '/img/logos/'+import.meta.env.VITE_APP_SHOP_ALIAS+'/'+import.meta.env.VITE_APP_SHOP_ALIAS+'.png';
-// onMounted(async () => {
-//   await authStore.getUser();
-// });
+
+
+onMounted(async () => {
+  await categoryStore.getTree();
+});
 
 </script>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Address\AddressController;
 use App\Http\Controllers\Api\Order\OrderController;
+use App\Http\Controllers\Api\Product\CategoryController;
 use App\Http\Controllers\Api\Product\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,3 +57,6 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/basket',[\App\Http\Controllers\Api\Settings\SettingsController::class,'basket']);
 });
 
+
+
+Route::get('category/tree',[CategoryController::class,'tree'])->name('category-tree');

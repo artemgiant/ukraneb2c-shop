@@ -22,6 +22,7 @@ class ProductController extends  Controller
         $pagination = Product::orderByDesc('id')
             ->whereNotNull('images')
             ->where('in_stock','>','0')
+            ->with(['attributes'=>function($q){  $q->with('attribute'); }])
             ->whereHas('shops',function ($q) use($request){
                 $q->where('alias',$request->get('shop-alias'));
             })
@@ -31,7 +32,7 @@ class ProductController extends  Controller
 
         $totalLength = $pagination->total();
         $products = ProductResource::collection($pagination);
-
+//return 'ok';
         $products->toJson();
         return response()->json(['products' => $products, 'totalLength' => $totalLength]);
     }
