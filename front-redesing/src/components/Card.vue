@@ -3,7 +3,7 @@
   <li class="product" :class="classProduct">
     <div class="product-outer">
       <div class="product-inner">
-        <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
+        <span class="loop-product-categories"><a href="product-category.html" rel="tag"></a></span>
         <router-link class="quick-view"  target='_blank'
                      :to="{ name: 'Product',params:{id:product.id}}">
           <h3> {{ product.name }}</h3>
@@ -34,7 +34,9 @@
                                                             </span>
                                                         </span>
 
-          <a  rel="nofollow" class="button add_to_cart_button" v-on:click="addInBasket()">Додати в кошик</a>
+<!--          <a  rel="nofollow" class="button add_to_cart_button" v-on:click="addInBasket()">Додати в кошик</a>-->
+<!--          <button type="button" class="btn btn-warning">Warning</button>-->
+<!--          <button type="button" class="single_add_to_cart_button button" >Add to cart</button>-->
         </div><!-- /.price-add-to-cart -->
 
         <div class="hover-area">

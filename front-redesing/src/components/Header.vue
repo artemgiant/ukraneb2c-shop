@@ -4,24 +4,6 @@
 
   <!-- HEADER -->
 
-  <div class="top-bar">
-    <div class="container">
-      <nav>
-        <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-          <li class="menu-item animate-dropdown"><a title="Welcome to Worldwide Electronics Store" href="#">Welcome to Worldwide Electronics Store</a></li>
-        </ul>
-      </nav>
-
-      <nav>
-        <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
-          <li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i class="ec ec-map-pointer"></i>Store Locator</a></li>
-          <li class="menu-item animate-dropdown"><a title="Track Your Order" href="track-your-order.html"><i class="ec ec-transport"></i>Track Your Order</a></li>
-          <li class="menu-item animate-dropdown"><a title="Shop" href="shop.html"><i class="ec ec-shopping-bag"></i>Shop</a></li>
-          <li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i class="ec ec-user"></i>My Account</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div><!-- /.top-bar -->
 
   <header id="masthead" class="site-header header-v2">
     <div class="container">
@@ -86,17 +68,10 @@
                 <li class="menu-item menu-item-has-children animate-dropdown dropdown">
                   <router-link to="/">Home</router-link>
                 </li>
-                <li class="menu-item animate-dropdown"><a title="About Us" href="about.html">About Us</a></li>
+                <li class="menu-item animate-dropdown"><router-link   to="/info/about_us">Про нас</router-link></li>
 
-                <li class="menu-item menu-item-has-children animate-dropdown dropdown"><a title="Blog" href="blog.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Blog</a>
-                  <ul role="menu" class=" dropdown-menu">
-                    <li class="menu-item animate-dropdown"><a title="Blog v1" href="blog-v1.html">Blog v1</a></li>
-                    <li class="menu-item animate-dropdown"><a title="Blog v2" href="blog-v2.html">Blog v2</a></li>
-                    <li class="menu-item animate-dropdown"><a title="Blog v3" href="blog-v3.html">Blog v3</a></li>
-                  </ul>
-                </li>
                 <li class="menu-item"><a title="Features" href="#">Features</a></li>
-                <li class="menu-item"><a title="Contact Us" href="#">Contact Us</a></li>
+                <li class="menu-item"><router-link   to="/info/contact_us">Contact us</router-link></li>
               </ul>
             </nav>
           </div>
@@ -215,16 +190,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-wishlist nav navbar-nav pull-right flip">
-        <li class="nav-item">
-          <a href="wishlist.html" class="nav-link"><i class="ec ec-favorites"></i></a>
-        </li>
-      </ul>
-      <ul class="navbar-compare nav navbar-nav pull-right flip">
-        <li class="nav-item">
-          <a href="compare.html" class="nav-link"><i class="ec ec-compare"></i></a>
-        </li>
-      </ul>
+
     </div>
   </nav>
   <!-- /HEADER -->
