@@ -27,34 +27,31 @@
 
 <!--          <div class="product-sku">SKU: 5487FB8/15</div>-->
         </router-link>
-        <div class="price-add-to-cart">
+        <div class="" style="
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+">
                                                         <span class="price">
                                                             <span class="electro-price">
                                                               <span class="amount">{{product.price}} грн</span>
                                                             </span>
                                                         </span>
 
-<!--          <a  rel="nofollow" class="button add_to_cart_button" v-on:click="addInBasket()">Додати в кошик</a>-->
-<!--          <button type="button" class="btn btn-warning">Warning</button>-->
+<!--          <button   class="button add_to_cart_button" v-on:click="addInBasket()">Додати в кошик</button>-->
+          <button type="button" class="btn btn-warning btn-add-to-cart"  v-on:click="addInBasket()" style="padding: 8px 18px;" >
+            Купити
+          </button>
+<!--          <button type="button" class="btn btn-warning " style=" padding: 8px 18px;">Купити</button>-->
 <!--          <button type="button" class="single_add_to_cart_button button" >Add to cart</button>-->
         </div><!-- /.price-add-to-cart -->
+<!--        <div class="hover-area">-->
+<!--          <div class="action-buttons">-->
 
-        <div class="hover-area">
-          <div class="action-buttons">
+<!--            <a rel="nofollow" class="add_to_wishlist"  v-on:click="addInWishlist()">Додати до бажань</a>-->
+<!--          </div>-->
+<!--          </div>-->
 
-            <a rel="nofollow" class="add_to_wishlist"  v-on:click="addInWishlist()">Додати до бажань</a>
-
-<!--            <button-->
-<!--                class="add-to-wishlist"-->
-<!--                v-tippy="{ content: inWishlist?'Прибрати':'Додати до бажань' }"-->
-<!--                v-on:click="addInWishlist()">-->
-<!--              <i class="fa" :class="[inWishlist?'fa-heart':'fa-heart-o']"></i>-->
-<!--            </button>-->
-
-
-<!--            <a href="#" class="add-to-compare-link">Compare</a>-->
-          </div>
-        </div>
 
       </div><!-- /.product-inner -->
     </div><!-- /.product-outer -->
@@ -116,5 +113,18 @@ export default {
 </script>
 
 <style scoped>
+.btn-add-to-cart{
+  display: none;
+}
+.btn-add-to-cart:hover{
+background-color: #fed700;
+}
 
+li.product:hover .btn-add-to-cart{
+  display: block;
+}
+
+ul.products li.product::after{
+  border: none;
+}
 </style>

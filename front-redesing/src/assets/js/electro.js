@@ -1,5 +1,5 @@
 (function($, window){
-    "use strict"; 
+    "use strict";
     var arrowWidth = 16;
 
     $.fn.resizeselect = function(settings) {
@@ -1418,3 +1418,5 @@
     });
 
 })(jQuery);
+
+

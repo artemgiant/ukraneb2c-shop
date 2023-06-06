@@ -65,13 +65,15 @@
           <div class="collapse navbar-toggleable-xs" id="default-header">
             <nav>
               <ul id="menu-main-menu" class="nav nav-inline yamm">
-                <li class="menu-item menu-item-has-children animate-dropdown dropdown">
-                  <router-link to="/">Home</router-link>
-                </li>
-                <li class="menu-item animate-dropdown"><router-link   to="/info/about_us">Про нас</router-link></li>
 
-                <li class="menu-item"><a title="Features" href="#">Features</a></li>
-                <li class="menu-item"><router-link   to="/info/contact_us">Contact us</router-link></li>
+                <li class="menu-item animate-dropdown"><router-link   to="/info/about_us">Про нас</router-link></li>
+                <li class="menu-item animate-dropdown"><router-link   to="/info/delivery_and_payment">Доставка та оплата</router-link></li>
+                <li class="menu-item animate-dropdown"><router-link   to="/info/returns_and_complaints">Повернення та рекламація </router-link></li>
+<!--                <li class="menu-item animate-dropdown"><router-link   to="/info/trading_terms">Торгівельні умови</router-link></li>-->
+<!--                <li class="menu-item animate-dropdown"><router-link   to="/info/protection_of_personal_data">Захист особистих даних</router-link></li>-->
+
+<!--                <li class="menu-item"><a title="Features" href="#">Features</a></li>-->
+<!--                <li class="menu-item"><router-link   to="/info/contact_us">Contact us</router-link></li>-->
               </ul>
             </nav>
           </div>
@@ -94,47 +96,11 @@
 
   <nav class="navbar navbar-primary navbar-full">
     <div class="container">
-      <ul class="nav navbar-nav departments-menu animate-dropdown">
-        <li class="nav-item dropdown ">
 
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle">Категорії</a>
-
-
-          <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown" style="">
-
-
-            <li v-for="category in  categoryStore.tree" :key="category.id"
-                class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2585 dropdown">
-              <router-link  to="#"  >{{category.name}}</router-link>
-
-            </li>
-
-
-          </ul>
-
-
-        </li>
-      </ul>
-
-
-
-
-
-
-
-
-      <form class="navbar-search" method="get" action="/">
+      <form class="navbar-search" style="width: 80%" method="get" action="/">
         <label class="sr-only screen-reader-text" for="search">Search for:</label>
         <div class="input-group">
           <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s" placeholder="Search for products">
-          <div class="input-group-addon search-categories">
-            <select name="product_cat" id="product_cat" class="postform resizeselect" style="width: 143px;">
-              <option value="0" selected="selected">All Categories</option>
-
-              <option v-for="category in  categoryStore.tree" :key="category.id" class="level-0" :value="category.id">{{category.name}}</option>
-
-            </select>
-          </div>
           <div class="input-group-btn">
             <input type="hidden" id="search-param" name="post_type" value="product">
             <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
@@ -143,8 +109,8 @@
       </form>
 
       <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-        <li class="nav-item dropdown">
-          <a href="cart.html" class="nav-link" data-toggle="dropdown">
+        <li class="nav-item dropdown" onclick="redirectToBasket(this)" style=" cursor: pointer;">
+          <a class="nav-link" data-toggle="dropdown">
             <i class="ec ec-shopping-bag"></i>
             <span class="cart-items-count count">{{basketStore.products.length}}</span>
             <span class="cart-items-total-price total-price"><span class="amount">{{basketStore.sum}} грн</span></span>
@@ -175,13 +141,23 @@
 
                 <p class="total"><strong>ПІДСУМОК:</strong> <span class="amount">₴ {{basketStore.sum}}</span></p>
 
-                <p class="buttons">
+                <div class="buttons" style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+">
 <!--                  <a class="button wc-forward" href="#">View Cart</a>-->
 <!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
-                  <router-link class="button  wc-forward" to="/view-cart">View Cart</router-link>
 
-                  <router-link class="button checkout wc-forward" to="/basket">Checkout</router-link>
-                </p>
+
+              <div>  <strong>РАЗОМ:</strong> <span class="amount">₴ {{basketStore.sum}}</span></div>
+
+                  <router-link class="button checkout wc-forward" to="/basket">Оформити</router-link>
+
+
+<!--             <router-link class="button  wc-forward" to="/view-cart">View Cart</router-link>-->
+
+                </div>
 
 
               </div>
@@ -191,8 +167,29 @@
       </ul>
 
 
+
+
+
     </div>
+
   </nav>
+
+<div class="container ">
+  <div class="row ">
+
+    <div class="col-xs-12 col-lg-9 ">
+      <nav>
+        <ul id="menu-secondary-nav" class="secondary-nav">
+          <li class=" menu-item "  v-for="category in  categoryStore.tree" :key="category.id" >
+            <a href="#">    {{category.name}}</a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
   <!-- /HEADER -->
 </template>
 
@@ -229,4 +226,33 @@ onMounted(async () => {
 .header-links .dropdown-menu li a:hover {
   color: #D10024;
 }
+
+
+.list-inline-item:not(:last-child) {
+  margin-right: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+.pb-3, .py-3 {
+  padding-bottom: 1rem !important;
+}
+.list-inline-item {
+  display: inline-block;
+}
+.text-dark {
+  color: #333e48 !important;
+}
+
+.box-shadow-2 {
+  box-shadow: 0px 4px 5.88px 0.12px rgb(0 0 0 / 12%);
+}
+
+.font-size-14 {
+  font-size: 0.875rem;
+}
+.pb-3, .py-3 {
+  padding-bottom: 1rem !important;
+}
+
+
 </style>
