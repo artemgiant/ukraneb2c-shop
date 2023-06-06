@@ -3,7 +3,7 @@
 
 <script setup>
 
-import {computed,watch,ref} from 'vue'
+import {computed,watch,onMounted,ref} from 'vue'
 
 import {useProductApiStore} from "@/store/Product/ProductApiStore"
 import {useProductStore} from "@/store/Product/ProductStore"
@@ -22,6 +22,12 @@ const products = ref({})
 
 productApiStore.getProducts()
 
+
+onMounted(() => {
+  window.owlCarouselSlider();
+  console.log('on mounted')
+
+})
 
 
 

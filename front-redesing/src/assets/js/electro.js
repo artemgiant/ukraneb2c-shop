@@ -90,8 +90,8 @@
     /*  OWL CAROUSEL
     /*===================================================================================*/
 
-    $(document).ready(function () {
-
+    window.owlCarouselSlider = () =>
+    {
         var dragging = true;
         var owlElementID = "#owl-main";
 
@@ -749,7 +749,7 @@
             "margin":0,
             "touchDrag":true
         });
-    });
+    };
 
     /*===================================================================================*/
     /*  Accessories Product Check

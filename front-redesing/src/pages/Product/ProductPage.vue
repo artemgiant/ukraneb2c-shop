@@ -29,6 +29,8 @@ onMounted(() => {
   });
 
   commentApiStore.getComments();
+
+
 })
 
 </script>

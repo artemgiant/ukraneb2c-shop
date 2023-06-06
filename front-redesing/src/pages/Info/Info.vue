@@ -13,13 +13,25 @@
 
 <script setup>
 import {useSettingsApiStore} from '@/store/Settings/SettingsApiStore'
-import {onMounted} from "vue";
+import {onMounted,watch} from "vue";
+import {useRoute} from "vue-router";
 
+const route = useRoute()
 const settingsApiStore = useSettingsApiStore();
 
 onMounted(()=>{
   settingsApiStore.getPage()
 })
+
+// fetch the user information when params change
+watch(
+    () => route.params.key,
+    async key => {
+       console.log(key)
+      settingsApiStore.getPage()
+    }
+)
+
 
 </script>
 
