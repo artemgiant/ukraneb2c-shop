@@ -85,6 +85,11 @@ class Product extends Model
             $q->where('id', $request->id);
         }
 
+        if(!empty($request->get('category'))){
+            $q->where('category_id',$request->get('category'));
+        }
+
+
         if (($request->has('value') && !empty($request->get('value')))) {
             foreach ($request->all() as $key => $value) {
                 if ($key == 'value') {

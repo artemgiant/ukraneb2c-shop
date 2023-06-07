@@ -181,7 +181,7 @@
       <nav>
         <ul id="menu-secondary-nav" class="secondary-nav">
           <li class=" menu-item "  v-for="category in  categoryStore.tree" :key="category.id" >
-            <a href="#">    {{category.name}}</a>
+            <a href="#" v-on:click="productStore.filters.category = category.id">    {{category.name}}</a>
           </li>
 
         </ul>
@@ -199,6 +199,7 @@ import {useBasketStore} from "@/store/basketStore"
 import {useWishlistStore} from "@/store/wishlistStore"
 import { useAuthStore } from "@/store/auth/auth";
 import {useCategoryStore} from "@/store/Category/CategoryStore";
+import {useProductStore} from "@/store/Product/ProductStore";
 import Categories from "@/components/Categories.vue";
 
 const authStore = useAuthStore();
@@ -207,6 +208,7 @@ import { inject,onMounted } from 'vue'
 const basketStore = useBasketStore();
 const wishlistStore = useWishlistStore();
 const categoryStore = useCategoryStore();
+const productStore = useProductStore();
 
 const $storageUrl = inject('storageUrl')
 

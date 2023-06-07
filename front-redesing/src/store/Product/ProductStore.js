@@ -9,7 +9,7 @@
      const length = ref(10);
      const page  = ref(1);
      // Searching
-     const filter = ref({
+     const filters = ref({
          category:null,
          brand: null,
          search:null,
@@ -25,14 +25,17 @@
          useProductApiStore().getProducts();
      })
 
-
+     watch(filters.value, () => {
+         page.value = 1;
+         useProductApiStore().getProducts();
+     },'deep')
 
      return {
          products,
          total,
          length,
          page,
-         filter
+         filters
      }
 
  })

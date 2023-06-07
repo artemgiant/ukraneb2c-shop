@@ -18,7 +18,6 @@ class ProductController extends  Controller
 
         if (!$request->length)
             $request->request->set('length', 10);
-
         $pagination = Product::orderByDesc('id')
             ->whereNotNull('images')
             ->where('in_stock','>','0')
