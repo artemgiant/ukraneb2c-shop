@@ -33,9 +33,9 @@
 
                         <div class="summary entry-summary">
 
-                                        <span class="loop-product-categories">
-                                            <a href="product-category.html" rel="tag">Headphones</a>
-                                        </span><!-- /.loop-product-categories -->
+<!--                                        <span class="loop-product-categories">-->
+<!--                                            <a href="product-category.html" rel="tag">Headphones</a>-->
+<!--                                        </span>&lt;!&ndash; /.loop-product-categories &ndash;&gt;-->
 
                             <h1 itemprop="name" class="product_title entry-title">{{product.name}}</h1>
 
@@ -46,18 +46,18 @@
                                 </a>
                             </div><!-- .brand -->
 
-                            <div class="availability in-stock">Availablity: <span>In stock</span></div><!-- .availability -->
+                            <div class="availability in-stock">Доступність: <span>На складі</span></div><!-- .availability -->
 
                             <hr class="single-product-title-divider" />
 
                             <div class="action-buttons">
 
-                                <a href="#" class="add_to_wishlist" >
-                                    Wishlist
-                                </a>
+<!--                                <a href="#" class="add_to_wishlist" >-->
+<!--                                    Wishlist-->
+<!--                                </a>-->
 
 
-                                <a href="#" class="add-to-compare-link" data-product_id="2452">Compare</a>
+<!--                                <a href="#" class="add-to-compare-link" data-product_id="2452">Compare</a>-->
                             </div><!-- .action-buttons -->
 
                             <div itemprop="description" v-html="product.description_short">
@@ -86,7 +86,9 @@
                                             <label>Quantity:</label>
                                             <input type="number" name="quantity" v-model="product.quantity" title="Qty" class="input-text qty text"/>
                                         </div>
-                                        <button  v-on:click="basketStore.addToBasket(product)" type="button" class="single_add_to_cart_button button">Add to cart</button>
+                                        <button style="
+    margin-left: 5px;
+"  v-on:click="basketStore.addToBasket(product)" type="button" class="single_add_to_cart_button button">Купити</button>
                                         <input type="hidden" name="add-to-cart" value="2452" />
                                         <input type="hidden" name="product_id" value="2452" />
                                         <input type="hidden" name="variation_id" class="variation_id" value="0" />
@@ -101,10 +103,10 @@
                         <ul class="nav nav-tabs electro-nav-tabs tabs wc-tabs" role="tablist">
 
                             <li class="nav-item description_tab active">
-                                <a href="#tab-description"  data-toggle="tab">Description</a>
+                                <a href="#tab-description"  data-toggle="tab">Все о товаре</a>
                             </li>
                             <li class="nav-item specification_tab">
-                                <a href="#tab-specification" data-toggle="tab">Specification</a>
+                                <a href="#tab-specification" data-toggle="tab">Характеристики</a>
                             </li>
 
                         </ul>
@@ -123,20 +125,20 @@
                                     <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">FW511948218</span></span>
 
 
-                                    <span class="posted_in">Category:
-                                                    <a href="product-category.html" rel="tag">Headphones</a>
-                                                </span>
+<!--                                    <span class="posted_in">Category:-->
+<!--                                                    <a href="product-category.html" rel="tag">Headphones</a>-->
+<!--                                                </span>-->
 
-                                    <span class="tagged_as">Tags:
-                                                    <a href="product-category.html" rel="tag">Fast</a>,
-                                                    <a href="product-category.html" rel="tag">Gaming</a>, <a href="product-category.html" rel="tag">Strong</a>
-                                                </span>
+<!--                                    <span class="tagged_as">Tags:-->
+<!--                                                    <a href="product-category.html" rel="tag">Fast</a>,-->
+<!--                                                    <a href="product-category.html" rel="tag">Gaming</a>, <a href="product-category.html" rel="tag">Strong</a>-->
+<!--                                                </span>-->
 
                                 </div><!-- /.product_meta -->
                             </div>
 
                             <div class="tab-pane panel entry-content wc-tab" id="tab-specification">
-                                <h3>Technical Specifications</h3>
+                                <h3>Технічні характеристики</h3>
                                 <table class="table">
                                     <tbody>
                                     <tr v-for="item in product.attributes">
