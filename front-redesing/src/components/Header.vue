@@ -180,8 +180,8 @@
     <div class="col-xs-12 col-lg-9 ">
       <nav>
         <ul id="menu-secondary-nav" class="secondary-nav">
-          <li class=" menu-item "  v-for="category in  categoryStore.tree" :key="category.id" >
-            <a href="#" v-on:click="productStore.filters.category = category.id">    {{category.name}}</a>
+          <li class=" menu-item " :class="{'highlight':productStore.filters.category === category.id}"  v-for="category in  categoryStore.tree" :key="category.id" >
+            <a href="#" v-on:click="productStore.filters.category = productStore.filters.category === category.id? null : category.id">    {{category.name}}</a>
           </li>
 
         </ul>

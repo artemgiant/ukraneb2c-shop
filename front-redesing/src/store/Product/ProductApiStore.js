@@ -11,9 +11,9 @@ export const useProductApiStore = defineStore('productApiStore', () => {
         const start = (productStore.page - 1) * productStore.length;
 
         const filtersString =  Object.keys(productStore.filters).map(key => {
-            return `${key}=${encodeURIComponent(productStore.filters[key])}`;
+         const val = encodeURIComponent(productStore.filters[key]) === 'null'? '': encodeURIComponent(productStore.filters[key]);
+            return `${key}=${val}`;
         }).join('&');
-
 
       await  $axios.get(`/api/products?start=${start}&length=${productStore.length}&${filtersString}`).then((res)=>{
           productStore.products = [];

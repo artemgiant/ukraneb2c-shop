@@ -85,6 +85,7 @@ class Product extends Model
             $q->where('id', $request->id);
         }
 
+
         if(!empty($request->get('category'))){
             $q->where('category_id',$request->get('category'));
         }
