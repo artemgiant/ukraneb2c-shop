@@ -7,6 +7,7 @@ use App\Models\Shop\Shop;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Laravelista\Comments\Commentable;
 
 class Product extends Model
@@ -89,7 +90,10 @@ class Product extends Model
         if(!empty($request->get('category'))){
             $q->where('category_id',$request->get('category'));
         }
-
+        if(!empty($request->get('search'))){
+            $q
+                ->whereRaw("UPPER(`name`) LIKE '%".mb_strtoupper($request->get('search'))."%'");
+        }
 
         if (($request->has('value') && !empty($request->get('value')))) {
             foreach ($request->all() as $key => $value) {
