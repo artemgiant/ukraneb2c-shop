@@ -25,7 +25,7 @@ onMounted(() => {
   productApiStore.getProduct(route.params.id).then(data => {
     product.value = {...data.products[0],quantity:1}
     // активація слайдеру в товарі це в нас находится front/src/js/main.js
-    setTimeout(()=>{ window.productSlick();},100);
+    // setTimeout(()=>{ window.productSlick();},100);
   });
 
   commentApiStore.getComments();

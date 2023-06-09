@@ -16,10 +16,11 @@
                     <div class="single-product-wrapper">
                         <div class="product-images-wrapper">
                             <div class="images electro-gallery">
-                                <div class="thumbnails-single owl-carousel">
+                                <div class="thumbnails-single ">
 
-                                    <a v-for="img in product.images" :href="$storageUrl+'/'+img.name" class="zoom"
-                                       title="" data-rel="prettyPhoto[product-gallery]"><img
+                                    <a v-for="img in product.images" :href="$storageUrl+'/'+img.name"
+                                       title="" >
+                                        <img
                                             :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
                                             class="wp-post-image" alt=""></a>
 

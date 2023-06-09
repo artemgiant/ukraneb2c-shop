@@ -4,7 +4,7 @@
     <div class="product-outer">
       <div class="product-inner">
         <span class="loop-product-categories"><a href="product-category.html" rel="tag"></a></span>
-        <router-link class="quick-view"  target='_blank'
+        <router-link class="quick-view"
                      :to="{ name: 'Product',params:{id:product.id}}">
           <h3> {{ product.name }}</h3>
           <div class="product-thumbnail">
