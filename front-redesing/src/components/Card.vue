@@ -127,4 +127,9 @@ li.product:hover .btn-add-to-cart{
 ul.products li.product::after{
   border: none;
 }
+
+li.product a{
+  color:#333e48;
+}
+
 </style>
