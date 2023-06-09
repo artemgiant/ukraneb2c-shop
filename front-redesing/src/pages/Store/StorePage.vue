@@ -57,6 +57,9 @@ li.product .product-thumbnail img{
   transform: translateX(-50%) translateY(-50%);
 }
 
+li.product:hover .product-inner{
+  position: relative;
+}
 
 
 @import "@/assets/css/bootstrap.min.css";
