@@ -14,6 +14,20 @@
   <body>
 
     <div id="app"></div>
+
+
+  <script type="module" >
+
+      const isClear = localStorage.getItem("is_storege_clear");
+
+      if (!isClear) {
+          localStorage.clear();
+          localStorage.setItem("is_storege_clear", 1);
+
+      }
+
+  </script>
+
     <script type="module" src="/src/main.js"></script>
 
 
@@ -30,5 +44,9 @@
 
 
     <script crossorigin src="/assets/js/main.js"></script>
+
+
+
+
   </body>
 </html>
