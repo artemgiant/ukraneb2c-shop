@@ -6,76 +6,45 @@
             <div class="home-v3-slider" >
                 <!-- ========================================== SECTION – HERO : END========================================= -->
 
-                <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+<!--                <div id="owl-main" class=" owl-inner-nav owl-ui-sm">-->
 
-                    <div class="item" style="background-image: url(https://transvelo.github.io/electro-html/2.0//assets/img/1920X422/img1.jpg);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="caption vertical-center text-left">
-                                        <div class="hero-subtitle-v2 fadeInDown-1">
-                                            shop to get what you loves
-                                        </div>
+                    <Carousel :autoplay="2000"  :wrap-around="true">
+                        <Slide v-for="slide in 2" :key="slide">
 
-                                        <div class="hero-2 fadeInDown-2">
-                                            Timepieces that make a statement up to <strong>40% Off</strong>
-                                        </div>
+                            <div class="item" style="width: 100vw; background-repeat: no-repeat;    background-size: cover;background-image: url(https://transvelo.github.io/electro-html/2.0//assets/img/1920X422/img1.jpg);">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="caption vertical-center text-left" style=" margin-top: 30px;">
+                                                <div class="hero-subtitle-v2 fadeInDown-1">
+                                                    shop to get what you loves
+                                                </div>
 
-                                        <div class="hero-action-btn fadeInDown-3">
-                                            <a href="#" class="big le-button ">Start Buying</a>
-                                        </div>
-                                    </div><!-- /.caption -->
-                                </div><!-- /.col -->
-                            </div>
-                        </div><!-- /.container -->
-                    </div><!-- /.item -->
+                                                <div class="hero-2 fadeInDown-2">
+                                                    Timepieces that make a statement up to <strong>40% Off</strong>
+                                                </div>
 
-                    <div class="item" style="background-image: url(https://transvelo.github.io/electro-html/2.0//assets/img/1920X422/img2.jpg);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="caption vertical-center text-left">
-                                        <div class="hero-subtitle-v2 fadeInDown-1">
-                                            shop to get what you loves
-                                        </div>
-
-                                        <div class="hero-2 fadeInDown-2">
-                                            Timepieces that make a statement up to <strong>40% Off</strong>
-                                        </div>
-
-                                        <div class="hero-action-btn fadeInDown-3">
-                                            <a href="#" class="big le-button ">Start Buying</a>
-                                        </div>
-                                    </div><!-- /.caption -->
-                                </div>
-                            </div>
-                        </div><!-- /.container -->
-                    </div><!-- /.item -->
-
-                    <div class="item" style="background-image: url(assets/images/slider/banner-2.jpg);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="caption vertical-center text-left">
-                                        <div class="hero-subtitle-v2 fadeInDown-1">
-                                            shop to get what you loves
-                                        </div>
-
-                                        <div class="hero-2 fadeInDown-2">
-                                            Timepieces that make a statement up to <strong>40% Off</strong>
-                                        </div>
-
-                                        <div class="hero-action-btn fadeInDown-3">
-                                            <a href="#" class="big le-button ">Start Buying</a>
-                                        </div>
-                                    </div><!-- /.caption -->
-                                </div>
-                            </div>
-                        </div><!-- /.container -->
-                    </div><!-- /.item -->
+                                                <div class="hero-action-btn fadeInDown-3">
+                                                    <a href="#" class="big le-button ">Start Buying</a>
+                                                </div>
+                                            </div><!-- /.caption -->
+                                        </div><!-- /.col -->
+                                    </div>
+                                </div><!-- /.container -->
+                            </div><!-- /.item -->
 
 
-                </div><!-- /.owl-carousel -->
+
+                        </Slide>
+
+                        <template #addons>
+                            <Pagination />
+                        </template>
+
+                    </Carousel>
+
+
+
 
                 <!-- ========================================= SECTION – HERO : END ========================================= -->
             </div><!-- /.home-v1-slider -->

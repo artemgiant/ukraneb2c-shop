@@ -8,6 +8,9 @@
         </nav>
 
 
+
+
+
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
 
@@ -15,21 +18,52 @@
 
                     <div class="single-product-wrapper">
                         <div class="product-images-wrapper">
-                            <div class="images electro-gallery">
-                                <div class="thumbnails-single ">
-
-                                    <a v-for="img in product.images" :href="$storageUrl+'/'+img.name"
-                                       title="" >
+                            <Carousel style="" id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+                                <Slide v-for="(img,slide) in product.images" :key="slide">
+                                    <div class="carousel__item">
                                         <img
-                                            :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
-                                            class="wp-post-image" alt=""></a>
+                                                :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
+                                                class="wp-post-image" alt="">
+                                    </div>
+                                </Slide>
 
-                                </div><!-- .thumbnails-single -->
 
-                                <div class="thumbnails-all columns-5 owl-carousel">
 
-                                </div><!-- .thumbnails-all -->
-                            </div><!-- .electro-gallery -->
+                            </Carousel>
+
+                            <Carousel
+                                    id="thumbnails"
+                                    :items-to-show="5"
+                                    :wrap-around="false"
+                                    v-model="currentSlide"
+                                    ref="carousel"
+                            >
+                                <Slide v-for="(img,slide) in  product.images" :key="slide">
+                                    <div class="carousel__item" @click="slideTo(slide)">
+                                        <img
+                                                :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
+                                                class="wp-post-image" alt="">
+
+                                    </div>
+                                </Slide>
+                            </Carousel>
+
+
+<!--                            <div class="images electro-gallery">-->
+<!--                                <div class="thumbnails-single ">-->
+
+<!--                                    <a v-for="img in product.images" :href="$storageUrl+'/'+img.name"-->
+<!--                                       title="" >-->
+<!--                                        <img-->
+<!--                                            :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"-->
+<!--                                            class="wp-post-image" alt=""></a>-->
+
+<!--                                </div>&lt;!&ndash; .thumbnails-single &ndash;&gt;-->
+
+<!--                                <div class="thumbnails-all columns-5 owl-carousel">-->
+
+<!--                                </div>&lt;!&ndash; .thumbnails-all &ndash;&gt;-->
+<!--                            </div>&lt;!&ndash; .electro-gallery &ndash;&gt;-->
                         </div><!-- /.product-images-wrapper -->
 
                         <div class="summary entry-summary">

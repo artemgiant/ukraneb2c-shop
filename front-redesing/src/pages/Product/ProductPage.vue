@@ -33,6 +33,17 @@ onMounted(() => {
 
 })
 
+
+
+import 'vue3-carousel/dist/carousel.css'
+
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
+const currentSlide = ref(1);
+
+const slideTo = (val) => {
+  currentSlide.value = val
+}
 </script>
 
 
