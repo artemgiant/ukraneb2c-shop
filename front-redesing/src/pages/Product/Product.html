@@ -16,7 +16,9 @@
 
                 <div class="product">
 
-                    <div class="single-product-wrapper">
+                    <div class="single-product-wrapper" style="
+    margin-bottom: 1rem;
+">
                         <div class="product-images-wrapper">
                             <Carousel style="" id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
                                 <Slide v-for="(img,slide) in product.images" :key="slide">
@@ -39,7 +41,7 @@
                                     ref="carousel"
                             >
                                 <Slide v-for="(img,slide) in  product.images" :key="slide">
-                                    <div class="carousel__item" @click="slideTo(slide)">
+                                    <div style="cursor: pointer" class="carousel__item" @click="slideTo(slide)">
                                         <img
                                                 :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
                                                 class="wp-post-image" alt="">
@@ -117,10 +119,6 @@
                                 <div class="single_variation_wrap">
                                     <div class="woocommerce-variation single_variation"></div>
                                     <div class="woocommerce-variation-add-to-cart variations_button">
-                                        <div class="quantity">
-                                            <label>Quantity:</label>
-                                            <input type="number" name="quantity" v-model="product.quantity" title="Qty" class="input-text qty text"/>
-                                        </div>
                                         <button style="
     margin-left: 5px;
 "  v-on:click="basketStore.addToBasket(product)" type="button" class="single_add_to_cart_button button">Купити</button>
