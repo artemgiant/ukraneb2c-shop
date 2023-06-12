@@ -20,7 +20,6 @@ const product = ref({});
 const $storageUrl = inject('storageUrl')
 const authStore = useAuthStore();
 
-
 onMounted(() => {
   productApiStore.getProduct(route.params.id).then(data => {
     product.value = {...data.products[0],quantity:1}
@@ -31,8 +30,27 @@ onMounted(() => {
   commentApiStore.getComments();
 
 
+
+  const lightbox2 = new PhotoSwipeLightbox({
+    gallery: '#' + 'gallery',
+    children: 'a',
+    showHideAnimationType: 'zoom',
+    pswpModule: () => import('photoswipe'),
+  });
+
+  lightbox2.init();
 })
 
+
+const sizeImg = (key,type)=>{
+   console.log()
+  key++
+   const img =  document.querySelector(`#thumbnails > div.carousel__viewport > ol > li:nth-child(${key}) > div > img`)
+  if((img!==null)) {
+    // console.log(img,img.naturalWidth,(type === 'width') ? img.naturalWidth : img.naturalHeight)
+    return (type === 'width') ? img.naturalWidth : img.naturalHeight;
+  }
+}
 
 
 import 'vue3-carousel/dist/carousel.css'
@@ -44,6 +62,12 @@ const currentSlide = ref(1);
 const slideTo = (val) => {
   currentSlide.value = val
 }
+
+
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import 'photoswipe/style.css';
+
+
 </script>
 
 

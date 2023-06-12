@@ -8,9 +8,6 @@
         </nav>
 
 
-
-
-
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
 
@@ -19,19 +16,24 @@
                     <div class="single-product-wrapper" style="
     margin-bottom: 1rem;
 ">
-                        <div class="product-images-wrapper">
+                        <div class="product-images-wrapper" >
+
                             <Carousel style="" id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
                                 <Slide v-for="(img,slide) in product.images" :key="slide">
-                                    <div class="carousel__item">
+                                    <a :href="$storageUrl+'/'+img.name"
+                                       :data-pswp-width="sizeImg(slide,'width')"
+                                       :data-pswp-height="sizeImg(slide,'height')"
+
+                                       class="carousel__item">
                                         <img
                                                 :src="$storageUrl+'/'+img.name" :data-echo="$storageUrl+'/'+img.name"
                                                 class="wp-post-image" alt="">
-                                    </div>
+                                    </a>
                                 </Slide>
-
-
-
                             </Carousel>
+
+
+
 
                             <Carousel
                                     id="thumbnails"

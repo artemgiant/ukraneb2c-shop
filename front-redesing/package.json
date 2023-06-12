@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "photoswipe": "^5.3.7",
     "pinia": "^2.0.23",
     "vee-validate": "^4.7.3",
     "vue": "^3.2.6",
