@@ -26,9 +26,8 @@ export const useProductApiStore = defineStore('productApiStore', () => {
     }
 
 
-    const getProduct = async (id) => {
-
-     return   await  $axios.post(`/api/products`,{id:id},{
+    const getProduct = async (value) => {
+     return   await  $axios.post(`/api/products`,{value:value},{
          headers: {
              'Accept':'application/json',
              'Authorization':'20|xO8xdQ9dGpHRmcgWfyfDIIbsa5hPT8IsDcyhagkn'

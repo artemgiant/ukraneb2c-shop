@@ -5,7 +5,7 @@
       <div class="product-inner">
         <span class="loop-product-categories"><a href="product-category.html" rel="tag"></a></span>
         <router-link class="quick-view"
-                     :to="{ name: 'Product',params:{id:product.id}}">
+                     :to="{ name: 'Product',params:{value:product.slug?product.slug:product.id}}">
 <!--          <h3> {{ product.name }}</h3>-->
           <div class="product-thumbnail">
             <img :src="$storageUrl+'/'+product.image_main.name" :alt="$storageUrl+'/'+product.image_main.name">

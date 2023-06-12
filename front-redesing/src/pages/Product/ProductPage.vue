@@ -21,7 +21,8 @@ const $storageUrl = inject('storageUrl')
 const authStore = useAuthStore();
 
 onMounted(() => {
-  productApiStore.getProduct(route.params.id).then(data => {
+
+  productApiStore.getProduct(route.params.value).then(data => {
     product.value = {...data.products[0],quantity:1}
     // активація слайдеру в товарі це в нас находится front/src/js/main.js
     // setTimeout(()=>{ window.productSlick();},100);

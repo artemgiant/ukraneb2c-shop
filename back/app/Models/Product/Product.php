@@ -95,21 +95,12 @@ class Product extends Model
                 ->whereRaw("UPPER(`name`) LIKE '%".mb_strtoupper($request->get('search'))."%'");
         }
 
-        if (($request->has('value') && !empty($request->get('value')))) {
-            foreach ($request->all() as $key => $value) {
-                if ($key == 'value') {
-                    if ($value) {
-//                        $filters = preg_split("/[\s,]+/", trim($value));
-                        $filters = '%' . trim($value) . '%';
-                        $q->where(function ($query) use ($filters, $key) {
-                            $query->orWhere('local_code', 'like', $filters);
-                            $query->orWhere('name', 'like', $filters);
-                        });
-                    }
-                }
-            }
-        }
 
+        if(!empty($request->get('value'))){
+            $q
+                ->where('id', '=',$request->get('value'))
+                ->orWhere('slug', '=',$request->get('value'));
+        }
         return $q;
     }
 

@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
                 'images',
                 'price',
                 'name',
+                'slug',
                 'description_long',
                 'description_short',
                 'in_stock',
