@@ -77,6 +77,12 @@
               </ul>
             </nav>
           </div>
+
+
+
+
+
+
         </div>
 
         <div class="header-support-info">
@@ -89,106 +95,114 @@
           </div>
         </div>
 
-      </div><!-- /.row -->
-    </div>
-  </header><!-- #masthead -->
 
+        <div >
+          <div class="row ">
 
-  <nav class="navbar navbar-primary navbar-full">
-    <div class="container">
-
-      <form class="navbar-search" style="width: 80%" method="get" action="/">
-        <label class="sr-only screen-reader-text" for="search">Search for:</label>
-        <div class="input-group">
-          <input type="text" id="search" class="form-control search-field" dir="ltr"  v-model="productStore.filters.search"  placeholder="Пошук по назві товару...">
-          <div class="input-group-btn">
-            <input type="hidden" id="search-param" name="post_type" value="product">
-            <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
-          </div>
-        </div>
-      </form>
-
-      <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-        <li class="nav-item dropdown" onclick="redirectToBasket(this)" style=" cursor: pointer;">
-          <a class="nav-link" data-toggle="dropdown">
-            <i class="ec ec-shopping-bag"></i>
-            <span class="cart-items-count count">{{basketStore.products.length}}</span>
-            <span class="cart-items-total-price total-price"><span class="amount">{{basketStore.sum}} грн</span></span>
-          </a>
-
-          <ul class="dropdown-menu dropdown-menu-mini-cart">
-            <li>
-              <div class="widget_shopping_cart_content">
-
-                <ul class="cart_list product_list_widget ">
-
-
-                  <li class="mini_cart_item"  v-for="product in basketStore.products" :key="product.id">
-                    <a title="Remove this item"  v-on:click="basketStore.delFromBasket(product)" class="remove" href="#">×</a>
-                    <a href="#">
-                      <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" :src="$storageUrl+'/'+product.image_main.name"
-                           :alt="$storageUrl+'/'+product.image_main.name">
-                      {{product.name}}&nbsp;
-                    </a>
-
-                    <span class="quantity">{{product.quantity}} × <span class="amount">₴ {{product.price}}</span></span>
+            <div class="col-xs-12 col-lg-12 ">
+              <nav>
+                <ul id="menu-secondary-nav" class="secondary-nav"
+                    style="text-align: center;">
+                  <li class=" menu-item " :class="{'highlight':productStore.filters.category === category.id}"  v-for="category in  categoryStore.tree" :key="category.id" >
+                    <router-link to="/" style="font-weight: 500;" v-on:click="productStore.filters.category = productStore.filters.category === category.id? null : category.id">    {{category.name}}</router-link>
                   </li>
 
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.row -->
+    </div>
 
 
-                </ul><!-- end product list -->
+
+    <nav class="navbar navbar-primary navbar-full">
+      <div class="container">
+
+        <form class="navbar-search" style="width: 80%" method="get" action="/">
+          <label class="sr-only screen-reader-text" for="search">Search for:</label>
+          <div class="input-group">
+            <input type="text" id="search" class="form-control search-field" dir="ltr"  v-model="productStore.filters.search"  placeholder="Пошук по назві товару...">
+            <div class="input-group-btn">
+              <input type="hidden" id="search-param" name="post_type" value="product">
+              <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
+            </div>
+          </div>
+        </form>
+
+        <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+          <li class="nav-item dropdown" onclick="redirectToBasket(this)" style=" cursor: pointer;">
+            <a class="nav-link" data-toggle="dropdown">
+              <i class="ec ec-shopping-bag"></i>
+              <span class="cart-items-count count">{{basketStore.products.length}}</span>
+              <span class="cart-items-total-price total-price"><span class="amount">{{basketStore.sum}} грн</span></span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-mini-cart">
+              <li>
+                <div class="widget_shopping_cart_content">
+
+                  <ul class="cart_list product_list_widget ">
 
 
-                <p class="total"><strong>ПІДСУМОК:</strong> <span class="amount">₴ {{basketStore.sum}}</span></p>
+                    <li class="mini_cart_item"  v-for="product in basketStore.products" :key="product.id">
+                      <a title="Remove this item"  v-on:click="basketStore.delFromBasket(product)" class="remove" href="#">×</a>
+                      <a href="#">
+                        <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" :src="$storageUrl+'/'+product.image_main.name"
+                             :alt="$storageUrl+'/'+product.image_main.name">
+                        {{product.name}}&nbsp;
+                      </a>
 
-                <div class="buttons" style="
+                      <span class="quantity">{{product.quantity}} × <span class="amount">₴ {{product.price}}</span></span>
+                    </li>
+
+
+
+                  </ul><!-- end product list -->
+
+
+                  <p class="total"><strong>ПІДСУМОК:</strong> <span class="amount">₴ {{basketStore.sum}}</span></p>
+
+                  <div class="buttons" style="
     display: flex;
     justify-content: space-between;
     align-items: center;
 ">
-<!--                  <a class="button wc-forward" href="#">View Cart</a>-->
-<!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
+                    <!--                  <a class="button wc-forward" href="#">View Cart</a>-->
+                    <!--                  <a class="button checkout wc-forward" href="checkout.html">Checkout</a>-->
 
 
-              <div>  <strong>РАЗОМ:</strong> <span class="amount">₴ {{basketStore.sum}}</span></div>
+                    <div>  <strong>РАЗОМ:</strong> <span class="amount">₴ {{basketStore.sum}}</span></div>
 
-                  <router-link class="button checkout wc-forward" to="/basket">Оформити</router-link>
+                    <router-link class="button checkout wc-forward" to="/basket">Оформити</router-link>
 
 
-<!--             <router-link class="button  wc-forward" to="/view-cart">View Cart</router-link>-->
+                    <!--             <router-link class="button  wc-forward" to="/view-cart">View Cart</router-link>-->
+
+                  </div>
+
 
                 </div>
-
-
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-
-
-
-
-    </div>
-
-  </nav>
-
-<div class="container ">
-  <div class="row ">
-
-    <div class="col-xs-12 col-lg-9 ">
-      <nav>
-        <ul id="menu-secondary-nav" class="secondary-nav">
-          <li class=" menu-item " :class="{'highlight':productStore.filters.category === category.id}"  v-for="category in  categoryStore.tree" :key="category.id" >
-            <a href="#" v-on:click="productStore.filters.category = productStore.filters.category === category.id? null : category.id">    {{category.name}}</a>
+              </li>
+            </ul>
           </li>
-
         </ul>
-      </nav>
-    </div>
-  </div>
-</div>
+
+
+
+
+
+      </div>
+
+    </nav>
+
+
+  </header><!-- #masthead -->
+
+
+
+
 
   <!-- /HEADER -->
 </template>
