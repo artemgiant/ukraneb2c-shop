@@ -18,7 +18,7 @@ class ProductController extends  Controller
 
         if (!$request->length)
             $request->request->set('length', 10);
-        $pagination = Product::orderByDesc('id')
+        $pagination = Product::orderByDesc('order')
             ->whereNotNull('images')
             ->where('in_stock','>','0')
             ->with(['attributes'=>function($q){  $q->with('attribute'); }])
@@ -31,7 +31,7 @@ class ProductController extends  Controller
 
         $totalLength = $pagination->total();
         $products = ProductResource::collection($pagination);
-//return 'ok';
+return 'ok';
         $products->toJson();
         return response()->json(['products' => $products, 'totalLength' => $totalLength]);
     }
