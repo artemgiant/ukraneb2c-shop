@@ -31,7 +31,6 @@ class ProductController extends  Controller
 
         $totalLength = $pagination->total();
         $products = ProductResource::collection($pagination);
-return 'ok';
         $products->toJson();
         return response()->json(['products' => $products, 'totalLength' => $totalLength]);
     }
