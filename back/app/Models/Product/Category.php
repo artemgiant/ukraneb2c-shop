@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Shop\Shop;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,5 +31,10 @@ class Category extends Model
 
     public function product_attributes(){
         return $this->belongsToMany(Attribute::class, 'category_attributes', 'category_id', 'attribute_id');
+    }
+
+    public function shops()
+    {
+        return $this->belongsToMany(Shop::class,'shop_categories',);
     }
 }
